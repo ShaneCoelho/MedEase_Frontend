@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import DoctorLogin from './pages/DoctorLogin/DoctorLogin';
+import DoctorLogin from './pages/doctor/DoctorLogin/DoctorLogin';
 import HomePage from './pages/HomePage/HomePage';
-import HomePage from '/pages/HomePage/H'
-import PatientLogin from './pages/PatientLogin';
-import PatientSignup from './pages/PatientSignup';
-import AdminLogin from './pages/AdminLogin';
+// import HomePage from '/pages/HomePage/H'
+import PatientLogin from './pages/patient/PatientLoginSignup/PatientLogin';
+import PatientSignup from './pages/patient/PatientLoginSignup/PatientSignup';
+import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
 
 
 function App() {
