@@ -1,0 +1,135 @@
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('./asset2/Patient/negative.jpg');
+}
+
+.wrapper {
+    text-align: center;
+    width: 410px;
+    background:transparent;
+    color: #fff;
+    border-radius: 40px;
+    padding: 65px 26px;
+}
+
+.wrapper:hover{
+    transform:scale(1.01);
+}
+
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box{
+    position: relative;
+    width: 70%;
+    height: 20px;
+    margin: 60px auto ;
+    text-align:center;
+}
+
+.input-box input{
+    margin-left: -15px;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 15px;
+    font-style: italic;
+    color: white;
+    padding: 18px 19px 18px 19px;
+    align-items: center;
+}
+
+.input-box input::placeholder {
+    color: #fff;
+}
+
+
+
+.input-box .icon{
+    position: absolute;
+    right: -5px;
+    top: 30px;
+    transform: translateY(-50%);
+    font-size: 17px;
+}
+
+
+.input-box .icon2{
+    position: absolute;
+    right: -5px;
+    top: 30px;
+    transform: translateY(-50%);
+    font-size: 17px;
+}
+
+.remember-forgot label input{
+    accent-color: #fff;
+    margin-right: 4px;
+}
+
+.remember-forgot a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.wrapper button {
+    width: 325px;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10 rgba(0, 0, 0, .1);
+    cursor:pointer;
+    font-size: 23px;
+    color: #333;
+    font-weight: 700;
+}
+
+.wrapper button:hover{
+    background: rgb(169, 9, 233);
+    color: #fff;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content:center;
+    font-size: 14.5px;
+    margin: 15px 30px 15px;
+}
+
+
+.wrapper .register-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 30px 0 15px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration:underline;
+}
+
+@media only screen and (max-width: 600px) {
+    .wrapper {
+      width: 100%;
+    }
+  }

@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/doctorlogin" element={<DoctorLogin />} />
+        <Route path="/patient-login" element={<PatientLogin />} />
         <Route path="/patient-login" component={PatientLogin}/>
         <Route path="/patient-signup" component={PatientSignup} />
         <Route path="/admin-login" component={AdminLogin} />
