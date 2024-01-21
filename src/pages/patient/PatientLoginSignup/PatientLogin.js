@@ -1,10 +1,13 @@
 import React from "react";
-import './PatientLogin.css'
 import { FaUser, FaLock } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import StylePatient from './StylePatient'; 
 
 
 const PatientLogin = () => {
     return (
+        <StylePatient>
+            <div className="Pt-body">
         <div className="wrapper">
             <form action="">
                 <h1>Login</h1>
@@ -29,6 +32,8 @@ const PatientLogin = () => {
                 </div>
             </form>
         </div>
+        </div>
+        </StylePatient>
     );
 }
 
