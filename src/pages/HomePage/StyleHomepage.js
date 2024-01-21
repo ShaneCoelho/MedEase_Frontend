@@ -1,11 +1,13 @@
-/* src/App.css */
-body {
+import styled from "styled-components";
+
+const StyleHomepage = styled.section`
+.hm-body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #003057; 
-  }
-  
+    background: url('../../assets/Doctor/Home.jpg');
+    background-size: cover;
+}
   .App {
     text-align: center;
   }
@@ -13,8 +15,9 @@ body {
   .home-container {
     max-width: 800px;
     margin: 50px auto;
+    border: 3px solid #050046;
     padding: 40px; /* Increased padding for more spacious modules */
-    background-color: #fff;
+    background-color: #ffffff00;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
@@ -31,10 +34,10 @@ body {
     margin: 10px;
     text-align: center;
     padding: 30px;
-    border: 1px solid #d3d3d3;
+    border: 3px solid #050046;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: hsl(218, 100%, 81%); /* White background */
+    background-color: hsla(218, 100%, 81%, 0); /* White background */
     transition: transform 0.3s ease-in-out;
   }
   
@@ -65,4 +68,6 @@ body {
   .module a:hover {
     background-color: #0056b3; /* Darker shade on hover */
   }
-  
+`;
+
+export default StyleHomepage;
