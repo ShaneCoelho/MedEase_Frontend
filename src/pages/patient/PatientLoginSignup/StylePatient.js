@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StylePatient = styled.section`
-.Pt-body {
+  .Pt-body {
     margin: 0;
     height: 100vh;
     display: flex;
@@ -14,11 +14,12 @@ const StylePatient = styled.section`
 
   .wrapper {
     text-align: center;
-    width: 410px;
+    width: 80%;
+    max-width: 450px;
     background: rgba(255, 255, 255, 0.8);
     color: #050046;
-    border-radius: 40px;
-    padding: 65px 26px;
+    border-radius: 30px;
+    padding: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
 
@@ -27,80 +28,87 @@ const StylePatient = styled.section`
   }
 
   .wrapper h1 {
-    font-size: 36px;
+    font-size: 24px;
     text-align: center;
     color: #050046;
+    margin-bottom: 20px; /* Added margin for better spacing */
   }
 
   .wrapper .input-box {
     position: relative;
-    width: 70%;
-    height: 60px;
-    margin: 40px auto;
+    width: 100%;
+    height: 50px;
+    margin: 15px auto;
     text-align: center;
   }
 
   .input-box input {
-    margin-left: -15px;
     width: 100%;
     height: 100%;
     background: rgba(220, 255, 255, 0.6);
     outline: none;
     border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 40px;
+    border-radius: 25px;
     font-size: 15px;
     font-style: italic;
-    color: navy; /* Set the text color to navy blue */
-    padding: 18px 19px;
-}
+    color: navy;
+    padding: 15px;
+    box-sizing: border-box; /* Added box-sizing for consistent sizing */
+  }
 
-.input-box input::placeholder {
-    color: #050046; /* Set the placeholder text color to the login color */
-}
+  .input-box input::placeholder {
+    color: #050046;
+  }
 
-.input-box .icon {
+  .input-box .icon {
     position: absolute;
-    right: -5px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 17px;
     color: #050046;
-}
+  }
 
-.input-box .icon2 {
+  .input-box .icon2 {
     position: absolute;
-    right: -5px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 17px;
     color: #050046;
-}
-  
-
-  .remember-forgot label input {
-    accent-color: #fff;
-    margin-right: 4px;
   }
 
-  .remember-forgot a {
-    color: #3498db; /* Adjusted color for better visibility */
-    text-decoration: none;
+  .gender-selection {
+    display: flex;
+    justify-content: space-around; /* Improved alignment for gender selection */
+    margin: 15px 0;
   }
 
-  .remember-forgot a:hover {
-    text-decoration: underline;
+  .gender-selection select {
+    flex: 1;
+    height: 100%;
+    background: rgba(220, 255, 255, 0.6);
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    font-size: 15px;
+    font-style: italic;
+    color: navy;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-right: 10px; /* Added margin for better spacing between selects */
   }
 
   .wrapper button {
-    width: 325px;
-    height: 45px;
+    width: 100%;
+    height: 40px;
     background: #050046;
     border: none;
     outline: none;
-    border-radius: 40px;
+    border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    font-size: 23px;
+    font-size: 16px;
     color: #fff;
     font-weight: 700;
     transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -114,18 +122,18 @@ const StylePatient = styled.section`
   .wrapper .remember-forgot {
     display: flex;
     justify-content: center;
-    font-size: 14.5px;
-    margin: 15px 30px 15px;
+    font-size: 14px;
+    margin: 15px 0;
   }
 
   .wrapper .register-link {
-    font-size: 14.5px;
+    font-size: 14px;
     text-align: center;
-    margin: 30px 0 15px;
+    margin: 20px 0 15px;
   }
 
   .register-link p a {
-    color: #27ae60; /* Adjusted color for better visibility */
+    color: #27ae60;
     text-decoration: none;
     font-weight: 600;
   }
@@ -137,6 +145,16 @@ const StylePatient = styled.section`
   @media only screen and (max-width: 600px) {
     .wrapper {
       width: 100%;
+      padding: 15px;
+    }
+
+    .gender-selection {
+      flex-direction: column; /* Stack gender selects in smaller screens */
+      align-items: center; /* Center gender selects in smaller screens */
+    }
+
+    .gender-selection select {
+      margin-bottom: 10px; /* Added margin for better spacing */
     }
   }
 `;

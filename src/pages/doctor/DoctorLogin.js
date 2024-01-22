@@ -1,15 +1,16 @@
 import React from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import StyleAdminLogin from './StyleAdminLogin';  // Assuming StyleAdminLogin is a styled-component
+import StyleDoctorLogin from './StyleDoctorLogin';
 
-const AdminLogin = () => {
+
+const DoctorLogin = () => {
     return (
-        <StyleAdminLogin>
-            <div className="ad-body">
+        <StyleDoctorLogin>
+            <div className="dc-body">
                 <div className="wrapper">
                     <form action="">
-                        <h1>Admin Login</h1>
+                        <h1>Doctor Login</h1>
                         <div className="input-box">
                             <input type="text" placeholder="Username" required />
                             <FaUser className="icon" />
@@ -18,14 +19,14 @@ const AdminLogin = () => {
                             <input type="password" placeholder="Password" required /> {/* Change type to 'password' */}
                             <FaLock className="icon2" />
                         </div>
-
+ 
                         <button type="submit">Login</button>
 
                     </form>
                 </div>
             </div>
-        </StyleAdminLogin>
+        </StyleDoctorLogin>
     );
 }
 
-export default AdminLogin;
+export default DoctorLogin;

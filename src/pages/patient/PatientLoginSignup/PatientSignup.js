@@ -13,13 +13,9 @@ const PatientLogin = () => {
                 <h1>Signup</h1>
                 
                 <div className="input-box">
-                    <input type="text" placeholder="Enter First Name" required/>
+                    <input type="text" placeholder="Enter email address" required/>
                     <FaUser className="icon" />
-                 </div>   
-                 <div className="input-box">
-                    <input type="text" placeholder="Enter Last Name" required/>
-                    <FaUser className="icon" />
-                 </div>  
+                 </div>    
                 <div className="input-box">
                     <input type="text" placeholder="Enter new Username" required/>
                     <FaUser className="icon" />
@@ -31,8 +27,9 @@ const PatientLogin = () => {
 
 
                 </div>
-                <button type="submit">Login</button>
-
+                <button type="submit">
+                            <Link to="/patient-details">Signup</Link>
+                        </button>
             </form>
         </div>
         </div>
