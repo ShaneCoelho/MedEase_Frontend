@@ -12,12 +12,7 @@ const PatientDetails = () => {
                         <h1>Patient Details</h1>
 
                         <div className="input-box">
-                            <select required>
-                                <option value="" disabled>Select Profile</option>
-                                <option value="patient">Patient</option>
-                                <option value="doctor">Doctor</option>
-                                {/* Add more options as needed */}
-                            </select>
+
                         </div>
 
                         <div className="input-box">

@@ -49,10 +49,10 @@ const StyleDoctorLogin = styled.section`
         outline: none;
         border: 2px solid rgba(255, 255, 255, 0.5);
         border-radius: 40px;
-        font-size: 15px;
+        font-size: 12px;
         font-style: italic;
         color: navy; /* Set the text color to navy blue */
-        padding: 18px 19px;
+        padding: 12px 12px;
     }
     
     .input-box input::placeholder {
@@ -61,8 +61,8 @@ const StyleDoctorLogin = styled.section`
     
     .input-box .icon {
         position: absolute;
-        right: -5px;
-        top: 50%;
+        right: 2px;
+        top: 60%;
         transform: translateY(-50%);
         font-size: 17px;
         color: #050046;
@@ -70,8 +70,8 @@ const StyleDoctorLogin = styled.section`
     
     .input-box .icon2 {
         position: absolute;
-        right: -5px;
-        top: 50%;
+        right: 2px;
+        top: 60%;
         transform: translateY(-50%);
         font-size: 17px;
         color: #050046;

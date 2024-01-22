@@ -27,7 +27,7 @@ const PatientLogin = () => {
 
 
                 </div>
-                <button type="submit">
+                        <button type="submit">
                             <Link to="/patient-details">Signup</Link>
                         </button>
             </form>
