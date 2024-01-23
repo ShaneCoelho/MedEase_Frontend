@@ -56,7 +56,7 @@ button {
   color: #fff;
   padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   margin: 0 auto;
