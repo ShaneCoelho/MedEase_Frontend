@@ -3,7 +3,7 @@ import HomePage from './pages/HomePage/HomePage';
 import PatientLogin from './pages/patient/PatientLoginSignup/PatientLogin';
 import PatientSignup from './pages/patient/PatientLoginSignup/PatientSignup';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
-import DoctorLogin from './pages/doctor/DoctorLogin';
+import DoctorLogin from './pages/doctor/DoctorLogin/DoctorLogin';
 import PatientDetails from './pages/patient/PatientDetails/PatientDetails';
 
 function App() {
