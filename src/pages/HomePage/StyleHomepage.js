@@ -72,7 +72,7 @@ const StyleHomepage = styled.section`
     background-color: #0056b3;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 400px) {
     .home-container {
       padding: 20px;
     }
