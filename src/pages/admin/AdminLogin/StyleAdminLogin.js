@@ -136,10 +136,11 @@ const StyleAdminLogin = styled.section`
         text-decoration: underline;
       }
     
-      @media only screen and (max-width: 600px) {
+      @media screen and (max-width: 500px) {
         .wrapper {
-          width: 100%;
+          max-width: 90%;
         }
+      }
       }
     `;
 

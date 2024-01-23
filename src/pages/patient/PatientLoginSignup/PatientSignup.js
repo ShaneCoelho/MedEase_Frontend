@@ -1,12 +1,13 @@
 import React from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import StylePatient from './StylePatient'; 
+import StylePatientLogin from './StylePatientLogin'; 
 
 
-const PatientLogin = () => {
+
+const PatientSignup = () => {
     return (
-        <StylePatient>
+        <StylePatientLogin>
         <div className="Pt-body">
         <div className="wrapper">
             <form action="">
@@ -33,8 +34,8 @@ const PatientLogin = () => {
             </form>
         </div>
         </div>
-        </StylePatient>
+        </StylePatientLogin>
     );
 }
 
-export default PatientLogin;
+export default PatientSignup;
