@@ -1,6 +1,7 @@
 import React from "react";
 import { FaUser, FaBirthdayCake, FaVenusMars, FaTint, FaWeight, FaMobileAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import StylePatient from '../PatientLoginSignup/StylePatientLogin'; 
 import StylePatientDetails from "./StylePatientDetails";
 
