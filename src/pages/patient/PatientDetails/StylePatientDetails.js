@@ -4,20 +4,33 @@ const StylePatientDetails = styled.section`
 /* StylePatientDetails.css */
 
 .Pd-body {
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  
 }
 
 .wrapper {
-  max-width: 400px;
-  width: 100%;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
+  text-align: center;
+  width: 410px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #050046;
+  border-radius: 40px;
+  padding: 65px 26px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+.wrapper:hover {
+  transform: scale(1.05);
+}
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+  color: #050046;
+}
+
 
 form {
   display: flex;
@@ -32,6 +45,9 @@ h1 {
 .input-box {
   position: relative;
   margin-bottom: 20px;
+  color: navy;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 40px;
 }
 
 .input-box input,
@@ -71,7 +87,7 @@ button {
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .wrapper {
     max-width: 90%;
   }
