@@ -5,6 +5,7 @@ import PatientSignup from './pages/patient/PatientLoginSignup/PatientSignup';
 import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
 import DoctorLogin from './pages/doctor/DoctorLogin/DoctorLogin';
 import PatientDetails from './pages/patient/PatientDetails/PatientDetails';
+import DoctorDetails from './pages/admin/DoctorDetails/DoctorDetails';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/patient-signup" element={<PatientSignup />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/patient-details" element={<PatientDetails/>}/>
+        <Route path="/doctor-details" element={<DoctorDetails/>}/>
+
       </Routes>
     </BrowserRouter>
   );
