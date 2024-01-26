@@ -7,6 +7,7 @@ import DoctorLogin from './pages/doctor/DoctorLogin/DoctorLogin';
 import PatientDetails from './pages/patient/PatientDetails/PatientDetails';
 import DoctorDetails from './pages/admin/DoctorDetails/DoctorDetails';
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,8 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/patient-details" element={<PatientDetails/>}/>
         <Route path="/doctor-details" element={<DoctorDetails/>}/>
+
+
 
       </Routes>
     </BrowserRouter>

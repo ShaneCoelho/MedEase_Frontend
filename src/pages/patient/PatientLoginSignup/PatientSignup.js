@@ -7,26 +7,38 @@ const PatientSignup = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isValidPassword, setIsValidPassword] = useState(true);
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
+
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    
+    // Validate email address (contains @)
+    const isValid = /\S+@\S+\.\S+/.test(newEmail);
+
+    setEmail(newEmail);
+    setIsValidEmail(isValid);
+  };
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
-    setPassword(newPassword);
-
+    
     // Validate password (at least 8 characters and at least one number)
     const isValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newPassword);
+
+    setPassword(newPassword);
     setIsValidPassword(isValid);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if the password is valid before submitting
-    if (isValidPassword) {
+    // Check if both email and password are valid before submitting
+    if (isValidEmail && isValidPassword) {
       // Perform your signup logic here
       console.log('Signup successful!');
     } else {
-      console.log('Invalid password');
+      console.log('Invalid email or password');
       // You may want to show an error message to the user
     }
   };
@@ -43,7 +55,7 @@ const PatientSignup = () => {
                 type="text"
                 placeholder="Enter email address"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 required
               />
               <FaUser className="icon" />
@@ -71,13 +83,17 @@ const PatientSignup = () => {
               <FaLock className={`icon2 ${isValidPassword ? '' : 'invalid'}`} />
             </div>
 
+            {isValidEmail ? null : (
+              <p className="email-error">Enter a valid email address</p>
+            )}
+
             {isValidPassword ? null : (
               <p className="password-error">Password must be at least 8 characters and contain at least one number</p>
             )}
 
-            <button type="submit" disabled={!isValidPassword}>
+            <button type="submit" disabled={!isValidEmail || !isValidPassword}>
               {/* Use Link dynamically based on password validity */}
-              {isValidPassword ? (
+              {isValidEmail && isValidPassword ? (
                 <Link to="/patient-details">Submit</Link>
               ) : (
                 <span>Submit</span>
