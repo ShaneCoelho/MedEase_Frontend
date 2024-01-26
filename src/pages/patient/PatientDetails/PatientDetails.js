@@ -3,12 +3,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import StylePatientDetails from "./StylePatientDetails";
 import styled from "styled-components";
-import ChangeProfilePhoto from "./ChangeProfilePhoto";
 import { useSelector } from 'react-redux';
 import { tokenValue } from "./TokenSlice";
 
 const PatientDetails = () => {
     const [birthDate, setBirthDate] = useState(null);
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
     
     return (
         <div>
@@ -19,7 +22,19 @@ const PatientDetails = () => {
                     <div className="title">Personal Details</div>
                     <div className="content">
                         <form action="#">
-                            <ChangeProfilePhoto />
+                            <ChangeProfilePhoto>
+                            <label className="-label" htmlFor="file">
+        <span className="glyphicon glyphicon-camera"></span>
+        <span>Change Image</span>
+      </label>
+      <input id="file" type="file" onChange={loadFile} />
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png"
+        id="output"
+        width="200"
+        alt=""
+      />
+                            </ChangeProfilePhoto>
                             <div className="user-details">
                                 <div className="input-box">
                                     <span className="details">Full Name</span>
@@ -28,6 +43,18 @@ const PatientDetails = () => {
                                 <div className="input-box">
                                     <span className="details">Description</span>
                                     <input type="text" placeholder="Enter your username" required />
+                                </div>
+                                <div className="input-box">
+                                    <span className="details">Blood Group</span>
+                                    <input type="text" placeholder="Enter your blood group" required />
+                                </div>
+                                <div className="input-box">
+                                    <span className="details">Weight</span>
+                                    <input type="text" placeholder="Enter your weight" required />
+                                </div>
+                                <div className="input-box">
+                                    <span className="details">Phone Number</span>
+                                    <input type="text" placeholder="Enter your phone no" required />
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Birth Date</span>
@@ -83,6 +110,50 @@ const StyledDatePicker = styled(DatePicker)`
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+`;
+
+const ChangeProfilePhoto = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  input {
+    display: none;
+  }
+  img {
+    position: absolute;
+    object-fit: cover;
+    width: 165px; /* Use actual size or dynamic calculation if needed */
+    height: 165px; /* Use actual size or dynamic calculation if needed */
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+    border-radius: 100px;
+    z-index: 0;
+  }
+  .-label {
+    cursor: pointer;
+    height: 165px; /* Use actual size or dynamic calculation if needed */
+    width: 165px; /* Use actual size or dynamic calculation if needed */
+  }
+  &:hover {
+    .-label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      color: rgb(250, 250, 250);
+      transition: background-color 0.2s ease-in-out;
+      border-radius: 100px;
+      margin-bottom: 0;
+    }
+  }
+  span {
+    display: inline-flex;
+    padding: 0.2em;
+    height: 2em;
+  }
 `;
 
 export default PatientDetails;
