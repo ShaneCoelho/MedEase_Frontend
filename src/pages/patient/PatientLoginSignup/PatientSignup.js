@@ -1,45 +1,44 @@
 import React, { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import StylePatientLogin from './StylePatientLogin'; 
+import { useNavigate } from 'react-router-dom';
+import StylePatientLogin from './StylePatientLogin';
+import axios from 'axios';
+import URL from '../../../data/URL'
 
 const PatientSignup = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  const [isValidPassword, setIsValidPassword] = useState(false);
+  const [signup, setSignUp] = useState({});
+  const navigate = useNavigate();
 
-  const handleEmailChange = (e) => {
-    const newEmail = e.target.value;
-    
-    // Validate email address (contains @)
-    const isValid = /\S+@\S+\.\S+/.test(newEmail);
-
-    setEmail(newEmail);
-    setIsValidEmail(isValid);
+  const getUserSignUpData = (e) => {
+    setSignUp({ ...signup, [e.target.name]: e.target.value });
   };
 
-  const handlePasswordChange = (e) => {
-    const newPassword = e.target.value;
-    
-    // Validate password (at least 8 characters and at least one number)
-    const isValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newPassword);
 
-    setPassword(newPassword);
-    setIsValidPassword(isValid);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if both email and password are valid before submitting
-    if (isValidEmail && isValidPassword) {
-      // Perform your signup logic here
-      console.log('Signup successful!');
-    } else {
-      console.log('Invalid email or password');
-      // You may want to show an error message to the user
+    // Validate password
+    if (signup.password.length < 8 || !/\d/.test(signup.password)) {
+        alert("Password should be minimum 8 characters with at least 1 number");
+        return;
+    }
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(signup.email)) {
+        alert("Invalid email address");
+        return;
+    }
+
+    try {
+        const response = await axios.post(URL.link + '/api/patient/auth/signup', signup);
+
+        // Handle the response as needed
+        console.log(response.data.token);
+        // console.log('Response from server:', response.data.token);
+        navigate('/patient-details')
+    } catch (error) {
+        console.error('Error making API call:', error);
     }
   };
 
@@ -49,13 +48,13 @@ const PatientSignup = () => {
         <div className="wrapper">
           <form onSubmit={handleSubmit}>
             <h1>Signup</h1>
-            
+
             <div className="input-box">
               <input
-                type="text"
+                type="email"
                 placeholder="Enter email address"
-                value={email}
-                onChange={handleEmailChange}
+                name="email"
+                onChange={getUserSignUpData}
                 required
               />
               <FaUser className="icon" />
@@ -65,8 +64,8 @@ const PatientSignup = () => {
               <input
                 type="text"
                 placeholder="Enter new Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                name="username"
+                onChange={getUserSignUpData}
                 required
               />
               <FaUser className="icon" />
@@ -76,29 +75,14 @@ const PatientSignup = () => {
               <input
                 type="password"
                 placeholder="Enter new Password"
-                value={password}
-                onChange={handlePasswordChange}
+                name="password"
+                onChange={getUserSignUpData}
                 required
               />
-              <FaLock className={`icon2 ${isValidPassword ? '' : 'invalid'}`} />
+              <FaLock className="icon2" />
             </div>
 
-            {isValidEmail ? null : (
-              <p className="email-error">Enter a valid email address</p>
-            )}
-
-            {isValidPassword ? null : (
-              <p className="password-error">Password must be at least 8 characters and contain at least one number</p>
-            )}
-
-            <button type="submit" disabled={!isValidEmail || !isValidPassword}>
-              {/* Use Link dynamically based on password validity */}
-              {isValidEmail && isValidPassword ? (
-                <Link to="/patient-details">Submit</Link>
-              ) : (
-                <span>Submit</span>
-              )}
-            </button>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>
