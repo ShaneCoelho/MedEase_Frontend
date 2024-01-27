@@ -6,6 +6,7 @@ import AdminLogin from './pages/admin/AdminLogin/AdminLogin';
 import DoctorLogin from './pages/doctor/DoctorLogin/DoctorLogin';
 import PatientDetails from './pages/patient/PatientDetails/PatientDetails';
 import DoctorDetails from './pages/admin/DoctorDetails/DoctorDetails';
+import ViewDoctor from './pages/patient/ViewDoctors/ViewDoctors';
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/patient-details" element={<PatientDetails/>}/>
         <Route path="/doctor-details" element={<DoctorDetails/>}/>
+        <Route path="/view-doctor" element={<ViewDoctor/>}/>
+
 
 
 
