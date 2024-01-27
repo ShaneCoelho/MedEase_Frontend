@@ -10,10 +10,10 @@ const PatientSignup = () => {
   const [signup, setSignUp] = useState({});
   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     const cookiename="token";
-//     document.cookie = `${cookiename}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-// }, []);
+  //   useEffect(() => {
+  //     const cookiename="token";
+  //     document.cookie = `${cookiename}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  // }, []);
 
   const getUserSignUpData = (e) => {
     setSignUp({ ...signup, [e.target.name]: e.target.value });
@@ -40,12 +40,18 @@ const PatientSignup = () => {
       const response = await axios.post(URL.link + '/api/patient/auth/signup', signup);
 
       console.log('Response from server:', response.data.token);
-      const value=response.data.token;
+      const value = response.data.token;
       setToken(value);
 
       navigate('/patient-details')
     } catch (error) {
       console.error('Error making API call:', error);
+
+      if (error.response && error.response.status === 409) {
+        alert('Username is already taken. Please choose a different username.');
+      } else {
+        alert('An error occurred. Please try again later.');
+      }
     }
   };
 

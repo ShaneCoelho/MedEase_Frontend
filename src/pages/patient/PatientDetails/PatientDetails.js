@@ -15,8 +15,8 @@ const PatientDetails = () => {
         // Function to check if the "token" cookie is present
         const checkTokenCookie = () => {
             const retrivedToken = getToken('token');
-            setToken(retrivedToken);
             setHasToken(!!retrivedToken); // Set hasToken to true if token exists, false otherwise
+            setToken(retrivedToken);
         };
 
         checkTokenCookie();
