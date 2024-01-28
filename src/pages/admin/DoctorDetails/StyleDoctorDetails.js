@@ -58,6 +58,40 @@ form .user-details .input-box {
     width: calc(100% / 2 - 20px);
 }
 
+form .input-box-2 {
+    input {
+        margin-top: 0.7rem;
+        margin-bottom: 5px;
+        margin-left: 40px;
+      }
+      
+      input::file-selector-button {
+        font-weight: bold;
+        display: inline-block;
+        margin-left: 0px;
+        margin-top: 0px;
+        color: black;
+        background-color: linear-gradient(135deg, #71b7e6, #9b59b6);
+        padding: 10px 30px;
+        z-index: 1;
+        text-decoration: none;
+        border: 2px solid #ccc;
+        border-radius: 20px;
+        overflow:hidden;
+        transition: color 1s, box-shadow 1s;
+      }
+
+      input::file-selector-button:hover{
+        color: aqua;
+        border: 2px solid purple;
+        box-shadow: 0 0 10px violet;
+        /* transform: scale(0.99); */
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+
+      }
+            
+}
+
 form .input-box span.details {
     display: block;
     font-weight: 500;

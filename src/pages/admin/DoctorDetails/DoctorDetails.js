@@ -3,12 +3,33 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import StyleDoctorDetails from "./StyleDoctorDetails";
 import styled from "styled-components";
-import ChangeProfilePhoto from "./ChangeProfilePhoto";
 import { useSelector } from 'react-redux';
 import { tokenValue } from "./TokenSlice";
 
 const DoctorDetails = () => {
     const [birthDate, setBirthDate] = useState(null);
+    const [selectedFile, setSelectedFile]= useState(null);
+
+
+
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
+
+      const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+    };
+
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        // Perform any additional actions with the selected file, such as sending it to the backend
+
+        // Clear the selected file after submission if needed
+        setSelectedFile(null);
+    };
     
     return (
         <div>
@@ -19,7 +40,20 @@ const DoctorDetails = () => {
                     <div className="title">Personal Details</div>
                     <div className="content">
                         <form action="#">
-                            <ChangeProfilePhoto />
+                            <ChangeProfilePhoto2>
+
+                            <label className="-label" htmlFor="file">
+                                 <span className="glyphicon glyphicon-camera"></span>
+                                <span>Change Image</span>
+                                </label>
+                                <input id="file" type="file" onChange={loadFile} />
+                                <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png"
+                                        id="output"
+                                        width="200"
+                                         alt=""
+                                />
+                            </ChangeProfilePhoto2>
                             <div className="user-details">
                                 <div className="input-box">
                                     <span className="details">Full Name</span>
@@ -73,8 +107,6 @@ const DoctorDetails = () => {
                                 
                                 
 
-                                
-
                                 <div className="input-box">
                                     <span className="details">Birth Date</span>
                                     <StyledDatePicker
@@ -88,7 +120,15 @@ const DoctorDetails = () => {
                                         required
                                     />
                                 </div>
+                                <form onSubmit={handleSubmit}></form>
+                                <div className="input-box-2">
+                                <label for="avatar">Medical License</label><br />
+                                    <input id="avatar" type="file" name="avatar" accept=".pdf, .doc, .docx" />
+
+
+                                </div>
                             </div>
+                            
                             <div className="gender-details">
                                 <input type="radio" name="gender" id="dot-1" />
                                 <input type="radio" name="gender" id="dot-2" />
@@ -131,5 +171,50 @@ const StyledDatePicker = styled(DatePicker)`
   border-radius: 4px;
   box-sizing: border-box;
 `;
+
+const ChangeProfilePhoto2 = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  input {
+    display: none;
+  }
+  img {
+    position: absolute;
+    object-fit: cover;
+    width: 165px; /* Use actual size or dynamic calculation if needed */
+    height: 165px; /* Use actual size or dynamic calculation if needed */
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+    border-radius: 100px;
+    z-index: 0;
+  }
+  .-label {
+    cursor: pointer;
+    height: 165px; /* Use actual size or dynamic calculation if needed */
+    width: 165px; /* Use actual size or dynamic calculation if needed */
+  }
+  &:hover {
+    .-label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      color: rgb(250, 250, 250);
+      transition: background-color 0.2s ease-in-out;
+      border-radius: 100px;
+      margin-bottom: 0;
+    }
+  }
+  span {
+    display: inline-flex;
+    padding: 0.2em;
+    height: 2em;
+  }
+`;
+
 
 export default DoctorDetails;
