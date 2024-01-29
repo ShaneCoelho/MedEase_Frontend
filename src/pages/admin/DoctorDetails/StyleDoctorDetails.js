@@ -1,23 +1,20 @@
 import styled from "styled-components";
 
-const DoctorDetails = styled.section`
+const StyleDoctorDetails = styled.section`
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
-    
-
   }
 
 .dd-body {
-    height: 150vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
-    background-size: cover;
 }
 
 .container {
@@ -209,4 +206,4 @@ form .button input:hover {
 }
 `;
 
-export default DoctorDetails;
+export default StyleDoctorDetails;
