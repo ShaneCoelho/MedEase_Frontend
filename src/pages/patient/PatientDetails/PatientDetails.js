@@ -5,9 +5,12 @@ import StylePatientDetails from "./StylePatientDetails";
 import styled from "styled-components";
 import WentWrong from '../../WentWrong/WentWrong'
 import { getToken } from "../../../data/Token";
+import hostURL from '../../../data/URL'
 
 const PatientDetails = () => {
     const [birthDate, setBirthDate] = useState(null);
+    const [formDetails, setFormDetails] = useState({});
+    const [profilePicture, setProfilePicture] = useState(null);
     const [hasToken, setHasToken] = useState(false);
     const [token, setToken] = useState(null);
 
@@ -23,99 +26,141 @@ const PatientDetails = () => {
     }, []);
 
 
+    const handleInputChange = (e) => {
+        setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
+    };
+
+
     var loadFile = function (event) {
         var image = document.getElementById('output');
-        image.src = URL.createObjectURL(event.target.files[0]);
+        const file = event.target.files[0];
+        image.src = URL.createObjectURL(file);
+        setProfilePicture(file);
+    };
+
+
+    const handleFormDetailsSubmit = async (e) => {
+        e.preventDefault();
+
+        // Convert birthdate to "dd-mm-yyyy" format
+        const formattedBirthdate = birthDate.toLocaleDateString('en-GB');
+
+        const updatedFormDetails = { ...formDetails, birthdate: formattedBirthdate };
+
+        // console.log(updatedFormDetails);
+
+        const formData = new FormData();
+        
+        formData.append('profile', profilePicture);
+
+        formData.append('data', JSON.stringify(updatedFormDetails));
+
+        try {
+            const response = await fetch(hostURL.link + '/api/patient/details/adddetails', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    // 'Content-Type': 'multipart/form-data',
+                },
+                body: formData,
+            });
+
+            // Check if the response is successful (status code 2xx)
+            if (response.ok) {
+                alert("Successfull")
+            } else {
+                console.error('Failed to submit form. Server returned:', response.status, response.statusText);
+                alert("something went wrong")
+            }
+        } catch (error) {
+            console.error('An error occurred while submitting the form:', error);
+        }
     };
 
     return (
         <div>
-             {hasToken ? (
-            <StylePatientDetails>
-                <div className="ud-body">
-                    <div className="container">
-                        <div className="title">Personal Details</div>
-                        <div className="content">
-                            <form action="#">
-                                <ChangeProfilePhoto>
-                                    <label className="-label" htmlFor="file">
-                                        <span className="glyphicon glyphicon-camera"></span>
-                                        <span>Change Image</span>
-                                    </label>
-                                    <input id="file" type="file" onChange={loadFile} />
-                                    <img
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png"
-                                        id="output"
-                                        width="200"
-                                        alt=""
-                                    />
-                                </ChangeProfilePhoto>
-                                <div className="user-details">
-                                    <div className="input-box">
-                                        <span className="details">Full Name</span>
-                                        <input type="text" placeholder="Enter your name" required />
-                                    </div>
-                                    <div className="input-box">
-                                        <span className="details">Description</span>
-                                        <input type="text" placeholder="Enter your username" required />
-                                    </div>
-                                    <div className="input-box">
-                                        <span className="details">Blood Group</span>
-                                        <input type="text" placeholder="Enter your blood group" required />
-                                    </div>
-                                    <div className="input-box">
-                                        <span className="details">Weight</span>
-                                        <input type="text" placeholder="Enter your weight" required />
-                                    </div>
-                                    <div className="input-box">
-                                        <span className="details">Phone Number</span>
-                                        <input type="text" placeholder="Enter your phone no" required />
-                                    </div>
-                                    <div className="input-box">
-                                        <span className="details">Birth Date</span>
-                                        <StyledDatePicker
-                                            selected={birthDate}
-                                            onChange={(date) => setBirthDate(date)}
-                                            dateFormat="yyyy-MM-dd"
-                                            placeholderText="Select your birth date"
-                                            showYearDropdown
-                                            scrollableYearDropdown
-                                            yearDropdownItemNumber={15}
-                                            required
+            {hasToken ? (
+                <StylePatientDetails>
+                    <div className="ud-body">
+                        <div className="container">
+                            <div className="title">Personal Details</div>
+                            <div className="content">
+                                <form onSubmit={handleFormDetailsSubmit}>
+                                    <ChangeProfilePhoto>
+                                        <label className="-label" htmlFor="file">
+                                            <span className="glyphicon glyphicon-camera"></span>
+                                            <span>Change Image</span>
+                                        </label>
+                                        <input id="file" type="file" onChange={loadFile} />
+                                        <img
+                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png"
+                                            id="output"
+                                            width="200"
+                                            alt=""
                                         />
+                                    </ChangeProfilePhoto>
+                                    <div className="user-details">
+                                        <div className="input-box">
+                                            <span className="details">Full Name</span>
+                                            <input type="text" name="name" placeholder="Enter your name" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Blood Group</span>
+                                            <input type="text" name="bloodgroup" placeholder="Enter your blood group" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Weight</span>
+                                            <input type="text" name="weight" placeholder="Enter your weight" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Phone Number</span>
+                                            <input type="text" name="mobno" placeholder="Enter your phone no" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Birth Date</span>
+                                            <StyledDatePicker
+                                                selected={birthDate}
+                                                onChange={(date) => setBirthDate(date)}
+                                                dateFormat="yyyy-MM-dd"
+                                                placeholderText="Select your birth date"
+                                                showYearDropdown
+                                                scrollableYearDropdown
+                                                yearDropdownItemNumber={15}
+                                                required
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="gender-details">
-                                    <input type="radio" name="gender" id="dot-1" />
-                                    <input type="radio" name="gender" id="dot-2" />
-                                    <input type="radio" name="gender" id="dot-3" />
-                                    <span className="gender-title">Gender</span>
-                                    <div className="category">
-                                        <label htmlFor="dot-1">
-                                            <span className="dot one"></span>
-                                            <span className="gender">Male</span>
-                                        </label>
-                                        <label htmlFor="dot-2">
-                                            <span className="dot two"></span>
-                                            <span className="gender">Female</span>
-                                        </label>
-                                        <label htmlFor="dot-3">
-                                            <span className="dot three"></span>
-                                            <span className="gender">Prefer not to say</span>
-                                        </label>
+                                    <div className="gender-details">
+                                        <input type="radio" name="gender" id="dot-1" value="Male" checked={formDetails.gender === 'Male'} onChange={handleInputChange} />
+                                        <input type="radio" name="gender" id="dot-2" value="Female" checked={formDetails.gender === 'Female'} onChange={handleInputChange} />
+                                        <input type="radio" name="gender" id="dot-3" value="Prefer not to say" checked={formDetails.gender === 'Prefer not to say'} onChange={handleInputChange} />
+                                        <span className="gender-title">Gender</span>
+                                        <div className="category">
+                                            <label htmlFor="dot-1">
+                                                <span className="dot one"></span>
+                                                <span className="gender">Male</span>
+                                            </label>
+                                            <label htmlFor="dot-2">
+                                                <span className="dot two"></span>
+                                                <span className="gender">Female</span>
+                                            </label>
+                                            <label htmlFor="dot-3">
+                                                <span className="dot three"></span>
+                                                <span className="gender">Prefer not to say</span>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="button">
-                                    <input type="submit" value="Save Details" />
-                                </div>
-                            </form>
+                                    <div className="button">
+                                        <input type="submit" value="Save Details" />
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </StylePatientDetails>
+                </StylePatientDetails>
             ) : (
-                <WentWrong/>
-                )}
+                <WentWrong />
+            )}
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import StyleAdminLogin from './StyleAdminLogin';  // Assuming StyleAdminLogin is a styled-component
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import URL from '../../../data/URL'
+import hostURL from '../../../data/URL'
 import { setToken } from "../../../data/Token";
 
 const AdminLogin = () => {
@@ -19,7 +19,7 @@ const AdminLogin = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(URL.link + '/api/admin/auth/signin', login);
+            const response = await axios.post(hostURL.link + '/api/admin/auth/signin', login);
 
             console.log('Response from server:', response.data.token);
             const value = response.data.token;

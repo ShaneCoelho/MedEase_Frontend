@@ -3,7 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import StylePatientLogin from './StylePatientLogin';
 import axios from 'axios';
-import URL from '../../../data/URL'
+import hostURL from '../../../data/URL'
 import { setToken } from "../../../data/Token";
 
 const PatientSignup = () => {
@@ -37,7 +37,7 @@ const PatientSignup = () => {
     }
 
     try {
-      const response = await axios.post(URL.link + '/api/patient/auth/signup', signup);
+      const response = await axios.post(hostURL.link + '/api/patient/auth/signup', signup);
 
       console.log('Response from server:', response.data.token);
       const value = response.data.token;
