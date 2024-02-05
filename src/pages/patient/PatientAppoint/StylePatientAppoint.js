@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleDoctorDetails = styled.section`
+const StylePatientAppoint = styled.section`
 *{
     margin: 0;
     padding: 0;
@@ -8,8 +8,8 @@ const StyleDoctorDetails = styled.section`
     font-family: 'Poppins',sans-serif;
   }
 
-.dd-body {
-    height: 150vh;
+.pa-body {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -206,4 +206,4 @@ form .button input:hover {
 }
 `;
 
-export default StyleDoctorDetails;
+export default StylePatientAppoint;

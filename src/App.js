@@ -7,7 +7,7 @@ import DoctorLogin from './pages/doctor/DoctorLogin/DoctorLogin';
 import PatientDetails from './pages/patient/PatientDetails/PatientDetails';
 import DoctorDetails from './pages/admin/DoctorDetails/DoctorDetails';
 import ViewDoctor from './pages/patient/ViewDoctors/ViewDoctors';
-
+import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="/patient-details" element={<PatientDetails/>}/>
         <Route path="/doctor-details" element={<DoctorDetails/>}/>
         <Route path="/view-doctor" element={<ViewDoctor/>}/>
-
+        <Route path="/patient-appoint" element={<PatientAppoint/>}/>
 
 
 
