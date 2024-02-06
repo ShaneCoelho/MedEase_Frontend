@@ -1,164 +1,219 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import StyleDoctorDetails from "./StyleDoctorDetails";
 import styled from "styled-components";
-import { useSelector } from 'react-redux';
-import { tokenValue } from "./TokenSlice";
+import WentWrong from '../../WentWrong/WentWrong'
+import { getToken } from "../../../data/Token";
+import hostURL from '../../../data/URL'
 
 const DoctorDetails = () => {
     const [birthDate, setBirthDate] = useState(null);
-    const [selectedFile, setSelectedFile]= useState(null);
+    const [formDetails, setFormDetails] = useState({});
+    const [profilePicture, setProfilePicture] = useState(null);
+    const [hasToken, setHasToken] = useState(false);
+    const [token, setToken] = useState(null);
 
+    useEffect(() => {
+        // Function to check if the "token" cookie is present
+        const checkTokenCookie = () => {
+            const retrivedToken = getToken('token');
+            setHasToken(!!retrivedToken); // Set hasToken to true if token exists, false otherwise
+            setToken(retrivedToken);
+        };
+
+        checkTokenCookie();
+    }, []);
+
+
+    const handleInputChange = (e) => {
+        setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
+    };
 
 
     var loadFile = function (event) {
         var image = document.getElementById('output');
-        image.src = URL.createObjectURL(event.target.files[0]);
-      };
-
-      const handleFileChange = (event) => {
         const file = event.target.files[0];
-        setSelectedFile(file);
+        image.src = URL.createObjectURL(file);
+        setProfilePicture(file);
     };
 
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        
-        // Perform any additional actions with the selected file, such as sending it to the backend
 
-        // Clear the selected file after submission if needed
-        setSelectedFile(null);
+    const handleFormDetailsSubmit = async (e) => {
+        e.preventDefault();
+
+        // Convert birthdate to "dd-mm-yyyy" format
+        const formattedBirthdate = birthDate.toLocaleDateString('en-GB');
+
+        const updatedFormDetails = { ...formDetails, birthdate: formattedBirthdate };
+
+        // console.log(updatedFormDetails);
+
+        const formData = new FormData();
+
+        formData.append('profile', profilePicture);
+
+        formData.append('data', JSON.stringify(updatedFormDetails));
+
+        try {
+            const response = await fetch(hostURL.link + '/api/admin/docregister/adddoctor', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    // 'Content-Type': 'multipart/form-data',
+                },
+                body: formData,
+            });
+
+            // Check if the response is successful (status code 2xx)
+            if (response.ok) {
+                alert("Successfull")
+            }else if(response.status === 409) {
+                alert('Username already taken');
+            }else {
+                console.error('Failed to submit form. Server returned:', response.status, response.statusText);
+                alert("something went wrong")
+            }
+        } catch (error) {
+            console.error('An error occurred while submitting the form:', error);
+        }
     };
-    
+
     return (
         <div>
-            
-            <StyleDoctorDetails>
-            <div className="dd-body">
-                <div className="container">
-                    <div className="title">Personal Details</div>
-                    <div className="content">
-                        <form action="#">
-                            <ChangeProfilePhoto2>
+            {hasToken ? (
+                <StyleDoctorDetails>
+                    <div className="dd-body">
+                        <div className="container">
+                            <div className="title">Personal Details</div>
+                            <div className="content">
+                                <form onSubmit={handleFormDetailsSubmit}>
+                                    <ChangeProfilePhoto2>
 
-                            <label className="-label" htmlFor="file">
-                                 <span className="glyphicon glyphicon-camera"></span>
-                                <span>Change Image</span>
-                                </label>
-                                <input id="file" type="file" onChange={loadFile} />
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png"
-                                        id="output"
-                                        width="200"
-                                         alt=""
-                                />
-                            </ChangeProfilePhoto2>
-                            <div className="user-details">
-                                <div className="input-box">
-                                    <span className="details">Full Name</span>
-                                    <input type="text" placeholder="Enter your name" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Description</span>
-                                    <input type="text" placeholder="Enter your username" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Address</span>
-                                    <input type="text" placeholder="Enter your address" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">License number</span>
-                                    <input type="text" placeholder="Enter your license number" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Phone number</span>
-                                    <input type="text" placeholder="Enter your phone no." required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Specialization</span>
-                                    <input type="text" placeholder="Enter your specialization" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Experience</span>
-                                    <input type="text" placeholder="Enter your experience[years]" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Qualification</span>
-                                    <input type="text" placeholder="Enter your qualification" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Medical University</span>
-                                    <input type="text" placeholder="Enter your University name" required />
-                                </div>
-      
-                                <div className="input-box">
-                                    <span className="details">Government Id</span>
-                                    <input type="text" placeholder="Enter your identification no." required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Username</span>
-                                    <input type="text" placeholder="Enter your username" required />
-                                </div>
-                                <div className="input-box">
-                                    <span className="details">Password</span>
-                                    <input type="text" placeholder="Enter your new password" required />
-                                </div>
-                                
-                                
+                                        <label className="-label" htmlFor="file">
+                                            <span className="glyphicon glyphicon-camera"></span>
+                                            <span>Change Image</span>
+                                        </label>
+                                        <input id="file" type="file" onChange={loadFile} />
+                                        <img
+                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png"
+                                            id="output"
+                                            width="200"
+                                            alt=""
+                                        />
+                                    </ChangeProfilePhoto2>
+                                    <div className="user-details">
+                                        <div className="input-box">
+                                            <span className="details">Full Name</span>
+                                            <input type="text" placeholder="Enter your name" name="name" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Email</span>
+                                            <input type="text" placeholder="Enter your email" name="email" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Address</span>
+                                            <input type="text" placeholder="Enter your address" name="address" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">License number</span>
+                                            <input type="text" placeholder="Enter your license number" name="licene_number" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Phone number</span>
+                                            <input type="text" placeholder="Enter your phone no." name="phone" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Specialization</span>
+                                            <input type="text" placeholder="Enter your specialization" name="specialization" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Experience</span>
+                                            <input type="text" placeholder="Enter your experience[years]" name="experience" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Qualification</span>
+                                            <input type="text" placeholder="Enter your qualification" name="qualification" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Medical University</span>
+                                            <input type="text" placeholder="Enter your University name" name="med_school" onChange={handleInputChange} required />
+                                        </div>
 
-                                <div className="input-box">
-                                    <span className="details">Birth Date</span>
-                                    <StyledDatePicker
-                                        selected={birthDate}
-                                        onChange={(date) => setBirthDate(date)}
-                                        dateFormat="yyyy-MM-dd"
-                                        placeholderText="Select your birth date"
-                                        showYearDropdown
-                                        scrollableYearDropdown
-                                        yearDropdownItemNumber={15}
-                                        required
-                                    />
-                                </div>
-                                <form onSubmit={handleSubmit}></form>
-                                <div className="input-box-2">
-                                <label for="avatar">Medical License</label><br />
-                                    <input id="avatar" type="file" name="avatar" accept=".pdf, .doc, .docx" />
+                                        <div className="input-box">
+                                            <span className="details">Graduation Year</span>
+                                            <input type="text" placeholder="Enter your Graduation Year" name="graduation_year" onChange={handleInputChange} required />
+                                        </div>
+
+                                        <div className="input-box">
+                                            <span className="details">Government Id</span>
+                                            <input type="text" placeholder="Enter your identification no." name="gov_id" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Username</span>
+                                            <input type="text" placeholder="Enter your username" name="username" onChange={handleInputChange} required />
+                                        </div>
+                                        <div className="input-box">
+                                            <span className="details">Password</span>
+                                            <input type="password" placeholder="Enter your new password" name="password" onChange={handleInputChange} required />
+                                        </div>
 
 
-                                </div>
+
+                                        <div className="input-box">
+                                            <span className="details">Birth Date</span>
+                                            <StyledDatePicker
+                                                selected={birthDate}
+                                                onChange={(date) => setBirthDate(date)}
+                                                dateFormat="yyyy-MM-dd"
+                                                placeholderText="Select your birth date"
+                                                showYearDropdown
+                                                scrollableYearDropdown
+                                                yearDropdownItemNumber={15}
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="input-box-2">
+                                            <label for="avatar">Medical License</label><br />
+                                            <input id="avatar" type="file" name="avatar" accept=".pdf, .doc, .docx" />
+
+
+                                        </div>
+                                    </div>
+
+                                    <div className="gender-details">
+                                    <input type="radio" name="gender" id="dot-1" value="Male" checked={formDetails.gender === 'Male'} onChange={handleInputChange} />
+                                        <input type="radio" name="gender" id="dot-2" value="Female" checked={formDetails.gender === 'Female'} onChange={handleInputChange} />
+                                        <input type="radio" name="gender" id="dot-3" value="Prefer not to say" checked={formDetails.gender === 'Prefer not to say'} onChange={handleInputChange} />
+                                        <span className="gender-title">Gender</span>
+                                        <div className="category">
+                                            <label htmlFor="dot-1">
+                                                <span className="dot one"></span>
+                                                <span className="gender">Male</span>
+                                            </label>
+                                            <label htmlFor="dot-2">
+                                                <span className="dot two"></span>
+                                                <span className="gender">Female</span>
+                                            </label>
+                                            <label htmlFor="dot-3">
+                                                <span className="dot three"></span>
+                                                <span className="gender">Prefer not to say</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="button">
+                                        <input type="submit" value="Save Details" />
+
+                                    </div>
+                                </form>
                             </div>
-                            
-                            <div className="gender-details">
-                                <input type="radio" name="gender" id="dot-1" />
-                                <input type="radio" name="gender" id="dot-2" />
-                                <input type="radio" name="gender" id="dot-3" />
-                                <span className="gender-title">Gender</span>
-                                <div className="category">
-                                    <label htmlFor="dot-1">
-                                        <span className="dot one"></span>
-                                        <span className="gender">Male</span>
-                                    </label>
-                                    <label htmlFor="dot-2">
-                                        <span className="dot two"></span>
-                                        <span className="gender">Female</span>
-                                    </label>
-                                    <label htmlFor="dot-3">
-                                        <span className="dot three"></span>
-                                        <span className="gender">Prefer not to say</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="button">
-                                <input type="submit" value="Save Details" />
-                                
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </StyleDoctorDetails>
-            
+                </StyleDoctorDetails>
+            ) : (
+                <WentWrong />
+            )}
         </div>
     )
 }

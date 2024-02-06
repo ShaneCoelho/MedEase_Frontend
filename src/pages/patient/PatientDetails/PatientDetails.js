@@ -70,7 +70,7 @@ const PatientDetails = () => {
                 alert("Successfull")
             } else {
                 console.error('Failed to submit form. Server returned:', response.status, response.statusText);
-                alert("something went wrong")
+                alert("something went wrong"+response.status)
             }
         } catch (error) {
             console.error('An error occurred while submitting the form:', error);
