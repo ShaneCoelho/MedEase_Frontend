@@ -9,12 +9,14 @@ import DoctorDetails from './pages/admin/DoctorDetails/DoctorDetails';
 import ViewDoctor from './pages/patient/ViewDoctors/ViewDoctors';
 import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
 import DoctorList from './pages/patient/dummy/dummy'
+import Home from './pages/Home/Home/Home';
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/home" element={<Home />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/doctor-login" element={<DoctorLogin />} />
         <Route path="/patient-login" element={<PatientLogin />} />
