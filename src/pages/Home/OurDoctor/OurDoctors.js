@@ -8,6 +8,7 @@ const OurDoctors = () => {
         { id: 1, firstName: "John", lastName: "Doe", designation: "Cardiologist", specialization: "Cardiology", img: "https://example.com/doctor1.jpg" },
         { id: 2, firstName: "Jane", lastName: "Smith", designation: "Dermatologist", specialization: "Dermatology", img: "https://example.com/doctor2.jpg" },
         { id: 3, firstName: "Alice", lastName: "Johnson", designation: "Pediatrician", specialization: "Pediatrics", img: "https://example.com/doctor3.jpg" },
+        { id: 4, firstName: "Axe", lastName: "Wilson", designation: "Opthamalogist", specialization: "Opthamalogy", img: "https://example.com/doctor3.jpg" },
     ];
 
     let content = null;
@@ -40,7 +41,7 @@ const OurDoctors = () => {
             <div className="container">
                 <div className="section-title text-center mb-3">
                     <h2>OUR DOCTORS</h2>
-                    <p className='form-text'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, adipisci?</p>
+                    <p className='form-text'>Introducing one of the best doctors of the state</p>
                 </div>
 
                 <div className="row">
