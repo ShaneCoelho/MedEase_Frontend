@@ -116,8 +116,8 @@ const DoctorDetails = () => {
                                             <input type="text" placeholder="Enter your address" name="address" onChange={handleInputChange} required />
                                         </div>
                                         <div className="input-box">
-                                            <span className="details">License number</span>
-                                            <input type="text" placeholder="Enter your license number" name="licene_number" onChange={handleInputChange} required />
+                                            <span className="details">City</span>
+                                            <input type="text" placeholder="Enter your city" name="city" onChange={handleInputChange} required />
                                         </div>
                                         <div className="input-box">
                                             <span className="details">Phone number</span>
@@ -146,8 +146,8 @@ const DoctorDetails = () => {
                                         </div>
 
                                         <div className="input-box">
-                                            <span className="details">Government Id</span>
-                                            <input type="text" placeholder="Enter your identification no." name="gov_id" onChange={handleInputChange} required />
+                                            <span className="details">Practicing At</span>
+                                            <input type="text" placeholder="Enter your identification no." name="practicing_at" onChange={handleInputChange} required />
                                         </div>
                                         <div className="input-box">
                                             <span className="details">Username</span>
