@@ -9,7 +9,7 @@ const StylePatientDetails = styled.section`
   }
 
 .ud-body {
-    height: 100vh;
+    height: 120vh;
     display: flex;
     justify-content: center;
     align-items: center;
