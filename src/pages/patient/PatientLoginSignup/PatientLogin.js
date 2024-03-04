@@ -6,7 +6,6 @@ import axios from 'axios';
 import hostURL from '../../../data/URL'
 import { setToken } from "../../../data/Token";
 
-
 const PatientLogin = () => {
     const [login, setLogIn] = useState({});
     const navigate = useNavigate();
@@ -18,15 +17,16 @@ const PatientLogin = () => {
     const handleLogInSubmit = async (e) => {
         e.preventDefault();
 
-
         try {
             const response = await axios.post(hostURL.link + '/api/patient/auth/signin', login);
-
             console.log('Response from server:', response.data.token);
             const value = response.data.token;
             setToken(value);
 
-            console.log("Successfully Logged INnn")
+            console.log("Successfully Logged INnn");
+
+            // Redirect to the patient dashboard page
+            navigate('/home');
         } catch (error) {
             console.error('Error making API call:', error);
 
@@ -47,7 +47,6 @@ const PatientLogin = () => {
                         <div className="input-box">
                             <input type="text" name="username" placeholder="Username" onChange={getUserLogInData} required />
                             <FaUser className="icon" />
-
                         </div>
                         <div className="input-box">
                             <input type="password" name="password" placeholder="Password" onChange={getUserLogInData} required />
@@ -55,7 +54,6 @@ const PatientLogin = () => {
                         </div>
 
                         <button type="submit">Login</button>
-
                     </form>
                 </div>
             </div>

@@ -44,15 +44,12 @@ const Header = () => {
 
     return (
         <>
-
             <header id="header" className={`fixed-top ${!show && "stickyHeader"}`}>
                 <div className="container d-flex align-items-center">
-
                     <Link to={'/'} className="logo me-auto">
                         <img src={img} alt="" className="img-fluid" />
                     </Link>
                     <HeaderNav content={content} open={open} setOpen={setOpen} />
-                    <Link to={'/appointment'} className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span> Appointment</Link>
                 </div>
             </header>
         </>
