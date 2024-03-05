@@ -3,7 +3,7 @@ import Footer from '../Shared/Footer/Footer'
 import { useForm } from 'react-hook-form';
 import { FaLocationArrow, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import Header from '../Shared/Header/Header';
-import './index.css';
+import './StyleContact.jsx';
 import SubHeader from '../Shared/SubHeader';
 import { useContactMutation } from '../../redux/api/contactApi';
 import { message } from 'antd';

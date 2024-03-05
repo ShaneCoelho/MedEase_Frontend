@@ -11,15 +11,18 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact'
 import DoctorAppoint from './pages/doctor/DoctorAppoint/DoctorAppoint';
 import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
-import DoctorList from './pages/patient/dummy/dummy'
 import Home from './pages/Home/Home/Home';
+import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
+
+
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/homepage" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/doctor-login" element={<DoctorLogin />} />
         <Route path="/patient-login" element={<PatientLogin />} />
         {/* Remove the duplicate route for "/patient-login" */}
@@ -32,7 +35,9 @@ function App() {
         <Route path="/view-doctor" element={<ViewDoctor/>}/>
         <Route path="/patient-appoint" element={<PatientAppoint/>}/>
         <Route path="/doctor-appoint" element={<DoctorAppoint/>}/>
-        <Route path="/doctor-list" element={<DoctorList/>}/>
+        <Route path="/doctor-review" element={<DoctorReview/>}/>
+
+
 
 
       </Routes>

@@ -1,3 +1,6 @@
+import styled from "styled-components";
+const StyleContact = styled.section`
+
 .info .icon {
     margin-top: 2px;
     font-size: 22px;
@@ -23,3 +26,7 @@
 .contact .appointment-btn {
     border: 0 !important;
 }
+
+`;
+
+export default StyleContact;

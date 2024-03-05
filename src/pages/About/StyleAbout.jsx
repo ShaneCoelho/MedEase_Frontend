@@ -1,3 +1,6 @@
+import styled from "styled-components";
+const StyleAbout = styled.section`
+
 .award-img {
     height: 120px;
     margin-bottom: 10px;
@@ -21,3 +24,6 @@
     content: "";
     background: url("../../images/doc/doc4.jpg") no-repeat 50% 50%;
 }
+`;
+
+export default StyleAbout;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 const StylePatientAppoint = styled.section`
   * {
     margin: 0;
@@ -7,22 +8,11 @@ const StylePatientAppoint = styled.section`
     font-family: 'Poppins', sans-serif;
   }
 
-  height: 100vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .container {
-    width: 100%;
-    max-width: 800px;
-    background-color: #fff;
-    padding: 50px;
-    border-radius: 60px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  padding: 20px;
 
   .title {
     font-size: 25px;
@@ -43,10 +33,11 @@ const StylePatientAppoint = styled.section`
   }
 
   .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   }
 
   .user-details {
@@ -61,6 +52,22 @@ const StylePatientAppoint = styled.section`
     width: calc(50% - 10px);
     margin-bottom: 15px;
   }
+  .input-box select {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .input-box select:focus {
+    border-color: #9b59b6;
+  }
 
   .input-box-2 input {
     margin-top: 0.7rem;
@@ -74,7 +81,8 @@ const StylePatientAppoint = styled.section`
     margin-bottom: 5px;
   }
 
-  .input-box input {
+  .input-box input,
+  .input-box textarea {
     height: 45px;
     width: 100%;
     outline: none;
@@ -84,10 +92,13 @@ const StylePatientAppoint = styled.section`
     border: 1px solid #ccc;
     border-bottom-width: 2px;
     transition: all 0.3s ease;
+    background-color: #fff;
   }
 
   .input-box input:focus,
-  .input-box input:valid {
+  .input-box input:valid,
+  .input-box textarea:focus,
+  .input-box textarea:valid {
     border-color: #9b59b6;
   }
 
@@ -148,8 +159,8 @@ const StylePatientAppoint = styled.section`
   }
 
   .button input {
-    height: 100%;
-    width: 100%;
+    height: 60%;
+    width: 30%;
     border-radius: 5px;
     border: none;
     color: #fff;
@@ -158,12 +169,40 @@ const StylePatientAppoint = styled.section`
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: #1977cc;
     outline: none;
   }
 
   .button input:hover {
-    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    background: #1977cc;
+  }
+
+  .reviews-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .reviews-section h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .review-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+
+  .review-item p {
+    margin: 5px 0;
+  }
+
+  .add-review {
+    margin-top: 20px;
   }
 
   @media (max-width: 768px) {
@@ -174,4 +213,3 @@ const StylePatientAppoint = styled.section`
 `;
 
 export default StylePatientAppoint;
-

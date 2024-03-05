@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.css';
+import './StyleAbout.jsx';
 import Header from '../Shared/Header/Header';
 import Footer from '../Shared/Footer/Footer';
 import ImageHeading from '../../images/doc/doctor 5.jpg'
@@ -88,21 +88,6 @@ const About = () => {
             </div>
 
 
-            <div className="container" style={{ marginBottom: 100, marginTop: 100 }}>
-                <div className="row justify-content-center">
-                    <div className="col-lg-6">
-                        <div className='mb-4 section-title text-center'>
-                            <h2 className='text-uppercase'>Meet Our Specialist</h2>
-                            <p className='form-text m-0'>Your health, our priority – together, we heal.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row">
-                    {doctorContent}
-
-                </div>
-            </div>
 
             <div className="container say-about" style={{ marginBottom: 100, marginTop: 100 }}>
                 <div className="row">
