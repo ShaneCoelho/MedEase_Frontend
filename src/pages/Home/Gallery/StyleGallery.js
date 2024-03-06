@@ -1,3 +1,7 @@
+import styled from "styled-components";
+
+const StyleGallery = styled.section`
+
 .gallery{
     margin-top: 3rem;
     margin-bottom: 8rem;
@@ -23,3 +27,6 @@
     object-fit:contain;
     object-position: top;
 }
+`;
+
+export default StyleGallery;

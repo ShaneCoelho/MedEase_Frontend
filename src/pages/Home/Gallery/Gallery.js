@@ -7,12 +7,14 @@ import img6 from '../../../images/doc/doctor chair 2.jpg';
 import img7 from '../../../images/features/feature-03.jpg';
 import img8 from '../../../images/doc/doctor 5.jpg';
 import img9 from '../../../images/doc/doctor chair 2.jpg';
-import './index.css';
+import './StyleGallery.js';
+import StyleGallery from './StyleGallery.js';
 import { Image } from 'antd';
 
 const Gallery = () => {
     const imageArray = [img2,img3,img4,img5,img6,img7, img8, img9]
     return (
+        <StyleGallery>
         <section className="gallery container">
             <div className="text-center mb-5">
                 <div className="section-title mb-3">
@@ -40,6 +42,7 @@ const Gallery = () => {
 
             </div>
         </section>
+        </StyleGallery>
     )
 }
 

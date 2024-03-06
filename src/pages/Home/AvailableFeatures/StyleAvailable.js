@@ -1,3 +1,8 @@
+import styled from "styled-components";
+
+const StyleAvailable = styled.section`
+
+
 .section-features {
 	background-color: #fff;
 	padding: 80px 0;
@@ -25,3 +30,6 @@
     font-weight: 500;
     margin: 20px 0 0;
 }
+`;
+
+export default StyleAvailable;

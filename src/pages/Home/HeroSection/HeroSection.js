@@ -1,9 +1,11 @@
 import React from 'react';
-import './index.css';
+import StyleHero from './StyleHero';
+import './StyleHero'
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
     return (
+        <StyleHero>
         <section id="hero" className="d-flex align-items-center">
             <div className="container">
                 <div>
@@ -17,6 +19,7 @@ const HeroSection = () => {
                 </div>
             </div>
         </section>
+        </StyleHero>
     )
 }
 export default HeroSection;

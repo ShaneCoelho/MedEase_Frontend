@@ -1,3 +1,8 @@
+import styled from "styled-components";
+
+const StyleClinic = styled.section`
+
+
 .section-specialities {
 	background-color: rgb(243, 241, 241);
 	padding: 80px 0;
@@ -97,3 +102,6 @@
 	margin: 30px 0 0;
 	transition: 0.4s ease-in;
 }
+`;
+
+export default StyleClinic;

@@ -1,3 +1,7 @@
+import styled from "styled-components";
+
+const StyleInfo = styled.section`
+
 .why-us .content {
   padding: 30px;
   background: #1977cc;
@@ -60,3 +64,6 @@
   font-size: 15px;
   color: #848484;
 }
+`;
+
+export default StyleInfo;

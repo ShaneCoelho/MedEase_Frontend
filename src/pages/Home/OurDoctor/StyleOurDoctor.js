@@ -1,3 +1,8 @@
+import styled from "styled-components";
+
+const StylePatientAppoint = styled.section`
+
+
 .doctors {
     background: #fff;
 }
@@ -91,3 +96,7 @@
 .doctors .member .social a+a {
     margin-left: 8px;
 }
+
+`;
+
+export default StylePatientAppoint;

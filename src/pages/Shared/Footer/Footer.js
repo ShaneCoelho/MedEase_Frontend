@@ -1,11 +1,12 @@
 import React from 'react';
-import './Footer.css';
+import StyleFooter from './StyleFooter';
 import logo from '../../../images/logo.png';
 import { Link } from 'react-router-dom';
 import { FaAngleDoubleRight } from "react-icons/fa";
 
 const Footer = () => {
 	return (
+		<StyleFooter>
 		<footer className="footer position-relative">
 			<div className="footer-top">
 				<div className="container-fluid">
@@ -92,6 +93,7 @@ const Footer = () => {
 			</div>
 
 		</footer>
+		</StyleFooter>
 	);
 };
 

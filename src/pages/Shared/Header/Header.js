@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './index.css';
+import StyleHeader from './StyleHeader';
 import { Link } from 'react-router-dom';
 import img from '../../../images/logo.png';
 import avatar from '../../../images/avatar.jpg';
@@ -44,6 +44,7 @@ const Header = () => {
 
     return (
         <>
+        <StyleHeader>
             <header id="header" className={`fixed-top ${!show && "stickyHeader"}`}>
                 <div className="container d-flex align-items-center">
                     <Link to={'/'} className="logo me-auto">
@@ -52,7 +53,9 @@ const Header = () => {
                     <HeaderNav content={content} open={open} setOpen={setOpen} />
                 </div>
             </header>
+            </StyleHeader>
         </>
+        
     );
 }
 

@@ -2,6 +2,7 @@ import { Popover } from "antd"
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Drawer , Button } from 'antd';
 import { FaHome,FaBars, FaPhoneAlt, FaWrench, FaUserMd, FaAddressBook, FaBloggerB, FaSignInAlt } from "react-icons/fa";
+import StyleHeader from "./StyleHeader";
 
 const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
 
     return (
         <>
+        <StyleHeader>
             <nav id="navbar" className="navbar order-last order-lg-0">
                 <ul>
                     <li><NavLink to={'/home'} className="nav-link scrollto" activeClassName="active"><FaHome /> Home</NavLink></li>
@@ -68,6 +70,7 @@ const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
                     {!isLoggedOut && <li><Link to={'/login'} className="nav-link scrollto"><FaSignInAlt className="icon" />LogOut</Link></li>}
                 </ul>
             </Drawer>
+            </StyleHeader>
         </>
     )
 }

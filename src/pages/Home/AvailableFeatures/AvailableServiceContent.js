@@ -6,6 +6,7 @@ import img from '../../../images/features/feature.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
+import StyleAvailable from './StyleAvailable';
 
 const AvailableServiceContent = () => {
     const availabeServiceArray = [
@@ -16,6 +17,7 @@ const AvailableServiceContent = () => {
         { title: 'Laboratory', img: img4 },
     ]
     return (
+        <StyleAvailable>
         <div className="d-flex justify-content-center align-items-center gap-4">
 
             <Swiper
@@ -38,6 +40,7 @@ const AvailableServiceContent = () => {
                 }
             </Swiper>
         </div>
+        </StyleAvailable>
     )
 }
 

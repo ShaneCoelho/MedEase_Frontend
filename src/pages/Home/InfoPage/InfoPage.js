@@ -1,10 +1,12 @@
 import React from 'react';
-import './InfoPage.css';
+import './StyleInfo.js';
 import { FaClock, FaHeadset,FaHouseUser  } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import StyleInfo from './StyleInfo.js';
 
 const InfoPage = () => {
     return (
+        <StyleInfo>
         <section className="why-us mt-5 mt-md-0">
             <div className="container">
 
@@ -59,6 +61,7 @@ const InfoPage = () => {
 
             </div>
         </section>
+        </StyleInfo>
     )
 }
 

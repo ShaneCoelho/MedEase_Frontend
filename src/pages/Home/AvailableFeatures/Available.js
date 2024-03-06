@@ -1,11 +1,12 @@
 import React from 'react';
 import img from '../../../images/features/feature.png';
-import './index.css';
+import './StyleAvailable.js';
 import AvailableServiceContent from './AvailableServiceContent';
 
 const Availabe = () => {
 
 	return (
+		<StyleAvailable>
 		<section className="container section-features">
 			<div className="container-fluid">
 				<div className="row">
@@ -22,6 +23,7 @@ const Availabe = () => {
 				</div>
 			</div>
 		</section>
+		</StyleAvailable>
 	);
 };
 

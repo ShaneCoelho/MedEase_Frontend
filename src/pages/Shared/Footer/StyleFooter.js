@@ -1,3 +1,7 @@
+import styled from "styled-components";
+
+const StyleFooter = styled.section`
+
 .footer {
     background-color: #15558d;
 }
@@ -113,3 +117,6 @@
 .footer .social-icon ul li a:hover {
 	color: #09e5ab;
 }
+`;
+
+export default StyleFooter;

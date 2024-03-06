@@ -1,6 +1,7 @@
-import './index.css';
+import './StyleOurDoctor.js';
 import { FaFacebookSquare, FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 import { Empty } from 'antd';
+import StyleOurDoctor from './StyleOurDoctor.js'
 
 const OurDoctors = () => {
     // Dummy data for doctors
@@ -37,6 +38,7 @@ const OurDoctors = () => {
     }
 
     return (
+        <StyleOurDoctor>
         <section id="doctors" className="doctors">
             <div className="container">
                 <div className="section-title text-center mb-3">
@@ -49,6 +51,7 @@ const OurDoctors = () => {
                 </div>
             </div>
         </section>
+        </StyleOurDoctor>
     );
 };
 

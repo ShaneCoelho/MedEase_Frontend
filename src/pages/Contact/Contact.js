@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import Footer from '../Shared/Footer/Footer'
+import Footer from '../Shared/Footer/Footer.js'
 import { useForm } from 'react-hook-form';
 import { FaLocationArrow, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
-import Header from '../Shared/Header/Header';
-import './StyleContact.jsx';
-import SubHeader from '../Shared/SubHeader';
-import { useContactMutation } from '../../redux/api/contactApi';
+import Header from '../Shared/Header/Header.js';
+import './StyleContact.js';
+import SubHeader from '../Shared/SubHeader.js';
+import { useContactMutation } from '../../redux/api/contactApi.js';
 import { message } from 'antd';
 
 const Contact = () => {

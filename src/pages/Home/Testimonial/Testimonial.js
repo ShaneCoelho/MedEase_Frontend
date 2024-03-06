@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import StyleTestim from './StyleTestim';
 import { useGetAllReviewsQuery } from '../../../redux/api/reviewsApi';
 import StarRatings from 'react-star-ratings';
 import { truncate } from '../../../utils/truncate';
@@ -46,6 +46,7 @@ const Testimonial = () => {
             }
         </>
     return (
+        <StyleTestim>
         <div className="container" style={{ marginTop: "10rem", marginBottom: "10rem" }}>
             <div className='mb-5 section-title text-center'>
                 <h2>TESTIMONIAL</h2>
@@ -65,6 +66,7 @@ const Testimonial = () => {
                 </Swiper>
             </div>
         </div>
+        </StyleTestim>
     );
 };
 

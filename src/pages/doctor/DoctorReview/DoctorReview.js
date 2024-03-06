@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
-import StyleDoctorReviews from './StyleDoctorReview.jsx';
+import StyleDoctorReviews from './StyleDoctorReview.js';
 
 const DoctorReview = () => {
     const [reviews, setReviews] = useState([]);

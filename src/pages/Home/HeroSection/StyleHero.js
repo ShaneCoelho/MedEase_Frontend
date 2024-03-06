@@ -1,11 +1,17 @@
+import styled from "styled-components";
+import img from '../../../images/img/hero-bg.jpg';
+const StyleHero = styled.section`
+
 #hero {
-    width: 100%;
-    height: 90vh;
-    background: url("../../../images/img/hero-bg.jpg") top center;
-    background-size: cover;
-    margin-bottom: -115px;
-    margin-top: 80px;
-  }
+  width: 100%;
+  height: 90vh;
+  background-image: url(${img});
+  background-position: top center;
+  background-size: cover;
+  margin-bottom: -115px;
+  margin-top: 80px;
+}
+
   
   #hero .container {
     position: relative;
@@ -82,3 +88,6 @@
       padding: 8px 10px;
     }
   }
+`;
+
+export default StyleHero;

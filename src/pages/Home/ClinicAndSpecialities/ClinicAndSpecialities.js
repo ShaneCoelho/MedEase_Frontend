@@ -5,10 +5,11 @@ import img3 from '../../../images/specialities/specialities-03.png';
 import img4 from '../../../images/specialities/specialities-04.png';
 import img5 from '../../../images/specialities/specialities-05.png';
 import { FaCheckDouble } from "react-icons/fa";
-import './index.css';
+import StyleClinic from './StyleClinic';
 
 const ClinicAndSpecialities = () => {
 	return (
+		<StyleClinic>
 		<section className="section section-specialities position-relative">
 			<div className="container-fluid">
 				<div className='mb-5 section-title text-center'>
@@ -57,8 +58,11 @@ const ClinicAndSpecialities = () => {
 						</div>
 					</div>
 				</div>
+
 			</div>
+			
 		</section>
+		</StyleClinic>
 	);
 };
 

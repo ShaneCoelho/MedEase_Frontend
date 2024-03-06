@@ -1,3 +1,8 @@
+import styled from "styled-components";
+
+const StyleHeader = styled.section`
+
+
 .nav-popover h5{
     font-size: 18px;
     margin-bottom: 0;
@@ -236,3 +241,7 @@
 .ant-drawer-body{
     background-color: #d2d2ff;
 }
+
+`;
+
+export default StyleHeader;
