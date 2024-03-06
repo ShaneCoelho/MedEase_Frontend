@@ -41,9 +41,12 @@ const ViewDoctor = () => {
   };
 
   return (
-    <>
+    <div>
       <Header />
       <SubHeader title="View Doctors" subtitle="Explore our team of healthcare professionals" />
+      {loading ? (
+        <Loading />
+      ) : (
       <StyleViewDoctors>
         <div className='vd-body'>
           <div className="doctor-search-container">
@@ -74,8 +77,9 @@ const ViewDoctor = () => {
           </div>
         </div>
       </StyleViewDoctors>
+      )}
       <Footer />
-    </>
+    </div>
   );
 };
 

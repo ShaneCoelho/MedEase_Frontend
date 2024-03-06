@@ -77,38 +77,41 @@ const DoctorAppoint = () => {
 
   return (
     <div>
-      <StyleDoctorAppoint>
+      {loading ? (
+        <Loading />
+      ) : (
+        <StyleDoctorAppoint>
 
-        <div className="container">
-          <div className="title">Patient Appointments</div>
-          <div className="patient-list">
-            {patientAppointments.map((appointment) => (
-              <div key={appointment.appoint_id} className="patient-item">
-                <img
-                  src={appointment.Patient_Avatar}
-                  alt={appointment.patient_name}
-                  className="profile-photo"
-                />
-                <div className="patient-info">
-                  <h2>{appointment.patient_name}</h2>
-                  <div className="options">
-                    <button onClick={() => handleViewDetails(appointment)}>
-                      Approve Appointment
-                    </button>
-                    <button
-                      onClick={() => handleApproveAppointment(appointment.id)}
-                    >
-                      View Details
-                    </button>
+          <div className="container">
+            <div className="title">Patient Appointments</div>
+            <div className="patient-list">
+              {patientAppointments.map((appointment) => (
+                <div key={appointment.appoint_id} className="patient-item">
+                  <img
+                    src={appointment.Patient_Avatar}
+                    alt={appointment.patient_name}
+                    className="profile-photo"
+                  />
+                  <div className="patient-info">
+                    <h2>{appointment.patient_name}</h2>
+                    <div className="options">
+                      <button onClick={() => handleViewDetails(appointment)}>
+                        Approve Appointment
+                      </button>
+                      <button
+                        onClick={() => handleApproveAppointment(appointment.id)}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-      </StyleDoctorAppoint>
-
+        </StyleDoctorAppoint>
+      )}
       {selectedAppointment && (
         <AppointmentDetails
           appointment={selectedAppointment}
@@ -117,6 +120,7 @@ const DoctorAppoint = () => {
           onClose={handleCloseDetails}
         />
       )}
+
     </div>
   );
 };
