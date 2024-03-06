@@ -1,5 +1,6 @@
 import React from 'react'
-import './StyleAbout.jsx';
+import './StyleAbout.js';
+import StyleAbout from './StyleAbout.js';
 import Header from '../Shared/Header/Header';
 import Footer from '../Shared/Footer/Footer';
 import ImageHeading from '../../images/doc/doctor 5.jpg'
