@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StyleViewDoctors from './StyleViewDoctors';
-import Header from '../../Shared/Header/HeaderNav';
+import Header from '../../Shared/Header/Header';
 import SubHeader from '../../Shared/SubHeader';
 import Footer from '../../Shared/Footer/Footer';
 import axios from 'axios';
