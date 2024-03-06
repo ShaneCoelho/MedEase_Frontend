@@ -1,62 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import hostURL from '../../../data/URL';
+import Loading from '../../Loading/Loading';
+import { getToken } from "../../../data/Token";
 import StyleDoctorAppoint from "./StyleDoctorAppoint";
 import AppointmentDetails from "./AppointmentDetails"; // Import the AppointmentDetails component
 
 const DoctorAppoint = () => {
-  const [appointments, setAppointments] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      profilePhoto: "https://www.supercars.net/blog/wp-content/uploads/2023/04/DSC_7285-93872.jpg",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      profilePhoto: "https://stimg.cardekho.com/images/carexteriorimages/930x620/Mclaren/750-s/9929/1682577543178/side-view-(left)-90.jpg",
-    },
-    {
-      id: 3,
-      name: "Michael Johnson",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-    {
-      id: 4,
-      name: "Emily Brown",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-    {
-      id: 5,
-      name: "Emily Brown",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-    {
-      id: 6,
-      name: "Emily Brown",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-    {
-      id: 7,
-      name: "Emily Brown",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-    {
-      id: 8,
-      name: "Emily Brown",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-    {
-      id: 9,
-      name: "Emily Brown",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-    {
-      id: 10,
-      name: "Emily Brown",
-      profilePhoto: "https://via.placeholder.com/150",
-    },
-  ]);
+  const [patientAppointments, setPatientAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [hasToken, setHasToken] = useState(false);
+  const [token, setToken] = useState(null);
 
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  useEffect(() => {
+    // Function to check if the "token" cookie is present
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken); // Set hasToken to true if token exists, false otherwise
+      setToken(retrivedToken);
+      console.log(token)
+    };
+
+    checkTokenCookie();
+    fetchData();
+  }, [token]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(hostURL.link + '/api/doctor/appointment/viewappointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPatientAppointments(data);
+        console.log(data);
+        setLoading(false);
+      } else {
+        console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching data:', error);
+      setLoading(false);
+    }
+  };
+
 
   const handleViewDetails = (appointment) => {
     setSelectedAppointment(appointment);
@@ -79,35 +78,35 @@ const DoctorAppoint = () => {
   return (
     <div>
       <StyleDoctorAppoint>
-        
-           <div className="container">
-           <div className="title">Patient Appointments</div>
-           <div className="patient-list">
-             {appointments.map((appointment) => (
-               <div key={appointment.id} className="patient-item">
-                 <img
-                   src={appointment.profilePhoto}
-                   alt={appointment.name}
-                   className="profile-photo"
-                 />
-                 <div className="patient-info">
-                   <h2>{appointment.name}</h2>
-                   <div className="options">
-                     <button onClick={() => handleViewDetails(appointment.id)}>
-                       Approve Appointment
-                     </button>
-                     <button
-                       onClick={() => handleApproveAppointment(appointment.id)}
-                     >
-                       View Details
-                     </button>
-                   </div>
-                 </div>
-               </div>
-             ))}
-           </div>
-         </div>
-        
+
+        <div className="container">
+          <div className="title">Patient Appointments</div>
+          <div className="patient-list">
+            {patientAppointments.map((appointment) => (
+              <div key={appointment.appoint_id} className="patient-item">
+                <img
+                  src={appointment.Patient_Avatar}
+                  alt={appointment.patient_name}
+                  className="profile-photo"
+                />
+                <div className="patient-info">
+                  <h2>{appointment.patient_name}</h2>
+                  <div className="options">
+                    <button onClick={() => handleViewDetails(appointment)}>
+                      Approve Appointment
+                    </button>
+                    <button
+                      onClick={() => handleApproveAppointment(appointment.id)}
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </StyleDoctorAppoint>
 
       {selectedAppointment && (

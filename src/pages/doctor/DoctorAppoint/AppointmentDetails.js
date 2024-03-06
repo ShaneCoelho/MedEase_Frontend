@@ -31,9 +31,9 @@ const AppointmentDetails = ({ appointment, onApprove, onReject, onClose }) => {
         <div className="title">Appointment</div>
         <button className="close-btn" onClick={handleClose}>X</button>
         <div className="details">
-          <p><strong>Appointment Time:</strong> {appointment.time}</p>
-          <p><strong>Description:</strong>Heart problems along with some weird mental problems related to stress and anxiety leading to hyperventilation {appointment.description}</p>
-          <p><strong>Attached Document:</strong> <a href={appointment.documentUrl}>View Document</a></p>
+          <p><strong>Appointment Time:</strong> {appointment.preferred_time}</p>
+          <p><strong>Description:</strong>{appointment.description}</p>
+          <p><strong>Attached Document:</strong> <a href={appointment.document}>View Document</a></p>
         </div>
         <div className="time-slot">
           <h2>Time Slot</h2>
