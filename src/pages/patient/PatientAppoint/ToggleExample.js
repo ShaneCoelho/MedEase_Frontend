@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import pic1 from '../../../images/pic1.jpg'
+import pic1 from '../../../images/pic1.jpg';
+import user3 from '../../../images/ynez.jpg';
 
 // Styled Components
 const ToggleContainer = styled.div`
@@ -58,10 +59,40 @@ const DoctorSpecialization = styled.div`
   margin-bottom: 10px;
 `;
 
+const ReviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+`;
+
+const ReviewItem = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`;
+
+const ReviewStars = styled.div`
+  color: gold;
+`;
+
+const ReviewDetails = styled.div`
+  margin-left: 15px;
+`;
+
+const ReviewProfilePicture = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 60%;
+`;
+
 // React Component
 const ToggleExample = () => {
   const [activeButton, setActiveButton] = useState('top-voices');
   const [content, setContent] = useState('This is the content for Top Voices.');
+  const [reviews, setReviews] = useState([
+    { id: 1, rating: 4, comment: 'Great doctor, highly recommended!', name: 'John Doe', profile: user3 },
+    { id: 2, rating: 5, comment: 'Very knowledgeable and caring.', name: 'Jane Smith', profile: user3 },
+    { id: 3, rating: 3, comment: 'Good experience overall.', name: 'Robert Johnson', profile: user3 },
+  ]);
 
   // Mock doctor data
   const doctor = {
@@ -116,7 +147,19 @@ const ToggleExample = () => {
           </DoctorDetailsContainer>
         )}
         {activeButton === 'companies' && (
-          <p>Reviews content goes here...</p>
+          <ReviewContainer>
+            <h3>Reviews</h3>
+            {reviews.map(review => (
+              <ReviewItem key={review.id}>
+                <ReviewProfilePicture src={review.profile} alt={review.name} />
+                <ReviewDetails>
+                  <ReviewStars>{'★'.repeat(review.rating)}</ReviewStars>
+                  <p>{review.comment}</p>
+                  <p>{review.name}</p>
+                </ReviewDetails>
+              </ReviewItem>
+            ))}
+          </ReviewContainer>
         )}
       </ContentContainer>
     </>

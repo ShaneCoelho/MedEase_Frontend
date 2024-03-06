@@ -71,8 +71,10 @@ const StylePatientAppoint = styled.section`
 
   .input-box-2 input {
     margin-top: 0.7rem;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     margin-left: 40px;
+    display: flex;
+    align-items: center;
   }
 
   .input-box span.details {
@@ -207,6 +209,9 @@ const StylePatientAppoint = styled.section`
 
   @media (max-width: 768px) {
     .input-box {
+      width: 100%;
+    }
+    .button input {
       width: 100%;
     }
   }
