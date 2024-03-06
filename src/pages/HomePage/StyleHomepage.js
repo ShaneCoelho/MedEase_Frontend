@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
+
 const StyleHomepage = styled.section`
-  .hm-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: url('../../assets/Doctor/Home.jpg');
-    background-size: cover;
-  }
+.hm-body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 
   .App {
     text-align: center;
