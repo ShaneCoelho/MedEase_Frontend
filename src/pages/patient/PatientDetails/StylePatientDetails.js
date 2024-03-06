@@ -14,12 +14,13 @@ const StylePatientDetails = styled.section`
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: #fff;
 }
 
 .container {
     max-width: 700px;
     width: 100%;
+    border: 2px solid #1977cc;
     background-color: #fff;
     padding: 25px 30px;
     border-radius: 5px;
@@ -75,7 +76,7 @@ form .input-box span.details {
 
 .user-details .input-box input:focus,
 .user-details .input-box input:valid {
-    border-color: #9b59b6;
+    border-color: #3291e6;
 }
 
 form .gender-details .gender-title {
@@ -133,12 +134,12 @@ form .button input {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    background: #1977cc;
 }
 
 form .button input:hover {
     /* transform: scale(0.99); */
-    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    background: #3291e6;
 }
 
 @media(max-width: 584px) {
