@@ -57,11 +57,11 @@ const StyleAppointmentDetails = styled.div`
   }
 
   .buttons button {
-    background-color: #9b59b6;
+    background-color: #1977cc;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 8px 80px;
     font-size: 16px;
     cursor: pointer;
     margin-right: 10px;
@@ -69,12 +69,12 @@ const StyleAppointmentDetails = styled.div`
   }
 
   .buttons button:hover {
-    background-color: #7e349d;
+    background-color: #3291e6;
   }
 
   @media (max-width: 768px) {
     .container {
-      padding: 10px;
+      padding: 75px;
     }
 
     .title {
@@ -94,7 +94,9 @@ const StyleAppointmentDetails = styled.div`
     }
 
     .buttons button {
-      font-size: 14px;
+      font-size: 15px;
+      margin-bottom: 5px;
+      padding: 17px 17px 17px 17px;
     }
   }
   .container {

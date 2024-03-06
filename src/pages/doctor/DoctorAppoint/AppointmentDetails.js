@@ -15,14 +15,24 @@ const AppointmentDetails = ({ appointment, onApprove, onReject, onClose }) => {
     onReject();
   };
 
+  const handleClose = () => {
+    // Log the onClose prop to the console
+    console.log(onClose);
+  
+    if (typeof onClose === 'function') {
+      onClose();
+    } else {
+      console.error("onClose is not a function. Please provide a valid function as a prop.");
+    }
+  };
   return (
     <StyleAppointmentDetails>
       <div className="container">
         <div className="title">Appointment</div>
-        <button className="close-btn" onClick={onClose}>X</button>
+        <button className="close-btn" onClick={handleClose}>X</button>
         <div className="details">
           <p><strong>Appointment Time:</strong> {appointment.time}</p>
-          <p><strong>Description:</strong> {appointment.description}</p>
+          <p><strong>Description:</strong>Heart problems along with some weird mental problems related to stress and anxiety leading to hyperventilation {appointment.description}</p>
           <p><strong>Attached Document:</strong> <a href={appointment.documentUrl}>View Document</a></p>
         </div>
         <div className="time-slot">
@@ -43,8 +53,8 @@ const AppointmentDetails = ({ appointment, onApprove, onReject, onClose }) => {
           />
         </div>
         <div className="buttons">
-          <button onClick={handleApprove}>Approve Appointment</button>
-          <button onClick={handleReject}>Reject Appointment</button>
+          <button onClick={handleApprove}>Approve</button>
+          <button onClick={handleReject}>Reject</button>
         </div>
       </div>
     </StyleAppointmentDetails>

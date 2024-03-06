@@ -7,12 +7,12 @@ const DoctorAppoint = () => {
     {
       id: 1,
       name: "John Doe",
-      profilePhoto: "https://via.placeholder.com/150",
+      profilePhoto: "https://www.supercars.net/blog/wp-content/uploads/2023/04/DSC_7285-93872.jpg",
     },
     {
       id: 2,
       name: "Jane Smith",
-      profilePhoto: "https://via.placeholder.com/150",
+      profilePhoto: "https://stimg.cardekho.com/images/carexteriorimages/930x620/Mclaren/750-s/9929/1682577543178/side-view-(left)-90.jpg",
     },
     {
       id: 3,
@@ -60,6 +60,10 @@ const DoctorAppoint = () => {
 
   const handleViewDetails = (appointment) => {
     setSelectedAppointment(appointment);
+  };
+
+  const handleCloseDetails = () => {
+    setSelectedAppointment(null);
   };
 
   const handleApproveAppointment = (appointmentId) => {
@@ -111,6 +115,7 @@ const DoctorAppoint = () => {
           appointment={selectedAppointment}
           onApprove={handleApproveAppointment}
           onReject={handleRejectAppointment}
+          onClose={handleCloseDetails}
         />
       )}
     </div>
