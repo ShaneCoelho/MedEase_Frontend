@@ -27,7 +27,7 @@ const Contact = () => {
     return (
         <>
             <Header />
-            <SubHeader title="Contact us" subtitle="Lorem ipsum dolor sit amet consectetur adipisicing." />
+            <SubHeader title="Contact us" subtitle="Contact if any issues or errors while using the application" />
             <section id="contact" className="contact mt-5 mb-5">
                 <div className="container" style={{ marginTop: 80, marginBottom: 120 }}>
                     <div className="row">
@@ -38,7 +38,7 @@ const Contact = () => {
                                     <FaLocationArrow className='icon' />
                                     <div>
                                         <h4>Location:</h4>
-                                        <p>1212 Dhaka, Kazi Nozrul Avenur, Sylhet, Bangladesh 03214</p>
+                                        <p>1244 House, New York City</p>
                                     </div>
                                 </div>
 
@@ -46,7 +46,7 @@ const Contact = () => {
                                     <FaEnvelope className='icon' />
                                     <div>
                                         <h4>Email:</h4>
-                                        <p>ujjalzaman@gmail.com</p>
+                                        <p>xyz12@gmail.com</p>
                                     </div>
                                 </div>
 
@@ -54,7 +54,7 @@ const Contact = () => {
                                     <FaPhoneAlt className='icon' />
                                     <div>
                                         <h4>Call:</h4>
-                                        <p>+88 01751 040425</p>
+                                        <p>+000111222333</p>
                                     </div>
                                 </div>
                             </div>
