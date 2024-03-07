@@ -19,7 +19,7 @@ const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
         // Implement logout functionality here
         // For example, clear local storage, remove tokens, etc.
         // Redirect to the home page
-        navigate('/homePage');
+        navigate('/');
     };
 
     return (

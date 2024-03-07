@@ -56,7 +56,7 @@ const StyleHeader = styled.section`
 }
 
 #header .logo img {
-    max-height: 40px;
+    max-height: 100px;
 }
 
 

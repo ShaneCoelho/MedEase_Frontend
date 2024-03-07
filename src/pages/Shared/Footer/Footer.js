@@ -56,7 +56,7 @@ const Footer = () => {
 								<div className="footer-contact-info">
 									<div className="footer-address">
 										<span><i className="fas fa-map-marker-alt"></i></span>
-										<p> 121, Mirzapure Union office,<br /> Sylhet, Bangladesh 03214 </p>
+										<p> 121 Bolevard, New Jersey,<br /> New York City, USA </p>
 									</div>
 
 								</div>
