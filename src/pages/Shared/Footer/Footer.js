@@ -1,6 +1,6 @@
 import React from 'react';
 import StyleFooter from './StyleFooter';
-import logo from '../../../images/logo.png';
+import logo from '../../../images/logo1.png';
 import { Link } from 'react-router-dom';
 import { FaAngleDoubleRight } from "react-icons/fa";
 
