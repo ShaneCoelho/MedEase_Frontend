@@ -11,7 +11,7 @@ const HeroSection = () => {
                 <div>
                     <small>TOTAL HEALTH CARE SOLUTION</small>
                     <h1>Your Most Trusted <br />Health Partner</h1>
-                    <small>A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium quisquam aperiam maiores sunt fugit, deserunt rem suscipit placeat.</small>
+                    <small>Empowering Your Wellness Journey Every Step of the Way"</small>
                 </div>
                 <div className="d-flex justify-content-start gap-2">
                     

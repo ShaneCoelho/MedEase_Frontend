@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Footer from '../../Shared/Footer/Footer';
-import Testimonial from '../Testimonial/Testimonial';
+
 import ClinicAndSpecialities from '../ClinicAndSpecialities/ClinicAndSpecialities';
 
 import HeroSection from '../HeroSection/HeroSection';
@@ -20,7 +20,7 @@ const Home = () => {
             <InfoPage />
             <ClinicAndSpecialities />
             <OurDoctors/>
-            <Testimonial />
+
             <Gallery/>
             <Footer />
         </>
