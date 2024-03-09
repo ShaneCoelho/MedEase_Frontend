@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getToken } from "../../../data/Token";
+import hostURL from '../../../data/URL';
 import styled from 'styled-components';
 import pic1 from '../../../images/pic1.jpg';
 import user3 from '../../../images/ynez.jpg';
@@ -85,14 +87,32 @@ const ReviewProfilePicture = styled.img`
 `;
 
 // React Component
-const ToggleExample = () => {
+const ToggleExample = (props) => {
   const [activeButton, setActiveButton] = useState('top-voices');
   const [content, setContent] = useState('This is the content for Top Voices.');
+  const [doctorDetails, setDoctorDetails] = useState({});
   const [reviews, setReviews] = useState([
     { id: 1, rating: 4, comment: 'Great doctor, highly recommended!', name: 'John Doe', profile: user3 },
     { id: 2, rating: 5, comment: 'Very knowledgeable and caring.', name: 'Jane Smith', profile: user3 },
     { id: 3, rating: 3, comment: 'Good experience overall.', name: 'Robert Johnson', profile: user3 },
   ]);
+  const [hasToken, setHasToken] = useState(false);
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    // Function to check if the "token" cookie is present
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken); // Set hasToken to true if token exists, false otherwise
+      setToken(retrivedToken);
+      console.log(token)
+    };
+
+    checkTokenCookie();
+    fetchDoctorDetails();
+    console.log(doctorDetails)
+  }, [token,doctorDetails]);
+
 
   // Mock doctor data
   const doctor = {
@@ -104,6 +124,31 @@ const ToggleExample = () => {
     experience: "10 years",
     qualification: "MBBS, MD"
   };
+
+  const fetchDoctorDetails = async () => {
+
+    const id = props.doc_id;
+
+    try {
+      const response = await fetch(hostURL.link + '/api/patient/appointment/viewdoctordetails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch doctor details: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setDoctorDetails(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   const handleButtonClick = (view) => {
     setActiveButton(view);
@@ -126,8 +171,8 @@ const ToggleExample = () => {
         {activeButton === 'top-voices' && (
           <DoctorDetailsContainer>
             <img
-              src={doctor.Avatar}
-              alt={doctor.name}
+              src={doctorDetails.Avatar}
+              alt={doctorDetails.name}
               className="profile-picture"
               style={{
                 borderRadius: '50%',
@@ -136,26 +181,26 @@ const ToggleExample = () => {
                 border: '2px solid #3498db', // Optional: Add a border
               }}
             />
-            <DoctorName>{doctor.name}</DoctorName>
+            <DoctorName>{doctorDetails.name}</DoctorName>
             <DoctorContactInfo>
-              Phone: {doctor.phone}<br />
-              Address: {doctor.address}<br />
+              Phone: {doctorDetails.phone}<br />
+              Address: {doctorDetails.address}<br />
             </DoctorContactInfo>
-            <DoctorSpecialization>Specialization: {doctor.specialization}</DoctorSpecialization>
-            <div>Experience: {doctor.experience}</div>
-            <div>Qualification: {doctor.qualification}</div>
+            <DoctorSpecialization>Specialization: {doctorDetails.specialization}</DoctorSpecialization>
+            <div>Experience: {doctorDetails.experience}</div>
+            <div>Qualification: {doctorDetails.qualification}</div>
           </DoctorDetailsContainer>
         )}
         {activeButton === 'companies' && (
           <ReviewContainer>
             <h3>Reviews</h3>
-            {reviews.map(review => (
-              <ReviewItem key={review.id}>
-                <ReviewProfilePicture src={review.profile} alt={review.name} />
+            {doctorDetails.reviews.map(review => (
+              <ReviewItem key={review.review_id}>
+                <ReviewProfilePicture src={review.patient_Avatar} alt={review.patient_name} />
                 <ReviewDetails>
                   <ReviewStars>{'★'.repeat(review.rating)}</ReviewStars>
-                  <p>{review.comment}</p>
-                  <p>{review.name}</p>
+                  <p>{review.review}</p>
+                  <p>{review.patient_name}</p>
                 </ReviewDetails>
               </ReviewItem>
             ))}

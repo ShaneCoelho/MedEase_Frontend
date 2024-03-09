@@ -1,40 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import StylePatientAppoint from "./StylePatientAppoint";
 import styled from "styled-components";
 import ToggleExample from './ToggleExample'; // Import the ToggleExample component
+import { useLocation } from 'react-router-dom';
+import { getToken } from "../../../data/Token";
+import hostURL from '../../../data/URL';
 
 const PatientAppoint = () => {
-  const [formData, setFormData] = useState({
-    date: new Date(),
-    time: 'Morning',
-    description: '',
-    gender: '',
-    review: ''
-  });
+  
   const [selectedFile, setSelectedFile] = useState(null);
   const [isAppointmentBooked, setIsAppointmentBooked] = useState(false);
-  
+  const [hasToken, setHasToken] = useState(false);
+  const [token, setToken] = useState(null);
+  const location = useLocation();
+  const doc_id = location.state?.id;
+  const doc_Avatar=location.state?.Avatar;
+  const doc_name=location.state?.name;
+  const [appointmentData, setAppointmentData] = useState({
+    id:doc_id,
+    name:doc_name,
+    preferred_time: '',
+    description: '',
+    date: new Date(),
+    Avatar: doc_Avatar
+  });
+
+  useEffect(() => {
+    // Function to check if the "token" cookie is present
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken); // Set hasToken to true if token exists, false otherwise
+      setToken(retrivedToken);
+      console.log(token)
+    };
+
+    checkTokenCookie();
+  }, [token]);
+
   const loadFile = function (event) {
-    var image = document.getElementById('output');
-    image.src = URL.createObjectURL(event.target.files[0]);
+    // var image = document.getElementById('output');
+    const file = event.target.files[0];
+    // image.src = URL.createObjectURL(file);
+    setSelectedFile(file)
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setAppointmentData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    setIsAppointmentBooked(true);
+    const formData = new FormData();
 
-    setSelectedFile(null);
+    formData.append('file', selectedFile);
+
+    formData.append('data', JSON.stringify(appointmentData));
+
+    try {
+      const response = await fetch(hostURL.link + '/api/patient/appointment/makeappointment', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          // 'Content-Type': 'multipart/form-data',
+        },
+        body: formData,
+      });
+
+      // Check if the response is successful (status code 2xx)
+      if (response.ok) {
+        setIsAppointmentBooked(true);
+
+        setSelectedFile(null);
+      } else {
+        console.error('Failed to submit form. Server returned:', response.status, response.statusText);
+        alert("something went wrong" + response.status)
+      }
+    } catch (error) {
+      console.error('An error occurred while submitting the form:', error);
+    }
+
   };
 
   const handlePopupClose = () => {
@@ -55,7 +106,7 @@ const PatientAppoint = () => {
                     type="text"
                     placeholder="Enter issues faced"
                     name="description"
-                    value={formData.description}
+                    value={appointmentData.description}
                     onChange={handleChange}
                     required
                   />
@@ -64,8 +115,8 @@ const PatientAppoint = () => {
                 <div className="input-box">
                   <span className="details">Appointment Date</span>
                   <StyledDatePicker
-                    selected={formData.date}
-                    onChange={(date) => setFormData((prevData) => ({ ...prevData, date }))}
+                    selected={appointmentData.date}
+                    onChange={(date) => setAppointmentData((prevData) => ({ ...prevData, date }))}
                     dateFormat="yyyy-MM-dd"
                     placeholderText="Select your appointment date"
                     showYearDropdown
@@ -79,19 +130,20 @@ const PatientAppoint = () => {
                 <div className="input-box">
                   <span className="details">Preferred Time</span>
                   <select
-                    name="time"
-                    value={formData.time}
+                    name="preferred_time"
+                    value={appointmentData.preferred_time}
                     onChange={handleChange}
                     required
                   >
                     <option value="Morning">Morning</option>
                     <option value="Evening">Evening</option>
+                    <option value="Both">Both</option>
                   </select>
                 </div>
 
                 <div className="input-box-2">
                   <label htmlFor="avatar">Attach Documents</label><br />
-                  <input id="avatar" type="file" name="avatar" accept=".pdf, .doc, .docx" />
+                  <input onChange={loadFile} id="avatar" type="file" name="avatar" accept=".pdf, .doc, .docx" />
                 </div>
 
               </div>
@@ -114,7 +166,7 @@ const PatientAppoint = () => {
             )}
 
             {/* Embedding ToggleExample component */}
-            <ToggleExample />
+            <ToggleExample doc_id={doc_id} />
           </div>
         </div>
       </StylePatientAppoint>

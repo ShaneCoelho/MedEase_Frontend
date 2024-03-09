@@ -6,12 +6,14 @@ import Footer from '../../Shared/Footer/Footer';
 import axios from 'axios';
 import hostURL from '../../../data/URL';
 import Loading from '../../Loading/Loading';
+import { useNavigate } from 'react-router-dom';
 
 const ViewDoctor = () => {
   const [doctorsData, setDoctorsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredDoctors, setFilteredDoctors] = useState(doctorsData);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -35,9 +37,9 @@ const ViewDoctor = () => {
     }
   };
 
-  const handleBookAppointment = () => {
+  const handleBookAppointment = (id,name,Avatar) => {
     // Redirect to the "/doctor-appoint" page
-    window.location.href = '/patient-appoint';
+    navigate('/patient-appoint', { state: { id: id, name: name, Avatar: Avatar } });
   };
 
   return (
@@ -69,7 +71,7 @@ const ViewDoctor = () => {
                     <p>Practicing at: {doctor.practicing_at}</p>
                     <p>Specialization: {doctor.specialization}</p>
                     <p>Location: {doctor.city}</p>
-                    <button className="book-appointment-btn" onClick={handleBookAppointment}>Book Appointment</button>
+                    <button className="book-appointment-btn" onClick={() =>handleBookAppointment(doctor._id,doctor.name,doctor.Avatar)}>Book Appointment</button>
                   </div>
                 </div>
               ))}
