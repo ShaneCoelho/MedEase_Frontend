@@ -29,7 +29,7 @@ const DoctorAppoint = () => {
 
     checkTokenCookie();
     fetchData();
-  }, [token]);
+  }, [token,patientAppointments]);
 
   const fetchData = async () => {
     try {
@@ -65,9 +65,9 @@ const DoctorAppoint = () => {
     setSelectedAppointment(null);
   };
 
-  const handleApproveAppointment = (appointmentId) => {
+  const handleApproveAppointment = (time_slot) => {
     // Logic to approve the appointment
-    console.log("Approve appointment with ID:", appointmentId);
+    console.log("Time slot is:", time_slot);
   };
 
   const handleRejectAppointment = (appointmentId) => {
