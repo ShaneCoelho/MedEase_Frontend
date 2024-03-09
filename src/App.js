@@ -11,6 +11,7 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact'
 import DoctorAppoint from './pages/doctor/DoctorAppoint/DoctorAppoint';
 import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
+import TrackAppoint from './pages/patient/PatientAppoint/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';
 import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/view-doctor" element={<ViewDoctor/>}/>
         <Route path="/patient-appoint" element={<PatientAppoint/>}/>
         <Route path="/doctor-appoint" element={<DoctorAppoint/>}/>
+        <Route path="/track-appoint" element={<TrackAppoint/>}/>
         <Route path="/doctor-review" element={<DoctorReview/>}/>
 
 
