@@ -9,6 +9,7 @@ import { setToken } from "../../../data/Token";
 const AdminLogin = () => {
 
     const [login, setLogIn] = useState({});
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const getUserLogInData = (e) => {
@@ -17,6 +18,7 @@ const AdminLogin = () => {
 
     const handleLogInSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const response = await axios.post(hostURL.link + '/api/admin/auth/signin', login);
@@ -34,6 +36,8 @@ const AdminLogin = () => {
             } else {
                 alert('An error occurred. Please try again later.');
             }
+        }  finally {
+            setLoading(false); // Stop loading animation regardless of success or failure
         }
     };
 
@@ -52,7 +56,10 @@ const AdminLogin = () => {
                             <FaLock className="icon2" />
                         </div>
 
-                        <button type="submit">Login</button>
+                        <button type="submit" className={loading ? 'loading' : ''} disabled={loading}>
+                            {loading && <div className="spinner"></div>} {/* Render spinner if loading */}
+                            {!loading && 'Login'} {/* Render 'Login' text if not loading */}
+                        </button>
 
                     </form>
                 </div>

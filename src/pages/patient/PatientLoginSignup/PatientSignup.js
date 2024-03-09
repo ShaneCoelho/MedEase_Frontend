@@ -8,6 +8,7 @@ import { setToken } from "../../../data/Token";
 
 const PatientSignup = () => {
   const [signup, setSignUp] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   //   useEffect(() => {
@@ -22,7 +23,7 @@ const PatientSignup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     // Validate password
     if (signup.password.length < 8 || !/\d/.test(signup.password)) {
       alert("Password should be minimum 8 characters with at least 1 number");
@@ -52,6 +53,8 @@ const PatientSignup = () => {
       } else {
         alert('An error occurred. Please try again later.');
       }
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -95,7 +98,10 @@ const PatientSignup = () => {
               <FaLock className="icon2" />
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" className={loading ? 'loading' : ''} disabled={loading}>
+                            {loading && <div className="spinner"></div>} {/* Render spinner if loading */}
+                            {!loading && 'Submit'} {/* Render 'Login' text if not loading */}
+                        </button>
           </form>
         </div>
       </div>

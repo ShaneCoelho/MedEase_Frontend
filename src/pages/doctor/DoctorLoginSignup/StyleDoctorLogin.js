@@ -55,7 +55,7 @@ const StyleDoctorLogin = styled.section`
 }
 
   .input-box input::placeholder {
-    color: #050046;
+    color: #1977cc;
   }
 
   .input-box .icon {
@@ -64,7 +64,7 @@ const StyleDoctorLogin = styled.section`
     top: 50%;
     transform: translateY(-50%);
     font-size: 17px;
-    color: #050046;
+    color: #1977cc;
   }
 
   .input-box .icon2 {
@@ -73,14 +73,14 @@ const StyleDoctorLogin = styled.section`
     top: 50%;
     transform: translateY(-50%);
     font-size: 17px;
-    color: #050046;
+    color: #1977cc;
   }
 
 
   .wrapper button {
     width: 100%;
     height: 45px;
-    background: #050046;
+    background: #1977cc;
     border: none;
     outline: none;
     border-radius: 10px;
@@ -91,10 +91,25 @@ const StyleDoctorLogin = styled.section`
     font-weight: 700;
     transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
     margin-top: 20px; /* Adjusted margin for better spacing */
+    position: relative; /* Added for positioning spinner */
+  }
+
+  .wrapper button.loading::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
   }
 
   .wrapper button:hover {
-    background: #002750;
+    background: #3291e6;
     transform: scale(1.05);
   }
 
@@ -124,6 +139,14 @@ const StyleDoctorLogin = styled.section`
   @media only screen and (max-width: 600px) {
     .wrapper {
       width: 90%; /* Adjusted width for better responsiveness */
+    }
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 `;
