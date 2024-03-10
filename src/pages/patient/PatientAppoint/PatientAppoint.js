@@ -7,21 +7,22 @@ import ToggleExample from './ToggleExample'; // Import the ToggleExample compone
 import { useLocation } from 'react-router-dom';
 import { getToken } from "../../../data/Token";
 import hostURL from '../../../data/URL';
+import { addDays } from 'date-fns';
 
 const PatientAppoint = () => {
-  
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [isAppointmentBooked, setIsAppointmentBooked] = useState(false);
   const [hasToken, setHasToken] = useState(false);
   const [token, setToken] = useState(null);
   const location = useLocation();
   const doc_id = location.state?.id;
-  const doc_Avatar=location.state?.Avatar;
-  const doc_name=location.state?.name;
+  const doc_Avatar = location.state?.Avatar;
+  const doc_name = location.state?.name;
   const [appointmentData, setAppointmentData] = useState({
-    id:doc_id,
-    name:doc_name,
-    preferred_time: '',
+    id: doc_id,
+    name: doc_name,
+    preferred_time: 'Morning',
     description: '',
     date: new Date(),
     Avatar: doc_Avatar
@@ -54,8 +55,12 @@ const PatientAppoint = () => {
     }));
   };
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
 
     const formData = new FormData();
 
@@ -119,10 +124,11 @@ const PatientAppoint = () => {
                     onChange={(date) => setAppointmentData((prevData) => ({ ...prevData, date }))}
                     dateFormat="yyyy-MM-dd"
                     placeholderText="Select your appointment date"
-                    showYearDropdown
-                    scrollableYearDropdown
-                    yearDropdownItemNumber={15}
+                    // showYearDropdown
+                    // scrollableYearDropdown
+                    // yearDropdownItemNumber={0}
                     minDate={new Date()}
+                    maxDate={addDays(new Date(), 7)} 
                     required
                   />
                 </div>
