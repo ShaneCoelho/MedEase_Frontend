@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styled from 'styled-components'; // Import default user profile picture
+import { getToken } from "../../../data/Token";
+import hostURL from '../../../data/URL';
+import Loading from '../../Loading/Loading';
 
 // Styled Components
 const ToggleContainer = styled.div`
@@ -63,31 +66,57 @@ const AppointmentDetails = styled.div`
 
 // React Component
 const ToggleAppoint = () => {
+  const [loading, setLoading] = useState(true);
   const [activeButton, setActiveButton] = useState('pending');
-  const placeholderImageUrl = 'https://via.placeholder.com/150';
+  const [hasToken, setHasToken] = useState(false);
+  const [token, setToken] = useState(null);
   const [appointments, setAppointments] = useState({
-    pending: [
-      { id: 1, name: 'John Doe', date: '2024-03-10', image:placeholderImageUrl  },
-      { id: 2, name: 'Jane Smith', date: '2024-03-11', image:  placeholderImageUrl},
-      { id: 3, name: 'Jane Smith', date: '2024-03-11', image:  placeholderImageUrl},
-      { id: 4, name: 'Jane Smith', date: '2024-03-11', image:  placeholderImageUrl},
-      { id: 5, name: 'Jane Smith', date: '2024-03-11', image:  placeholderImageUrl},
-    ],
-    approved: [
-      { id: 3, name: 'Robert Johnson', date: '2024-03-12', time: 'Morning', image: placeholderImageUrl },
-      { id: 2, name: 'Robert Johnson', date: '2024-03-12', time: 'Morning', image: placeholderImageUrl },
-      { id: 4, name: 'Robert Johnson', date: '2024-03-12', time: 'Morning', image: placeholderImageUrl },
-      { id: 1, name: 'Robert Johnson', date: '2024-03-12', time: 'Morning', image: placeholderImageUrl },
-    ],
-    rejected: [
-      { id: 4, name: 'Emily Brown', date: '2024-03-13', image: placeholderImageUrl },
-      { id: 2, name: 'Emily Brown', date: '2024-03-13', image: placeholderImageUrl },
-    ],
-  });
+    pending: [],
+    approved: [],
+    rejected: []
+});
+
+  useEffect(() => {
+    // Function to check if the "token" cookie is present
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken); // Set hasToken to true if token exists, false otherwise
+      setToken(retrivedToken);
+      console.log(token)
+    };
+
+    checkTokenCookie();
+    fetchAppointmentData();
+  }, [token,appointments]);
 
   const handleButtonClick = (view) => {
     setActiveButton(view);
   };
+
+
+  const fetchAppointmentData = async () => {
+    try {
+        const response = await fetch(hostURL.link + '/api/patient/track/trackappointment', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+                
+            },
+            
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setAppointments(data);
+        setLoading(false);
+    } catch (error) {
+        console.error('Fetch error:', error.message);
+    }
+};
+
 
   return (
     <>
@@ -102,15 +131,18 @@ const ToggleAppoint = () => {
           Rejected
         </ToggleButton>
       </ToggleContainer>
+      {loading ? (
+        <Loading />
+      ) : (
       <ContentContainer>
         {activeButton === 'pending' && (
           <div>
             
             {appointments.pending.map(appointment => (
-              <AppointmentItem key={appointment.id}>
-                <AppointmentImage src={appointment.image} alt={appointment.name} />
+              <AppointmentItem key={appointment.appoint_id}>
+                <AppointmentImage src={appointment.Doc_Avatar} alt={appointment.doc_name} />
                 <AppointmentDetails>
-                  <p>{appointment.name}</p>
+                  <p>{appointment.doc_name}</p>
                   <p>Date: {appointment.date}</p>
                 </AppointmentDetails>
               </AppointmentItem>
@@ -120,12 +152,12 @@ const ToggleAppoint = () => {
         {activeButton === 'approved' && (
           <div>
             {appointments.approved.map(appointment => (
-              <AppointmentItem key={appointment.id}>
-                <AppointmentImage src={appointment.image} alt={appointment.name} />
+              <AppointmentItem key={appointment.appoint_id}>
+                <AppointmentImage src={appointment.Doc_Avatar} alt={appointment.doc_name} />
                 <AppointmentDetails>
-                  <p>{appointment.name}</p>
+                  <p>{appointment.doc_name}</p>
                   <p>Date: {appointment.date}</p>
-                  <p>Time: {appointment.time}</p>
+                  <p>Time Slot: {appointment.time_slot}</p>
                 </AppointmentDetails>
               </AppointmentItem>
             ))}
@@ -134,10 +166,10 @@ const ToggleAppoint = () => {
         {activeButton === 'rejected' && (
           <div>
             {appointments.rejected.map(appointment => (
-              <AppointmentItem key={appointment.id}>
-                <AppointmentImage src={appointment.image} alt={appointment.name} />
+              <AppointmentItem key={appointment.appoint_id}>
+                <AppointmentImage src={appointment.Doc_Avatar} alt={appointment.doc_name} />
                 <AppointmentDetails>
-                  <p>{appointment.name}</p>
+                  <p>{appointment.doc_name}</p>
                   <p>Date: {appointment.date}</p>
                 </AppointmentDetails>
               </AppointmentItem>
@@ -145,6 +177,7 @@ const ToggleAppoint = () => {
           </div>
         )}
       </ContentContainer>
+      )}
     </>
   );
 };

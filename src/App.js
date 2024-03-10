@@ -11,7 +11,7 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact'
 import DoctorAppoint from './pages/doctor/DoctorAppoint/DoctorAppoint';
 import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
-import TrackAppoint from './pages/patient/PatientAppoint/TrackAppointment/TrackAppoint';
+import TrackAppoint from './pages/patient/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';
 import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
 
