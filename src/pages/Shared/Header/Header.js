@@ -50,7 +50,7 @@ const Header = () => {
         <StyleHeader>
             <header id="header" className={`fixed-top ${!show && "stickyHeader"}`}>
                 <div className="container d-flex align-items-center">
-                    <Link to={'/'} className="logo me-auto">
+                    <Link to={'/home'} className="logo me-auto">
                         <img src={img1} alt="" className="img-fluid" />
                     </Link>
                     <HeaderNav content={content} open={open} setOpen={setOpen} />

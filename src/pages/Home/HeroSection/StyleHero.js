@@ -23,11 +23,11 @@ const StyleHero = styled.section`
     font-weight: 700;
     line-height: 56px;
     text-transform: uppercase;
-    color: #2c4964;
+    color: #15558d;
   }
   
   #hero h2 {
-    color: #2c4964;
+    color: #15558d;
     margin: 10px 0 0 0;
     font-size: 24px;
   }
@@ -44,7 +44,7 @@ const StyleHero = styled.section`
     border-radius: 50px;
     transition: 0.5s;
     color: #fff;
-    background: #1977cc;
+    background: #15558d;
   }
   
   #hero .btn-get-started:hover {

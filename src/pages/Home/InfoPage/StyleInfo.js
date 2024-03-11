@@ -35,7 +35,7 @@ const StyleInfo = styled.section`
 
 .why-us .content .more-btn:hover {
   color: #1977cc;
-  background: #fff;
+  background: #15558d;
 }
 
 .why-us .icon-boxes .icon-box {

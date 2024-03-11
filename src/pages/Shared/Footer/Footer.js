@@ -28,11 +28,10 @@ const Footer = () => {
 							<div className="footer-widget footer-menu">
 								<h2 className="footer-title">For Patients</h2>
 								<ul>
-									<li><Link to={'/doctors'}><FaAngleDoubleRight className='icon' />  Search for Doctors</Link></li>
-									<li><Link to={'/login'}><FaAngleDoubleRight className='icon' />  Login</Link></li>
-									<li><Link to={'/login'}><FaAngleDoubleRight className='icon' />  Register</Link></li>
-									<li><Link to={'/doctors'}><FaAngleDoubleRight className='icon' />  Booking</Link></li>
-									<li><Link to={'/'}><FaAngleDoubleRight className='icon' />  Patient Dashboard</Link></li>
+									<li><Link to={'/view-doctor'}><FaAngleDoubleRight className='icon' />  Search for Doctors</Link></li>
+									<li><Link to={'/patient-login'}><FaAngleDoubleRight className='icon' />  Login</Link></li>
+									<li><Link to={'/'}><FaAngleDoubleRight className='icon' />  Register</Link></li>
+									<li><Link to={'/home'}><FaAngleDoubleRight className='icon' />  Patient Dashboard</Link></li>
 								</ul>
 							</div>
 						</div>

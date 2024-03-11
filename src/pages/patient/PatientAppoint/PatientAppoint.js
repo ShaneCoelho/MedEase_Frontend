@@ -8,6 +8,10 @@ import { useLocation } from 'react-router-dom';
 import { getToken } from "../../../data/Token";
 import hostURL from '../../../data/URL';
 import { addDays } from 'date-fns';
+import Header from '../../Shared/Header/Header.js';
+import Footer from '../../Shared/Footer/Footer.js';
+import SubHeader from '../../Shared/SubHeader.js';
+
 
 const PatientAppoint = () => {
 
@@ -98,6 +102,10 @@ const PatientAppoint = () => {
   };
 
   return (
+
+    <div>
+    <Header /> 
+    <SubHeader title="Patient Appointment"/>
     <div>
       <StylePatientAppoint>
         <div className="pa-body">
@@ -159,6 +167,7 @@ const PatientAppoint = () => {
               </div>
             </form>
 
+
             {isAppointmentBooked && (
               <Popup>
                 <div className="popup-content">
@@ -175,8 +184,10 @@ const PatientAppoint = () => {
             <ToggleExample doc_id={doc_id} />
           </div>
         </div>
-      </StylePatientAppoint>
+        </StylePatientAppoint>
     </div>
+    <Footer /> 
+  </div>
   );
 };
 
