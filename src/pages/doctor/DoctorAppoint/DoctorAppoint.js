@@ -5,6 +5,7 @@ import Loading from '../../Loading/Loading';
 import { getToken } from "../../../data/Token";
 import StyleDoctorAppoint from "./StyleDoctorAppoint";
 import AppointmentDetails from "./AppointmentDetails"; // Import the AppointmentDetails component
+import PatientInfoPopup from "./PatientInfoPopup"; // Import the PatientInfoPopup component
 
 const DoctorAppoint = () => {
   const [patientAppointments, setPatientAppointments] = useState([]);
@@ -13,23 +14,19 @@ const DoctorAppoint = () => {
   const [token, setToken] = useState(null);
 
   const [selectedAppointment, setSelectedAppointment] = useState(null);
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  const [showPatientInfoPopup, setShowPatientInfoPopup] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
   useEffect(() => {
-    // Function to check if the "token" cookie is present
     const checkTokenCookie = () => {
       const retrivedToken = getToken('token');
-      setHasToken(!!retrivedToken); // Set hasToken to true if token exists, false otherwise
+      setHasToken(!!retrivedToken);
       setToken(retrivedToken);
-      console.log(token)
     };
 
     checkTokenCookie();
     fetchData();
-  }, [token,patientAppointments]);
+  }, [token, patientAppointments]);
 
   const fetchData = async () => {
     try {
@@ -44,7 +41,6 @@ const DoctorAppoint = () => {
       if (response.ok) {
         const data = await response.json();
         setPatientAppointments(data);
-        console.log(data);
         setLoading(false);
       } else {
         console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
@@ -55,7 +51,6 @@ const DoctorAppoint = () => {
       setLoading(false);
     }
   };
-
 
   const handleViewDetails = (appointment) => {
     setSelectedAppointment(appointment);
@@ -68,6 +63,7 @@ const DoctorAppoint = () => {
   const handleApproveAppointment = (time_slot) => {
     // Logic to approve the appointment
     console.log("Time slot is:", time_slot);
+    // Here, you can set selectedPatient and then set showPatientInfoPopup to true
   };
 
   const handleRejectAppointment = (appointmentId) => {
@@ -81,7 +77,6 @@ const DoctorAppoint = () => {
         <Loading />
       ) : (
         <StyleDoctorAppoint>
-
           <div className="container">
             <div className="title">Patient Appointments</div>
             <div className="patient-list">
@@ -96,11 +91,12 @@ const DoctorAppoint = () => {
                     <h2>{appointment.patient_name}</h2>
                     <div className="options">
                       <button onClick={() => handleViewDetails(appointment)}>
-                        Approve Appointment
+                        Approve appointment
                       </button>
-                      <button
-                        onClick={() => handleApproveAppointment(appointment.id)}
-                      >
+                      <button onClick={() => {
+                        setSelectedPatient(appointment);
+                        setShowPatientInfoPopup(true);
+                      }}>
                         View Details
                       </button>
                     </div>
@@ -109,7 +105,6 @@ const DoctorAppoint = () => {
               ))}
             </div>
           </div>
-
         </StyleDoctorAppoint>
       )}
       {selectedAppointment && (
@@ -120,7 +115,16 @@ const DoctorAppoint = () => {
           onClose={handleCloseDetails}
         />
       )}
-
+      {showPatientInfoPopup && (
+        <PatientInfoPopup
+          patient={selectedPatient}
+          onApprove={() => {
+            handleApproveAppointment(selectedPatient.time_slot); // Assuming you have time_slot in selectedPatient
+            setShowPatientInfoPopup(false);
+          }}
+          onClose={() => setShowPatientInfoPopup(false)}
+        />
+      )}
     </div>
   );
 };
