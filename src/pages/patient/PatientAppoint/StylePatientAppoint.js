@@ -204,10 +204,10 @@ const StylePatientAppoint = styled.section`
   }
 
   .add-review {
-    margin-top: 20px;
+    margin-top: 25px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 760px) {
     .input-box {
       width: 100%;
     }

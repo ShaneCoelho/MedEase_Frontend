@@ -19,7 +19,7 @@ const Footer = () => {
 									</Link>
 								</div>
 								<div className="footer-about-content">
-									<p className='form-text' style={{maxWidth:200}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<p className='form-text' style={{maxWidth:200}}>"Empowering health, one patient at a time, with care that transcends boundaries and inspires well-being.</p>
 								</div>
 							</div>
 						</div>
@@ -30,24 +30,11 @@ const Footer = () => {
 								<ul>
 									<li><Link to={'/view-doctor'}><FaAngleDoubleRight className='icon' />  Search for Doctors</Link></li>
 									<li><Link to={'/patient-login'}><FaAngleDoubleRight className='icon' />  Login</Link></li>
-									<li><Link to={'/'}><FaAngleDoubleRight className='icon' />  Register</Link></li>
 									<li><Link to={'/home'}><FaAngleDoubleRight className='icon' />  Patient Dashboard</Link></li>
 								</ul>
 							</div>
 						</div>
 
-						<div className="col-6 col-md-6 col-lg-3">
-
-							<div className="footer-widget footer-menu">
-								<h2 className="footer-title">For Doctors</h2>
-								<ul>
-									<li><Link to={'/'}><FaAngleDoubleRight className='icon' /> Appointments</Link></li>
-									<li><Link to={'/login'}><FaAngleDoubleRight className='icon' /> Login</Link></li>
-									<li><Link to={'/register'}><FaAngleDoubleRight className='icon' /> Register</Link></li>
-									<li><Link to={'/dashboard'}><FaAngleDoubleRight className='icon' /> Doctor Dashboard</Link></li>
-								</ul>
-							</div>
-						</div>
 
 						<div className="col-6 col-md-6 col-lg-3">
 							<div className="footer-widget footer-contact">
@@ -55,7 +42,7 @@ const Footer = () => {
 								<div className="footer-contact-info">
 									<div className="footer-address">
 										<span><i className="fas fa-map-marker-alt"></i></span>
-										<p> 121 Bolevard, New Jersey,<br /> New York City, USA </p>
+										<p> YWC Infotech, Vasai<br /> Mumbai, India </p>
 									</div>
 
 								</div>

@@ -29,7 +29,7 @@ const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
                 <ul>
                     <li><NavLink to={'/home'} className="nav-link scrollto" activeClassName="active"><FaHome /> Home</NavLink></li>
                     <li><NavLink to={'/about'} className="nav-link scrollto" activeClassName="active">About</NavLink></li>
-                    <li><NavLink to={'/service'} className="nav-link scrollto" activeClassName="active">Service</NavLink></li>
+                    <li><NavLink to={'/reviews'} className="nav-link scrollto" activeClassName="active">Reviews</NavLink></li>
                     <li><NavLink to={'/view-doctor'} className="nav-link scrollto" activeClassName="active">Doctors</NavLink></li>
                     <li><NavLink to={'/contact'} className="nav-link scrollto" activeClassName="active">Contact</NavLink></li>
 

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const StylePatientAppoint = styled.section`
-
-
 .doctors {
     background: #fff;
 }
@@ -19,11 +17,15 @@ const StylePatientAppoint = styled.section`
     width: 130px;
     height: 130px;
     border-radius: 50%;
+    margin-right: 20px; /* Added margin to create space between image and info */
 }
 
 .doctors .member .pic img {
     transition: ease-in-out 0.3s;
     object-position: top;
+    width: 100%; /* Added to ensure image fills the circular container */
+    height: 100%; /* Added to ensure image fills the circular container */
+    object-fit: cover; /* Added to prevent distortion of images */
 }
 
 .doctors .member:hover img {
@@ -96,7 +98,6 @@ const StylePatientAppoint = styled.section`
 .doctors .member .social a+a {
     margin-left: 8px;
 }
-
 `;
 
 export default StylePatientAppoint;

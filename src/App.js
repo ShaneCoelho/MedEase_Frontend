@@ -14,6 +14,7 @@ import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
 import TrackAppoint from './pages/patient/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';
 import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
+import Reviews from './pages/Reviews/Reviews'
 
 
 
@@ -38,6 +39,8 @@ function App() {
         <Route path="/doctor-appoint" element={<DoctorAppoint/>}/>
         <Route path="/track-appoint" element={<TrackAppoint/>}/>
         <Route path="/doctor-review" element={<DoctorReview/>}/>
+        <Route path="/reviews" element={<Reviews/>}/>
+
 
 
 
