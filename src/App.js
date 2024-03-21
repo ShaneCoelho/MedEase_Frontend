@@ -16,6 +16,8 @@ import Home from './pages/Home/Home/Home';
 import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
 import Reviews from './pages/Reviews/Reviews';
 
+import DocDash from './pages/doctor/DoctroDash/DocDash';
+
 
 
 
@@ -41,6 +43,8 @@ function App() {
         <Route path="/track-appoint" element={<TrackAppoint/>}/>
         <Route path="/doctor-review" element={<DoctorReview/>}/>
         <Route path="/reviews" element={<Reviews/>}/>
+        <Route path="/docdash" element={<DocDash/>}/>
+
 
 
 
