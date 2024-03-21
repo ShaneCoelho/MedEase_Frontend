@@ -8,13 +8,14 @@ import PatientDetails from './pages/patient/PatientDetails/PatientDetails';
 import DoctorDetails from './pages/admin/DoctorDetails/DoctorDetails';
 import ViewDoctor from './pages/patient/ViewDoctors/ViewDoctors';
 import About from './pages/About/About';
-import Contact from './pages/Contact/Contact'
+import Contact from './pages/Contact/Contact';
 import DoctorAppoint from './pages/doctor/DoctorAppoint/DoctorAppoint';
 import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
 import TrackAppoint from './pages/patient/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';
 import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
-import Reviews from './pages/Reviews/Reviews'
+import Reviews from './pages/Reviews/Reviews';
+
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/track-appoint" element={<TrackAppoint/>}/>
         <Route path="/doctor-review" element={<DoctorReview/>}/>
         <Route path="/reviews" element={<Reviews/>}/>
+
 
 
 
