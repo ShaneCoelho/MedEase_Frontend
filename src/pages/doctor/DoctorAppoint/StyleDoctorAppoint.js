@@ -9,7 +9,7 @@ const StyleDoctorAppoint = styled.section`
   }
 
   .past-appointments-container {
-    max-width: 800px;
+    max-width: 801px;
     margin: 0 auto;
     padding: 20px;
   }
