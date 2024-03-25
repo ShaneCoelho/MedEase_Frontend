@@ -205,23 +205,26 @@ const Popup = styled.div`
   top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  padding: 0px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #223a66;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   text-align: center;
+  max-width: 80%;
+  opacity: 0.9;
 
   .popup-content {
-    color: black;
+    color: white;
   }
 
   .close {
     position: absolute;
-    top: 10px;
+    top: -5px;
     right: 10px;
     cursor: pointer;
     font-size: 20px;
+    color: white; /* Close button color set to white */
   }
 `;
 
