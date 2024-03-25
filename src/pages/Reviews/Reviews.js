@@ -53,9 +53,10 @@ const Reviews = () => {
   }, [searchQuery]);
 
   return (
-    <StyleReviews>
+    <div>
     <Header />
     <SubHeader title="Reviews" subtitle="Trusted by patients, endorsed by results – our doctors exceed expectations." />
+    <StyleReviews>
         <div className='vd-body'>
     <div className="doctor-search-container">
       <input
@@ -85,8 +86,10 @@ const Reviews = () => {
       </div>
     </div>
     </div>
-    <Footer/>
     </StyleReviews>
+    <Footer/>
+    </div>
+
   );
 };
 
