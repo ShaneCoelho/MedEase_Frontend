@@ -37,7 +37,7 @@ const DoctorMap = () => {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <MapComponent
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places`}
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AlzaSyChfCleyskMH-hWgbqEiRrrPrdznuuZs9w&libraries=places`}
         loadingElement={<div style={{ height: '100%' }} />}
         containerElement={<div style={{ height: '100%' }} />}
         mapElement={<div style={{ height: '100%' }} />}
@@ -55,4 +55,4 @@ const DoctorMap = () => {
   );
 };
 
-export default Map;
+export default DoctorMap;
