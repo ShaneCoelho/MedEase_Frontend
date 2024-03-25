@@ -12,6 +12,7 @@ const DoctorAppoint = () => {
   const [loading, setLoading] = useState(true);
   const [hasToken, setHasToken] = useState(false);
   const [token, setToken] = useState(null);
+  const [view, setView] = useState('patient'); // State to track the active view: patient or past
 
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [showPatientInfoPopup, setShowPatientInfoPopup] = useState(false);
@@ -71,12 +72,32 @@ const DoctorAppoint = () => {
     console.log("Reject appointment with ID:", appointmentId);
   };
 
+  const toggleView = (selectedView) => {
+    setView(selectedView);
+  };
+
+  const PastAppointments = [
+    { patient_name: 'John Doe', appointment_date: '2023-10-15', status: 'Rejected' },
+    { patient_name: 'Jane Smith', appointment_date: '2023-11-20', status: 'Approved' },
+    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Aprroved' },
+    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
+    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
+    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
+    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
+    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
+  ];
+
   return (
-    <div>
-      {loading ? (
-        <Loading />
-      ) : (
-        <StyleDoctorAppoint>
+    <StyleDoctorAppoint>
+      <div>
+        <div className="toggle-container">
+          <button className={view === 'patient' ? 'active' : ''} onClick={() => toggleView('patient')}>Patient Appointments</button>
+          <button className={view === 'past' ? 'active' : ''} onClick={() => toggleView('past')}>Past Appointments</button>
+        </div>
+
+        {loading ? (
+          <Loading />
+        ) : view === 'patient' ? (
           <div className="container">
             <div className="title">Patient Appointments</div>
             <div className="patient-list">
@@ -105,27 +126,48 @@ const DoctorAppoint = () => {
               ))}
             </div>
           </div>
-        </StyleDoctorAppoint>
-      )}
-      {selectedAppointment && (
-        <AppointmentDetails
-          appointment={selectedAppointment}
-          onApprove={handleApproveAppointment}
-          onReject={handleRejectAppointment}
-          onClose={handleCloseDetails}
-        />
-      )}
-      {showPatientInfoPopup && (
-        <PatientInfoPopup
-          patient={selectedPatient}
-          onApprove={() => {
-            handleApproveAppointment(selectedPatient.time_slot); // Assuming you have time_slot in selectedPatient
-            setShowPatientInfoPopup(false);
-          }}
-          onClose={() => setShowPatientInfoPopup(false)}
-        />
-      )}
-    </div>
+        ) : (
+          <div className="past-appointments-container">
+            <div className="title2">Past Appointments</div>
+            <div className="card-container">
+              {/* Map through past appointments and render each as a card */}
+              {PastAppointments.map((appointment, index) => (
+                <div key={index} className="card">
+                  <div className="card-header">
+                    <h3>{appointment.patient_name}</h3>
+                    <span>Status: {appointment.status}</span>
+                  </div>
+                  <div className="card-body">
+                    <p><strong>Date:</strong> {appointment.appointment_date}</p>
+                    {/* Add more details if needed */}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {selectedAppointment && (
+          <AppointmentDetails
+            appointment={selectedAppointment}
+            onApprove={handleApproveAppointment}
+            onReject={handleRejectAppointment}
+            onClose={handleCloseDetails}
+          />
+        )}
+
+        {showPatientInfoPopup && (
+          <PatientInfoPopup
+            patient={selectedPatient}
+            onApprove={() => {
+              handleApproveAppointment(selectedPatient.time_slot); // Assuming you have time_slot in selectedPatient
+              setShowPatientInfoPopup(false);
+            }}
+            onClose={() => setShowPatientInfoPopup(false)}
+          />
+        )}
+      </div>
+    </StyleDoctorAppoint>
   );
 };
 
