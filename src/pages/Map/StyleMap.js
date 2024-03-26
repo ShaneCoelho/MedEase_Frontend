@@ -15,13 +15,22 @@ button {
   background-color: #007bff; /* Blue color, adjust as needed */
   color: #fff; /* White color for text */
   border: none;
-  border-radius: 4px;
+  border-radius: 15px;
   margin-bottom:600px;
   cursor: pointer;
+  z-index: 1000;
+  top: 20;
+  left: 90px;
+  right: 10;
+  width: 10rem;
+  min-height: 1.5rem;
+  
+  
 }
 
 button:hover {
   background-color: #0056b3; /* Darker blue on hover, adjust as needed */
+  
 }
 
 .leaflet-popup-content-wrapper {
@@ -44,6 +53,7 @@ button:hover {
   background: transparent;
   border: none;
 }
+
 
 `;
 
