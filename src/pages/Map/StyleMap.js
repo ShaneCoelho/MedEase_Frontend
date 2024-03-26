@@ -1,50 +1,50 @@
 import styled from "styled-components";
 
 const StyleMap = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Set height of container to full viewport height */
-
-.container {
-    position: relative;
-    width: 90%; /* Set width to 90% of viewport width */
-    max-width: 700px; /* Set maximum width to 35rem */
-    height: 200px;
-    text-align: center;
-  }
-
-.map {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-.find_location {
-    position: absolute;
-    margin: auto;
-    width: 12rem;
-    min-height: 2.5rem;
-    font-size: 1rem;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: white;
-    cursor: pointer;
-    border-radius: 0 0 1rem 1rem;
-    border: none;
-    border-top: 1px solid lightgrey;
-  }
-
-.find_location:hover {
-    background-color: whitesmoke;
-  }
-
-@media (max-width: 768px) {
   .container {
-    width: 90%; /* Adjust width for smaller screens */
-  }
-  }
+  height: 100%; /* Adjust height as needed */
+  width: 100%; /* Adjust width as needed */
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
+button {
+  margin: 10px 0;
+  position:relative;
+  padding: 8px 16px;
+  background-color: #007bff; /* Blue color, adjust as needed */
+  color: #fff; /* White color for text */
+  border: none;
+  border-radius: 4px;
+  margin-bottom:600px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover, adjust as needed */
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #fff; /* White background for popup */
+  color: #000; /* Black text color */
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Box shadow for popup */
+}
+
+.leaflet-popup-content {
+  margin: 8px;
+}
+
+.leaflet-popup-tip-container {
+  width: 40px; /* Adjust as needed */
+  height: 20px; /* Adjust as needed */
+}
+
+.leaflet-popup-tip {
+  background: transparent;
+  border: none;
+}
+
 `;
 
 export default StyleMap;
