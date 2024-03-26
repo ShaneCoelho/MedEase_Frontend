@@ -6,20 +6,20 @@ const StyleMap = styled.section`
   align-items: center;
   height: 100vh; /* Set height of container to full viewport height */
 
-  .container {
+.container {
     position: relative;
     width: 90%; /* Set width to 90% of viewport width */
-    max-width: 35rem; /* Set maximum width to 35rem */
-    height: 22rem;
+    max-width: 700px; /* Set maximum width to 35rem */
+    height: 200px;
     text-align: center;
   }
 
-  .map {
+.map {
     width: 100% !important;
     height: 100% !important;
   }
 
-  .find_location {
+.find_location {
     position: absolute;
     margin: auto;
     width: 12rem;
@@ -36,14 +36,14 @@ const StyleMap = styled.section`
     border-top: 1px solid lightgrey;
   }
 
-  .find_location:hover {
+.find_location:hover {
     background-color: whitesmoke;
   }
 
-  @media (max-width: 768px) {
-    .container {
-      width: 90%; /* Adjust width for smaller screens */
-    }
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* Adjust width for smaller screens */
+  }
   }
 `;
 

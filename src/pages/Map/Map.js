@@ -48,12 +48,12 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
     }
   }, [readonly, location]);
 
-  useMapEvents({
+  const map = useMapEvents({
     click(e) {
       !readonly && setPosition(e.latlng);
     },
     locationfound(e) {
-      setPosition(e.latlng);
+      setPosition(e.latlng, 13);
     },
     locationerror(e) {
       toast.error(e.message);
@@ -70,7 +70,7 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
   return (
     <>
       {!readonly && (
-        <button type="button" onClick={() => Map.locate()}>
+        <button type="button" onClick={() => map.locate()}>
           Find My Location
         </button>
       )}
