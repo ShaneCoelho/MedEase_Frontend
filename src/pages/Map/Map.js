@@ -1,84 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import StyleMap from './StyleMap';
+import 'leaflet/dist/leaflet.css';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from 'react-leaflet';
+import { toast } from 'react-toastify';
+import * as L from 'leaflet';
 
-const MapComponent = withScriptjs(withGoogleMap((props) => {
-  const [userLocation, setUserLocation] = useState(null);
-  const [doctors, setDoctors] = useState([]);
+export default function Map({ readonly, location, onChange }) {
+  return (
+    <StyleMap>
+      <div className='container'>
+        <MapContainer
+          center={[0, 0]}
+          zoom={1}
+          dragging={!readonly}
+          touchZoom={!readonly}
+          doubleClickZoom={!readonly}
+          scrollWheelZoom={!readonly}
+          boxZoom={!readonly}
+          keyboard={!readonly}
+          attributionControl={false}
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <FindButtonAndMarker
+            readonly={readonly}
+            location={location}
+            onChange={onChange}
+          />
+        </MapContainer>
+      </div>
+    </StyleMap>
+  );
+}
+
+
+function FindButtonAndMarker({ readonly, location, onChange }) {
+  const [position, setPosition] = useState(location);
 
   useEffect(() => {
-    // Fetch dummy doctors data
-    const dummyDoctors = [
-      { id: 1, lat: -34.4, lng: 150.7, name: 'Dr. Smith' },
-      { id: 2, lat: -34.3, lng: 150.6, name: 'Dr. Johnson' },
-      // Add more dummy doctor data
-    ];
-    setDoctors(dummyDoctors);
-
-    // Get user's current location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-        },
-        (error) => {
-          console.error('Error getting user location:', error);
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
+    if (readonly) {
+      setPosition(location);
     }
-  }, []);
+  }, [readonly, location]);
 
-  const calculateDistance = (lat1, lon1, lat2, lon2) => {
-    const R = 6371; // Radius of the earth in km
-    const dLat = deg2rad(lat2 - lat1);
-    const dLon = deg2rad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const d = R * c; // Distance in km
-    return d;
-  }
+  useMapEvents({
+    click(e) {
+      !readonly && setPosition(e.latlng);
+    },
+    locationfound(e) {
+      setPosition(e.latlng);
+    },
+    locationerror(e) {
+      toast.error(e.message);
+    },
+  });
 
-  const deg2rad = (deg) => {
-    return deg * (Math.PI / 180);
-  }
+  const markerIcon = new L.Icon({
+    iconUrl: '/marker-icon-2x.png',
+    iconSize: [25, 41],
+    iconAnchor: [12.5, 41],
+    popupAnchor: [0, -41],
+  });
 
   return (
-    <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    >
-      {userLocation && doctors.map((doctor) => {
-        const distance = calculateDistance(userLocation.lat, userLocation.lng, doctor.lat, doctor.lng);
-        return (
-          <Marker
-            key={doctor.id}
-            position={{ lat: doctor.lat, lng: doctor.lng }}
-            title={`${doctor.name} (${distance.toFixed(2)} km away)`}
-          />
-        );
-      })}
-    </GoogleMap>
-  );
-}));
+    <>
+      {!readonly && (
+        <button type="button" onClick={() => Map.locate()}>
+          Find My Location
+        </button>
+      )}
 
-const DoctorMap = () => {
-  return (
-    <div style={{ width: '100%', height: '100vh' }}>
-      <MapComponent
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAwo_vYYR9knVrvoX8dH16NVhwlV4R875U&libraries=places`}
-        loadingElement={<div style={{ height: '100%' }} />}
-        containerElement={<div style={{ height: '100%' }} />}
-        mapElement={<div style={{ height: '100%' }} />}
-      />
-    </div>
+      {position && (
+        <Marker
+          position={position}
+          draggable={!readonly}
+          icon={markerIcon}
+          eventHandlers={{
+            dragend: (e) => {
+              setPosition(e.target.getLatLng());
+              onChange(e.target.getLatLng());
+            },
+          }}
+        >
+          <Popup>Shipping Location</Popup>
+        </Marker>
+      )}
+    </>
   );
-};
-
-export default DoctorMap;
+}
