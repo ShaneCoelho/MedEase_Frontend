@@ -20,8 +20,7 @@ button {
   cursor: pointer;
   z-index: 1000;
   top: 20;
-  left: 90px;
-  right: 10;
+  left:550px;
   width: 10rem;
   min-height: 1.5rem;
   
