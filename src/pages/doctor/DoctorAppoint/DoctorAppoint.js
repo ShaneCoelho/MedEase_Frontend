@@ -77,14 +77,15 @@ const DoctorAppoint = () => {
   };
 
   const PastAppointments = [
-    { patient_name: 'John Doe', appointment_date: '2023-10-15', status: 'Rejected' },
-    { patient_name: 'Jane Smith', appointment_date: '2023-11-20', status: 'Approved' },
-    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Aprroved' },
-    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
-    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
-    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
-    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
-    { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', status: 'Completed' },
+      { patient_name: 'John Doe', appointment_date: '2023-10-15', time_slot: '10:00 AM - 11:00 AM' },
+      { patient_name: 'Jane Smith', appointment_date: '2023-11-20', time_slot: '11:30 AM - 12:30 PM' },
+      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '2:00 PM - 3:00 PM' },
+      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '3:30 PM - 4:30 PM' },
+      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '5:00 PM - 6:00 PM' },
+      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '6:30 PM - 7:30 PM' },
+      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '8:00 PM - 9:00 PM' },
+      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '9:30 PM - 10:30 PM' },
+    
   ];
 
   return (
@@ -135,7 +136,7 @@ const DoctorAppoint = () => {
                 <div key={index} className="card">
                   <div className="card-header">
                     <h3>{appointment.patient_name}</h3>
-                    <span>Status: {appointment.status}</span>
+                    <span>Time Slot: {appointment.time_slot}</span>
                   </div>
                   <div className="card-body">
                     <p><strong>Date:</strong> {appointment.appointment_date}</p>
