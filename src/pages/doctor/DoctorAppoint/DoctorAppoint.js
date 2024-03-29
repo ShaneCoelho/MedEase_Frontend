@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import hostURL from '../../../data/URL';
 import Loading from '../../Loading/Loading';
 import { getToken } from "../../../data/Token";
 import StyleDoctorAppoint from "./StyleDoctorAppoint";
-import AppointmentDetails from "./AppointmentDetails"; // Import the AppointmentDetails component
-import PatientInfoPopup from "./PatientInfoPopup"; // Import the PatientInfoPopup component
+import AppointmentDetails from "./AppointmentDetails";
+import PatientInfoPopup from "./PatientInfoPopup";
 
 const DoctorAppoint = () => {
   const [patientAppointments, setPatientAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasToken, setHasToken] = useState(false);
   const [token, setToken] = useState(null);
-  const [view, setView] = useState('patient'); // State to track the active view: patient or past
-
+  const [view, setView] = useState('patient');
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [showPatientInfoPopup, setShowPatientInfoPopup] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     const checkTokenCookie = () => {
@@ -62,13 +64,10 @@ const DoctorAppoint = () => {
   };
 
   const handleApproveAppointment = (time_slot) => {
-    // Logic to approve the appointment
     console.log("Time slot is:", time_slot);
-    // Here, you can set selectedPatient and then set showPatientInfoPopup to true
   };
 
   const handleRejectAppointment = (appointmentId) => {
-    // Logic to reject the appointment
     console.log("Reject appointment with ID:", appointmentId);
   };
 
@@ -76,20 +75,25 @@ const DoctorAppoint = () => {
     setView(selectedView);
   };
 
+  const filterAppointmentsByDate = () => {
+    if (!selectedDate) return PastAppointments;
+    return PastAppointments.filter(appointment => appointment.appointment_date === selectedDate);
+  };
+
   const PastAppointments = [
-      { patient_name: 'John Doe', appointment_date: '2023-10-15', time_slot: '10:00 AM - 11:00 AM' },
-      { patient_name: 'Jane Smith', appointment_date: '2023-11-20', time_slot: '11:30 AM - 12:30 PM' },
-      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '2:00 PM - 3:00 PM' },
-      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '3:30 PM - 4:30 PM' },
-      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '5:00 PM - 6:00 PM' },
-      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '6:30 PM - 7:30 PM' },
-      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '8:00 PM - 9:00 PM' },
-      { patient_name: 'Michael Johnson', appointment_date: '2023-12-05', time_slot: '9:30 PM - 10:30 PM' },
-    
+    { patient_name: 'John Doe', appointment_date: '15/10/2023', time_slot: '10:00 AM - 11:00 AM' },
+    { patient_name: 'Jane Smith', appointment_date: '20/11/2023', time_slot: '11:30 AM - 12:30 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '2:00 PM - 3:00 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '3:30 PM - 4:30 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '5:00 PM - 6:00 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '6:30 PM - 7:30 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '8:00 PM - 9:00 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '9:30 PM - 10:30 PM' },
   ];
 
   return (
     <StyleDoctorAppoint>
+      
       <div>
         <div className="toggle-container">
           <button className={view === 'patient' ? 'active' : ''} onClick={() => toggleView('patient')}>Patient Appointments</button>
@@ -130,9 +134,15 @@ const DoctorAppoint = () => {
         ) : (
           <div className="past-appointments-container">
             <div className="title2">Past Appointments</div>
+            <div className="date-filter">
+              <DatePicker
+                selected={selectedDate}
+                onChange={date => setSelectedDate(date.toLocaleDateString('en-GB'))}
+                dateFormat="dd/MM/yyyy"
+              />
+            </div>
             <div className="card-container">
-              {/* Map through past appointments and render each as a card */}
-              {PastAppointments.map((appointment, index) => (
+              {filterAppointmentsByDate().map((appointment, index) => (
                 <div key={index} className="card">
                   <div className="card-header">
                     <h3>{appointment.patient_name}</h3>
@@ -140,7 +150,6 @@ const DoctorAppoint = () => {
                   </div>
                   <div className="card-body">
                     <p><strong>Date:</strong> {appointment.appointment_date}</p>
-                    {/* Add more details if needed */}
                   </div>
                 </div>
               ))}
@@ -161,7 +170,7 @@ const DoctorAppoint = () => {
           <PatientInfoPopup
             patient={selectedPatient}
             onApprove={() => {
-              handleApproveAppointment(selectedPatient.time_slot); // Assuming you have time_slot in selectedPatient
+              handleApproveAppointment(selectedPatient.time_slot);
               setShowPatientInfoPopup(false);
             }}
             onClose={() => setShowPatientInfoPopup(false)}
