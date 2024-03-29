@@ -40,13 +40,13 @@ const PatientPopup = ({ patient, onClose }) => {
         <div className="title">Patient Information</div>
         <button className="close-btn" onClick={handleClose}>X</button>
         <div className="details">
-          <img src={dummyPatient.avatar} alt={dummyPatient.name} className="profile-photo" />
-          <p><strong>Name:</strong> {dummyPatient.name}</p>
-          <p><strong>Gender:</strong> {dummyPatient.gender}</p>
-          <p><strong>Date of Birth:</strong> {dummyPatient.dob}</p>
-          <p><strong>Blood Group:</strong> {dummyPatient.bloodGroup}</p>
-          <p><strong>Weight:</strong> {dummyPatient.weight}</p>
-          <p><strong>Mobile Number:</strong> {dummyPatient.mobile}</p>
+          <img src={patient.Patient_Avatar} alt={patient.patient_name} className="profile-photo" />
+          <p><strong>Name:</strong> {patient.patient_name}</p>
+          <p><strong>Gender:</strong> {patient.gender}</p>
+          <p><strong>Date of Birth:</strong> {patient.birthdate}</p>
+          <p><strong>Blood Group:</strong> {patient.bloodgroup}</p>
+          <p><strong>Weight:</strong> {patient.weight}</p>
+          <p><strong>Mobile Number:</strong> {patient.mobno}</p>
         </div>
       </div>
     </StylePatientPopup>
