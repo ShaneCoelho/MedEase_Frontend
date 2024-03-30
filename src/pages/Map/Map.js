@@ -18,7 +18,7 @@ export default function Map({ readonly, location, onChange }) {
     <StyleMap>
       <div className='container' >
         <MapContainer
-          center={[10, 10]}
+          center={[20, -1000]}
           zoom={5}
           dragging={!readonly}
           touchZoom={!readonly}
