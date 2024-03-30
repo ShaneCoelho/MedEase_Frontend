@@ -77,23 +77,30 @@ const DoctorAppoint = () => {
 
   const filterAppointmentsByDate = () => {
     if (!selectedDate) return PastAppointments;
-    return PastAppointments.filter(appointment => appointment.appointment_date === selectedDate);
+
+    const formattedSelectedDate = selectedDate.toLocaleDateString('en-GB');
+
+    return PastAppointments.filter(appointment => {
+      const formattedAppointmentDate = appointment.appointment_date;
+      return formattedAppointmentDate === formattedSelectedDate;
+    });
   };
 
+
   const PastAppointments = [
-    { patient_name: 'John Doe', appointment_date: '15/10/2023', time_slot: '10:00 AM - 11:00 AM' },
+    { patient_name: 'John Doe', appointment_date: '30/03/2024', time_slot: '10:00 AM - 11:00 AM' },
     { patient_name: 'Jane Smith', appointment_date: '20/11/2023', time_slot: '11:30 AM - 12:30 PM' },
     { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '2:00 PM - 3:00 PM' },
     { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '3:30 PM - 4:30 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '5:00 PM - 6:00 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '30/03/2024', time_slot: '5:00 PM - 6:00 PM' },
     { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '6:30 PM - 7:30 PM' },
     { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '8:00 PM - 9:00 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '9:30 PM - 10:30 PM' },
+    { patient_name: 'Michael Johnson', appointment_date: '30/03/2024', time_slot: '9:30 PM - 10:30 PM' },
   ];
 
   return (
     <StyleDoctorAppoint>
-      
+
       <div>
         <div className="toggle-container">
           <button className={view === 'patient' ? 'active' : ''} onClick={() => toggleView('patient')}>Patient Appointments</button>
@@ -137,7 +144,7 @@ const DoctorAppoint = () => {
             <div className="date-filter">
               <DatePicker
                 selected={selectedDate}
-                onChange={date => setSelectedDate(date.toLocaleDateString('en-GB'))}
+                onChange={date => setSelectedDate(date)}
                 dateFormat="dd/MM/yyyy"
               />
             </div>
