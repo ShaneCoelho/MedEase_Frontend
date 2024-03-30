@@ -10,15 +10,15 @@ const StyleMap = styled.section`
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: auto; /* Shift container to the right */
-    margin-right: 15px; /* Reset right margin */
+    margin-right: 25px; /* Reset right margin */
   }
 
   .specialization-container {
-    width: 30%;
+    width: 20%;
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: auto;
-    margin-right: 5px;
+    margin-right: -10px;
   }
 
   button {

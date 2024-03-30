@@ -15,22 +15,37 @@ const specializations = [
 ];
 
 export default function Map({ readonly, location, onChange }) {
-  const [selectedSpecialization, setSelectedSpecialization] = useState(null);
+  const [selectedSpecialization, setSelectedSpecialization] = useState('');
+  const [filteredSpecializations, setFilteredSpecializations] = useState([]);
+
+  useEffect(() => {
+    setFilteredSpecializations(
+      specializations.filter(specialization =>
+        specialization.toLowerCase().includes(selectedSpecialization.toLowerCase())
+      )
+    );
+  }, [selectedSpecialization]);
 
   return (
     <StyleMap>
       <div className='specialization-container'>
-        {/* Text field for entering specialization */}
+        {/* Text input for entering specialization with dropdown */}
         <input
           type="text"
+          list="specializations"
           placeholder="Enter Specialization"
           value={selectedSpecialization}
           onChange={(e) => setSelectedSpecialization(e.target.value)}
           disabled={readonly}
         />
-        </div>
-        <div className='map-container'>
-
+        {/* Dropdown options */}
+        <datalist id="specializations">
+          {filteredSpecializations.map((specialization, index) => (
+            <option key={index} value={specialization} />
+          ))}
+        </datalist>
+      </div>
+      <div className='map-container'>
         <MapContainer
           center={[20, -1000]}
           zoom={5}
@@ -44,10 +59,9 @@ export default function Map({ readonly, location, onChange }) {
         >
           <TileLayer
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            maxZoom={14} // Maximum zoom for location keep it at 14 or 15
+            maxZoom={14}
             attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           />
-
           <FindButtonAndMarker
             readonly={readonly}
             location={location}
@@ -55,11 +69,11 @@ export default function Map({ readonly, location, onChange }) {
             selectedSpecialization={selectedSpecialization}
           />
         </MapContainer>
-      
       </div>
     </StyleMap>
   );
 }
+
 
 function FindButtonAndMarker({ readonly, location, onChange, selectedSpecialization }) {
   const [position, setPosition] = useState(location);
@@ -116,6 +130,22 @@ function FindButtonAndMarker({ readonly, location, onChange, selectedSpecializat
           <Popup>Shipping Location</Popup>
         </Marker>
       )}
+
+      {/* Filter markers based on selected specialization */}
+      {specializations.map((specialization, index) => (
+        <Marker
+          key={index}
+          position={[20 + index * 0.01, -1000]}
+          icon={markerIcon}
+          eventHandlers={{
+            click: () => selectedSpecialization === specialization && console.log(specialization),
+          }}
+        >
+          {selectedSpecialization === specialization && (
+            <Popup>{specialization}</Popup>
+          )}
+        </Marker>
+      ))}
     </>
   );
 }
