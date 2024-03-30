@@ -146,6 +146,7 @@ const DoctorAppoint = () => {
                 selected={selectedDate}
                 onChange={date => setSelectedDate(date)}
                 dateFormat="dd/MM/yyyy"
+                placeholderText= " Select a date"
               />
             </div>
             <div className="card-container">

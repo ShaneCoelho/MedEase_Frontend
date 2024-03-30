@@ -14,6 +14,11 @@ const StyleDoctorAppoint = styled.section`
     padding: 20px;
   }
 
+  .date-filter{
+    margin-top:10px;
+    margin-bottom:15px;
+  }
+
   .title2{
     font-size: 25px;
     font-weight: 500;
@@ -112,6 +117,7 @@ const StyleDoctorAppoint = styled.section`
     margin-top:30px;
   }
   
+    
   .toggle-container button {
     background-color: transparent;
     border: none;
@@ -133,6 +139,17 @@ const StyleDoctorAppoint = styled.section`
     color: #333;
   }
   
+  media only screen and (max-width: 768px) {
+    .patient-list {
+      grid-template-columns: repeat( minmax(200px, 1fr));
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .patient-list {
+      grid-template-columns: repeat( minmax(150px, 1fr));
+    }
+  }
 `;
 
 export default StyleDoctorAppoint;
