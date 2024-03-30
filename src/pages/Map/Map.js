@@ -67,6 +67,10 @@ function FindButtonAndMarker({ readonly, location, onChange }) {
     popupAnchor: [0, -41],
   });
 
+  useEffect(() => {
+    map.invalidateSize();
+  }, [map]);
+
   return (
     <>
       {!readonly && (
