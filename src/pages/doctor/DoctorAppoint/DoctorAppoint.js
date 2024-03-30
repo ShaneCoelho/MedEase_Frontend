@@ -8,6 +8,7 @@ import { getToken } from "../../../data/Token";
 import StyleDoctorAppoint from "./StyleDoctorAppoint";
 import AppointmentDetails from "./AppointmentDetails";
 import PatientInfoPopup from "./PatientInfoPopup";
+import { addDays } from 'date-fns';
 
 const DoctorAppoint = () => {
   const [patientAppointments, setPatientAppointments] = useState([]);
@@ -19,6 +20,7 @@ const DoctorAppoint = () => {
   const [showPatientInfoPopup, setShowPatientInfoPopup] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [patientApprovedAppointments, setPatientApprovedAppointments] = useState([]);
 
   useEffect(() => {
     const checkTokenCookie = () => {
@@ -30,6 +32,10 @@ const DoctorAppoint = () => {
     checkTokenCookie();
     fetchData();
   }, [token, patientAppointments]);
+
+  useEffect(() => {
+    fetchApprovedAppointment();
+  }, [token, patientApprovedAppointments]);
 
   const fetchData = async () => {
     try {
@@ -44,6 +50,30 @@ const DoctorAppoint = () => {
       if (response.ok) {
         const data = await response.json();
         setPatientAppointments(data);
+        setLoading(false);
+      } else {
+        console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching data:', error);
+      setLoading(false);
+    }
+  };
+
+  const fetchApprovedAppointment = async () => {
+    try {
+      const response = await fetch(hostURL.link + '/api/doctor/appointment/viewapprovedappointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPatientApprovedAppointments(data);
         setLoading(false);
       } else {
         console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
@@ -76,28 +106,24 @@ const DoctorAppoint = () => {
   };
 
   const filterAppointmentsByDate = () => {
-    if (!selectedDate) return PastAppointments;
-    return PastAppointments.filter(appointment => appointment.appointment_date === selectedDate);
+    if (!selectedDate) return patientApprovedAppointments;
+
+    const formattedSelectedDate = selectedDate.toLocaleDateString('en-GB');
+
+    return patientApprovedAppointments.filter(appointment => {
+      const formattedAppointmentDate = appointment.date;
+      return formattedAppointmentDate === formattedSelectedDate;
+    });
   };
 
-  const PastAppointments = [
-    { patient_name: 'John Doe', appointment_date: '15/10/2023', time_slot: '10:00 AM - 11:00 AM' },
-    { patient_name: 'Jane Smith', appointment_date: '20/11/2023', time_slot: '11:30 AM - 12:30 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '2:00 PM - 3:00 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '3:30 PM - 4:30 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '5:00 PM - 6:00 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '6:30 PM - 7:30 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '8:00 PM - 9:00 PM' },
-    { patient_name: 'Michael Johnson', appointment_date: '05/12/2023', time_slot: '9:30 PM - 10:30 PM' },
-  ];
 
   return (
     <StyleDoctorAppoint>
-      
+
       <div>
         <div className="toggle-container">
           <button className={view === 'patient' ? 'active' : ''} onClick={() => toggleView('patient')}>Patient Appointments</button>
-          <button className={view === 'past' ? 'active' : ''} onClick={() => toggleView('past')}>Past Appointments</button>
+          <button className={view === 'past' ? 'active' : ''} onClick={() => toggleView('past')}>Approved Appointments</button>
         </div>
 
         {loading ? (
@@ -133,12 +159,15 @@ const DoctorAppoint = () => {
           </div>
         ) : (
           <div className="past-appointments-container">
-            <div className="title2">Past Appointments</div>
+            <div className="title2">Approved Appointments</div>
             <div className="date-filter">
               <DatePicker
                 selected={selectedDate}
-                onChange={date => setSelectedDate(date.toLocaleDateString('en-GB'))}
+                onChange={date => setSelectedDate(date)}
                 dateFormat="dd/MM/yyyy"
+                placeholderText=" Select a date"
+                minDate={new Date()}
+                maxDate={addDays(new Date(), 7)}
               />
             </div>
             <div className="card-container">
@@ -149,7 +178,7 @@ const DoctorAppoint = () => {
                     <span>Time Slot: {appointment.time_slot}</span>
                   </div>
                   <div className="card-body">
-                    <p><strong>Date:</strong> {appointment.appointment_date}</p>
+                    <p><strong>Date:</strong> {appointment.date}</p>
                   </div>
                 </div>
               ))}
