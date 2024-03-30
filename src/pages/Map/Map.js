@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import StyleMap from './StyleMap';
 import 'leaflet/dist/leaflet.css';
-
-
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvents,
-} from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { toast } from 'react-toastify';
 import * as L from 'leaflet';
 
+// Dummy doctor specializations
+const specializations = [
+  "Cardiology",
+  "Dermatology",
+  "Neurology",
+  "Orthopedics",
+  // Add more specializations as needed
+];
+
 export default function Map({ readonly, location, onChange }) {
+  const [selectedSpecialization, setSelectedSpecialization] = useState(null);
+
   return (
     <StyleMap>
-      <div className='container' >
+      <div className='specialization-container'>
+        {/* Text field for entering specialization */}
+        <input
+          type="text"
+          placeholder="Enter Specialization"
+          value={selectedSpecialization}
+          onChange={(e) => setSelectedSpecialization(e.target.value)}
+          disabled={readonly}
+        />
+        </div>
+        <div className='map-container'>
+
         <MapContainer
           center={[20, -1000]}
           zoom={5}
@@ -30,7 +44,7 @@ export default function Map({ readonly, location, onChange }) {
         >
           <TileLayer
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            maxZoom={14} //Maximum zoom for location keep it at 14 or 15
+            maxZoom={14} // Maximum zoom for location keep it at 14 or 15
             attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           />
 
@@ -38,14 +52,16 @@ export default function Map({ readonly, location, onChange }) {
             readonly={readonly}
             location={location}
             onChange={onChange}
+            selectedSpecialization={selectedSpecialization}
           />
         </MapContainer>
+      
       </div>
     </StyleMap>
   );
 }
 
-function FindButtonAndMarker({ readonly, location, onChange }) {
+function FindButtonAndMarker({ readonly, location, onChange, selectedSpecialization }) {
   const [position, setPosition] = useState(location);
   const map = useMapEvents({
     click(e) {

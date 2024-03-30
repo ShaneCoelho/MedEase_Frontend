@@ -1,13 +1,24 @@
 import styled from "styled-components";
 
 const StyleMap = styled.section`
-  .container {
+  display: flex;
+  justify-content: space-between;
+
+  .map-container {
     height: 70%;/* Adjust height as needed */
     width: 50%;/* Adjust width as needed */
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: auto; /* Shift container to the right */
-    margin-right: 5px; /* Reset right margin */
+    margin-right: 15px; /* Reset right margin */
+  }
+
+  .specialization-container {
+    width: 30%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: 5px;
   }
 
   button {
@@ -28,14 +39,14 @@ const StyleMap = styled.section`
   }
 
   button:hover {
-    background-color: #0056b3; /* Darker blue on hover, adjust as needed */
+    background-color: #0056b3;
   }
 
   .leaflet-popup-content-wrapper {
-    background-color: #fff; /* White background for popup */
-    color: #000; /* Black text color */
+    background-color: #fff;
+    color: #000;
     border-radius: 2px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Box shadow for popup */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
 
   .leaflet-popup-content {
@@ -43,8 +54,8 @@ const StyleMap = styled.section`
   }
 
   .leaflet-popup-tip-container {
-    width: 20px; /* Adjust as needed */
-    height: 10px; /* Adjust as needed */
+    width: 20px;
+    height: 10px;
   }
 
   .leaflet-popup-tip {
