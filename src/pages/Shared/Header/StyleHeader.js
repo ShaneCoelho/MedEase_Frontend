@@ -33,7 +33,7 @@ const StyleHeader = styled.section`
     background: #fff;
     transition: all 0.5s;
     z-index: 997;
-    top: 40px;
+    top: -7px;
     box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
 }
 
@@ -56,7 +56,7 @@ const StyleHeader = styled.section`
 }
 
 #header .logo img {
-    max-height: 100px;
+    max-height: 120px;
 }
 
 

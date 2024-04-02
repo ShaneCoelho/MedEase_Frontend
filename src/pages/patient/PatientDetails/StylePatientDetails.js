@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import img from '../../../images/Home.jpg';
 
 const StylePatientDetails = styled.section`
 *{
@@ -14,7 +15,9 @@ const StylePatientDetails = styled.section`
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: #fff;
+    background-image: url(${img});
+    background-size: cover;
+
 }
 
 .container {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import StyleHeader from './StyleHeader';
 import { Link } from 'react-router-dom';
-import img from '../../../images/logo.png';
 import img1 from '../../../images/logo1.png';
 import img2 from '../../../images/logo2.png';
 import img3 from '../../../images/logo3.png';
+
 import avatar from '../../../images/avatar.jpg';
 import { Button, message } from 'antd';
 import HeaderNav from './HeaderNav';
@@ -51,7 +51,7 @@ const Header = () => {
             <header id="header" className={`fixed-top ${!show && "stickyHeader"}`}>
                 <div className="container d-flex align-items-center">
                     <Link to={'/home'} className="logo me-auto">
-                        <img src={img1} alt="" className="img-fluid" />
+                        <img src={img2} alt="" className="img-fluid" />
                     </Link>
                     <HeaderNav content={content} open={open} setOpen={setOpen} />
                 </div>

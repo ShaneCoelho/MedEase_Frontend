@@ -9,6 +9,7 @@ const StyleAdminLogin = styled.section`
     display: flex;
     align-items: center;
     background-image: url(${img});
+    background-color: #ffffff;
     justify-content: center;
     background-size: cover;
     color: #fff;

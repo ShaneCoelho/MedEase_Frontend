@@ -7,6 +7,7 @@ const StylePatientLogin = styled.section`
     height: 100vh;
     display: flex;
     align-items: center;
+    background-color: #ffffff;
     background-image: url(${img});
     justify-content: center;
     background-size: cover;

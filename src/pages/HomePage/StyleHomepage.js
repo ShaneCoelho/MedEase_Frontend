@@ -8,9 +8,9 @@ const StyleHomepage = styled.section`
   margin: 0;
   padding: 0;
   background-size: cover;
+  background-color: #ffffff;
   background-image: url(${img});
   justify-content: center;
-  background-size: cover;
   display: flex;
   height: 100vh;
 }
