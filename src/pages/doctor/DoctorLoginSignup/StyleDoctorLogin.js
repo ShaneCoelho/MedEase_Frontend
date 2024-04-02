@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import img from '../../../images/Home.jpg';
 
 const StyleDoctorLogin = styled.section`
   .dc-body {
@@ -6,8 +7,9 @@ const StyleDoctorLogin = styled.section`
     height: 100vh;
     display: flex;
     align-items: center;
+    background-image: url(${img});
     justify-content: center;
-    background: url('../../assets/Doctor/Home.jpg') center/cover;
+    background-size: cover;
     color: #fff;
     font-family: 'Arial', sans-serif;
   }
@@ -80,7 +82,7 @@ const StyleDoctorLogin = styled.section`
   .wrapper button {
     width: 100%;
     height: 45px;
-    background: #1977cc;
+    background: #002750;
     border: none;
     outline: none;
     border-radius: 10px;

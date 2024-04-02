@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import img from '../../../images/Home.jpg';
 
 const StylePatientLogin = styled.section`
   .Pt-body {
@@ -6,8 +7,9 @@ const StylePatientLogin = styled.section`
     height: 100vh;
     display: flex;
     align-items: center;
+    background-image: url(${img});
     justify-content: center;
-    background: url('../../assets/Doctor/Home.jpg') center/cover;
+    background-size: cover;
     color: #fff;
     font-family: 'Arial', sans-serif;
   }
@@ -73,13 +75,13 @@ const StylePatientLogin = styled.section`
     top: 50%;
     transform: translateY(-50%);
     font-size: 17px;
-    color: #1977cc;
+    color: #002750;
   }
 
   .wrapper button {
     width: 100%;
     height: 45px;
-    background: #1977cc;
+    background: #002750;
     border: none;
     outline: none;
     border-radius: 10px;

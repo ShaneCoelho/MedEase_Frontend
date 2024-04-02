@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import img from '../../images/Home.jpg';
 
 
 const StyleHomepage = styled.section`
@@ -7,7 +8,11 @@ const StyleHomepage = styled.section`
   margin: 0;
   padding: 0;
   background-size: cover;
-  background-attachment: fixed;
+  background-image: url(${img});
+  justify-content: center;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
 }
 
 
@@ -61,7 +66,6 @@ const StyleHomepage = styled.section`
   .module a {
     display: inline-block;
     padding: 10px 15px;
-    background-image: './components/Background/Home.jpg';
     background-color: #002750;
     color: #fff;
     text-decoration: none;
