@@ -4,7 +4,7 @@ const StyleInfo = styled.section`
 
 .why-us .content {
   padding: 30px;
-  background: #1977cc;
+  background: #15558d;
   border-radius: 4px;
   color: #fff;
 }

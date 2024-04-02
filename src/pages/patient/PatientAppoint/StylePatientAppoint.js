@@ -135,7 +135,7 @@ const StylePatientAppoint = styled.section`
     width: 18px;
     border-radius: 50%;
     margin-right: 10px;
-    background: #d9d9d9;
+    background: #15558d;
     border: 5px solid transparent;
     transition: all 0.3s ease;
   }
@@ -171,7 +171,7 @@ const StylePatientAppoint = styled.section`
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #1977cc;
+    background: #15558d;
     outline: none;
   }
 
