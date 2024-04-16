@@ -11,7 +11,23 @@ const specializations = [
   "Dermatology",
   "Neurology",
   "Orthopedics",
-  // Add more specializations as needed
+  "Oncologist",
+  "Ophthalmologist",
+  "Orthopedist",
+  "Otolaryngologist",
+  "Osteopath",
+  "Pathologist",
+  "Pediatrician",
+  "Physician executive",
+  "Plastic surgeon",
+  "Podiatrist",
+  "Psychiatrist",
+  "Pulmonologist",
+  "Radiologist",
+  "Rheumatologist",
+  "Sleep medicine specialist",
+  "Surgeon",
+  "Urologist",
 ];
 
 export default function Map({ readonly, location, onChange }) {
@@ -26,24 +42,32 @@ export default function Map({ readonly, location, onChange }) {
     );
   }, [selectedSpecialization]);
 
+  const handleSpecializationSelect = (specialization) => {
+    setSelectedSpecialization(specialization);
+    setFilteredSpecializations([]); // Clear the filtered list after selection
+  };
+
   return (
     <StyleMap>
       <div className='specialization-container'>
-        {/* Text input for entering specialization with dropdown */}
+        {/* Input field for typing specialization */}
         <input
           type="text"
-          list="specializations"
           placeholder="Enter Specialization"
           value={selectedSpecialization}
           onChange={(e) => setSelectedSpecialization(e.target.value)}
           disabled={readonly}
         />
-        {/* Dropdown options */}
-        <datalist id="specializations">
-          {filteredSpecializations.map((specialization, index) => (
-            <option key={index} value={specialization} />
-          ))}
-        </datalist>
+        {/* List of filtered specializations */}
+        {selectedSpecialization && (
+          <ul>
+            {filteredSpecializations.map((specialization, index) => (
+              <li key={index} onClick={() => handleSpecializationSelect(specialization)}>
+                {specialization}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <div className='map-container'>
         <MapContainer
@@ -73,7 +97,6 @@ export default function Map({ readonly, location, onChange }) {
     </StyleMap>
   );
 }
-
 
 function FindButtonAndMarker({ readonly, location, onChange, selectedSpecialization }) {
   const [position, setPosition] = useState(location);
