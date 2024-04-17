@@ -15,8 +15,10 @@ import TrackAppoint from './pages/patient/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';
 import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
 import Reviews from './pages/Reviews/Reviews';
-import Map from './pages/Map/Map'
+import FindDoc from './pages/FindDoc/FindDoc'
 import DocDash from './pages/doctor/DoctroDash/DocDash';
+import NearbyDoc from './pages/patient/NearbyDoc/NearbyDoc';
+import FindLocation from './pages/patient/FindLocation/Findlocation';
 
 
 
@@ -43,7 +45,10 @@ function App() {
         <Route path="/track-appoint" element={<TrackAppoint/>}/>
         <Route path="/doctor-review" element={<DoctorReview/>}/>
         <Route path="/reviews" element={<Reviews/>}/>
-        <Route path="/map" element={<Map/>}/>
+        <Route path="/find-doc" element={<FindDoc/>}/>
+        <Route path="/nearby-doc" element={<NearbyDoc/>}/>
+        <Route path="/find-location" element={<FindLocation/>}/>
+
 
 
         <Route path="/docdash" element={<DocDash/>}/>

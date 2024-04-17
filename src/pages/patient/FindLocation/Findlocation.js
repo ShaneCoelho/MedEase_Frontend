@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import StyleMap from './StyleMap';
+import StyleFindDoc from './StyleFindlocation';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { toast } from 'react-toastify';
@@ -48,7 +48,8 @@ export default function Map({ readonly, location, onChange }) {
   };
 
   return (
-    <StyleMap>
+    <StyleFindDoc>
+      
       <div className='specialization-container'>
         {/* Input field for typing specialization */}
         <input
@@ -94,7 +95,7 @@ export default function Map({ readonly, location, onChange }) {
           />
         </MapContainer>
       </div>
-    </StyleMap>
+    </StyleFindDoc>
   );
 }
 
@@ -129,7 +130,7 @@ function FindButtonAndMarker({ readonly, location, onChange, selectedSpecializat
       {!readonly && (
         <button 
           type="button" 
-          className={StyleMap.find_location}
+          className={StyleFindDoc.find_location}
           onClick={() => {
             map.locate(); // Trigger the map to locate user's position
           }}

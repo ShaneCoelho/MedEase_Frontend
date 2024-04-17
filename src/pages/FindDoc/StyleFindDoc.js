@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleMap = styled.section`
+const StyleFindDoc = styled.section`
   display: flex;
   justify-content: space-between;
 
@@ -64,4 +64,4 @@ const StyleMap = styled.section`
   }
 `;
 
-export default StyleMap;
+export default StyleFindDoc;
