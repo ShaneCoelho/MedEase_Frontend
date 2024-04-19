@@ -1,6 +1,12 @@
 import styled from "styled-components";
+import img from '../../../images/book.jpg';
 
+ 
 const StyleDoc2 = styled.section`
+background-image: url(${img});
+  background-size: cover;
+  background-position: center;
+  height:700px;
 
 
 .why-us .content {
@@ -65,6 +71,13 @@ const StyleDoc2 = styled.section`
 .why-us .icon-boxes .icon-box p {
   font-size: 15px;
   color: #848484;
+}
+.container2{
+  color:white;
+  margin-top:60px;
+  margin-left:700px;
+  font-size:60px;
+  font-weight:700;
 }
 `;
 

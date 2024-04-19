@@ -7,7 +7,7 @@ const StyleDocDash = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 14px;
     position: relative;
   }
 

@@ -20,6 +20,9 @@ import DocDash from './pages/doctor/DoctroDash/DocDash';
 import NearbyDoc from './pages/patient/NearbyDoc/NearbyDoc';
 import FindLocation from './pages/patient/FindLocation/Findlocation';
 import Symptoms from './pages/Symptoms/Symptoms';
+import ViewTodayAppoint from './pages/doctor/DoctroDash/ViewTodayAppoint';
+import ViewPastAppoint from './pages/doctor/DoctroDash/ViewPastAppoint';
+
 
 
 
@@ -54,6 +57,11 @@ function App() {
 
 
         <Route path="/docdash" element={<DocDash/>}/>
+        <Route path="/viewtodayappoint" element={<ViewTodayAppoint/>}/>
+        <Route path="/viewpastappoint" element={<ViewPastAppoint/>}/>
+
+        
+
 
 
 

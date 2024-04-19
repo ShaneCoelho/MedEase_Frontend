@@ -1,18 +1,23 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Drawer, Button, Popover, Card } from "antd";
-import StyleHeader from "./StyleDocDash";
-import StyleDoc2 from "./StyleDoc2"; // Import the style for InfoPage
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Drawer, Button } from 'antd';
+import StyleHeader from './StyleDocDash';
+import ViewTodayAppoint from './ViewTodayAppoint';
+import ViewPastAppoint from './ViewPastAppoint';
+import StyleDoc2 from './StyleDoc2';
 
 const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
-  const [appointments, setAppointments] = useState([
-    "Today's Appointment",
-    "Appointment",
-    "Reviews",
-    "Past Appointment",
-  ]);
+  const [selectedOption, setSelectedOption] = useState('');
 
   const navigate = useNavigate();
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+  const handleButtonClick = (item) => {
+    // Handle button click based on the item
+    console.log(`Button clicked for ${item}`);
+  };
 
   const showDrawer = () => {
     setOpen(true);
@@ -23,77 +28,62 @@ const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
   };
 
   const handleLogout = () => {
-    // Add your logout functionality here
-    console.log("Logout clicked");
-    // For example, redirect to the logout page
-    navigate("/logout");
-  };
-
-  const handleButtonClick = (item) => {
-    // Handle button click based on the item
-    console.log(`Button clicked for ${item}`);
+    console.log('Logout clicked');
+    // Redirect to the logout page using React Router
+    navigate('/logout');
   };
 
   return (
     <>
       <StyleHeader>
         <nav id="navbar" className="navbar order-last order-lg-0">
-          <ul>    
-              <li>
-                 <Button classname="navbtn" onClick={handleLogout}>Logut</Button>
-              </li>
+          <ul>
+            <li>
+              <Button className="navbtn" onClick={handleLogout}>
+                Logout
+              </Button>
+            </li>
           </ul>
-          {isLoggedOut && (
-            <div>
-              <Popover content={content}>
-                <div className="profileImage">
-                  <img
-                    src={data?.img ? data?.img : avatar}
-                    alt=""
-                    className="profileImage shadow img-fluid"
-                  />
-                </div>
-              </Popover>
-            </div>
-          )}
+          <nav className="navbar">
+            <ul>
+              <li
+                className={selectedOption === 'today' ? 'active' : ''}
+                onClick={() => handleOptionChange('today')}
+              >
+                <NavLink to="/viewtodayappoint">Today's Appointments</NavLink>
+              </li>
+              <li
+                className={selectedOption === 'past' ? 'active' : ''}
+                onClick={() => handleOptionChange('past')}
+              >
+                <NavLink to="/viewpastappoint">Past Appointments</NavLink>
+              </li>
+            </ul>
+          </nav>
         </nav>
 
         <Drawer
-          placement={"left"}
+          placement={'left'}
           width={500}
           onClose={onClose}
           open={open}
-          size={"default"}
+          size={'default'}
           extra={<Button type="primary" onClick={onClose}> Close</Button>}
         >
-          <ul className="mobile-menu-nav">
-            {appointments.map((item, index) => (
-              <li key={index}>
-                <NavLink
-                  to={"/" + item.toLowerCase().replace(/\s/g, "-")}
-                  className={({ isActive }) =>
-                    isActive ? "nav-link scrollto active" : ""
-                  }
-                >
-                  {item}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          {/* Drawer content */}
         </Drawer>
-      </StyleHeader>
-
-      {/* InfoPage content */}
-      <StyleDoc2>
+        <StyleDoc2>
         <section className="why-us mt-5 mt-md-0" >
           <div className="container">
             <div className="row">
               <div className="col-lg-4 d-flex align-items-stretch">
                 <div className="content">
                   <h3>Today's Appointments</h3>
-                  <Button onClick={() => handleButtonClick("Today's Appointments")}>
-                    View All
-                  </Button>
+                  <NavLink to="/viewtodayappoint">
+                    <Button onClick={() => handleButtonClick("Today's Appointments")}>
+                      View All
+                    </Button>
+                  </NavLink>
                 </div>
               </div>
               <div className="col-lg-8 d-flex align-items-stretch">
@@ -132,8 +122,17 @@ const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
               </div>
             </div>
           </div>
+          <div className='container2'>
+          <h><i>Welcome Doctor</i></h>
+
+          </div>
         </section>
       </StyleDoc2>
+      </StyleHeader>
+
+      {/* Render the appropriate component based on the selected option */}
+      {selectedOption === 'today' && <ViewTodayAppoint />}
+      {selectedOption === 'past' && <ViewPastAppoint />}
     </>
   );
 };
