@@ -14,11 +14,11 @@ const StyleFindDoc = styled.section`
   }
 
   .specialization-container {
-    width: 20%;
+    width: 40%;
     margin-top: 50px;
     margin-bottom: 50px;
     margin-left: auto;
-    margin-right: -10px;
+    margin-right: -80px;
   }
 
   button {
@@ -33,13 +33,34 @@ const StyleFindDoc = styled.section`
     cursor: pointer;
     z-index: 1000;
     top: 20;
-    left: 300px;
+    left: 50px;
     width: 10rem;
     min-height: 1.5rem;
   }
 
   button:hover {
     background-color: #0056b3;
+  }
+
+  .button.find_doctor_alternate {
+    /* Define styles for the alternate button */
+    margin: 10px 0;
+    p.sition: relative;
+    padding: 8px 16px;
+    background-color: #28a745; /* Green color, adjust as needed */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 10rem;
+    top: 550px;
+    left: 40px;
+    width: 10rem;
+    min-height: 1.5rem;
+  }
+  
+  button.find_doctor_alternate:hover {
+    background-color: #218838; /* Darker shade of green on hover */
   }
 
   .leaflet-popup-content-wrapper {

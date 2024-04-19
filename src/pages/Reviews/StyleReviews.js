@@ -59,7 +59,7 @@ h2 {
 }
 /* Book Appointment Button Styles */
 button {
-  background-color: #4caf50;
+  background-color: #0056b3;
   color: #fff;
   padding: 8px 16px;
   border: none;

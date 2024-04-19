@@ -4,6 +4,11 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { toast } from 'react-toastify';
 import * as L from 'leaflet';
+import { useNavigate } from 'react-router-dom';
+import Header from '../Shared/Header/Header';
+import SubHeader from '../Shared/SubHeader';
+import Footer from '../Shared/Footer/Footer';
+
 
 // Dummy doctor specializations
 const specializations = [
@@ -33,6 +38,18 @@ const specializations = [
 export default function Map({ readonly, location, onChange }) {
   const [selectedSpecialization, setSelectedSpecialization] = useState('');
   const [filteredSpecializations, setFilteredSpecializations] = useState([]);
+  const navigate = useNavigate();
+
+  const handleFindDoctors = () => {
+    // Redirect to the "/nearby-doc" page
+    navigate('/nearby-doc');
+  };
+  
+  const handleFindDoctor = () => {
+    // Perform actions when "Find My Doctor" button is clicked
+    // For example, you can trigger a search based on the selected specialization
+    console.log("Finding doctors for specialization:", selectedSpecialization);
+  };
 
   useEffect(() => {
     setFilteredSpecializations(
@@ -48,6 +65,9 @@ export default function Map({ readonly, location, onChange }) {
   };
 
   return (
+    <div>
+    <Header/ >
+    <SubHeader title="Find Doctor" subtitle="Explore our team of healthcare professionals" />
     <StyleFindDoc>
       <div className='specialization-container'>
         {/* Input field for typing specialization */}
@@ -68,6 +88,15 @@ export default function Map({ readonly, location, onChange }) {
             ))}
           </ul>
         )}
+        {/* "Find My Doctor" button */}
+        <button 
+          type="button" 
+          className={StyleFindDoc.find_doctor_alternate} 
+          onClick={handleFindDoctors}
+        >
+          Find My Doctor
+        </button>
+
       </div>
       <div className='map-container'>
         <MapContainer
@@ -94,7 +123,11 @@ export default function Map({ readonly, location, onChange }) {
           />
         </MapContainer>
       </div>
+      
     </StyleFindDoc>
+    
+<Footer/>
+</div>
   );
 }
 
