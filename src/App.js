@@ -19,6 +19,7 @@ import FindDoc from './pages/FindDoc/FindDoc'
 import DocDash from './pages/doctor/DoctroDash/DocDash';
 import NearbyDoc from './pages/patient/NearbyDoc/NearbyDoc';
 import FindLocation from './pages/patient/FindLocation/Findlocation';
+import Symptoms from './pages/Symptoms/Symptoms';
 
 
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/find-doc" element={<FindDoc/>}/>
         <Route path="/nearby-doc" element={<NearbyDoc/>}/>
         <Route path="/find-location" element={<FindLocation/>}/>
+        <Route path="/symptoms" element={<Symptoms/>}/>
 
 
 
