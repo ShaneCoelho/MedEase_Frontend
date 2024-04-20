@@ -5,7 +5,7 @@ import Footer from '../../Shared/Footer/Footer';
 import axios from 'axios';
 import hostURL from '../../../data/URL';
 import Loading from '../../Loading/Loading';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import StyleNearbyDoc from './StyleNearbyDoc';
 
 const NearbyDoc = () => {
@@ -14,6 +14,9 @@ const NearbyDoc = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredDoctors, setFilteredDoctors] = useState(doctorsData);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { lat, lng, specialization } = location.state;
+
 
   useEffect(() => {
     fetchData();
@@ -28,7 +31,11 @@ const NearbyDoc = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post(hostURL.link + '/api/patient/appointment/viewdoctors');
+      const response = await axios.post(hostURL.link + '/api/patient/nearbydoctor/findnearestdoctor',{
+        lat,
+        lng,
+        specialization,
+      });
       setDoctorsData(response.data);
       setLoading(false);
     } catch (error) {

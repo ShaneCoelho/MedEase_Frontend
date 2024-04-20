@@ -12,10 +12,10 @@ import Footer from '../Shared/Footer/Footer';
 
 // Dummy doctor specializations
 const specializations = [
-  "Cardiology",
+  "Cardiologist",
   "Dermatology",
   "Neurology",
-  "Orthopedics",
+  "Orthopedic",
   "Oncologist",
   "Ophthalmologist",
   "Orthopedist",
@@ -38,18 +38,30 @@ const specializations = [
 export default function Map({ readonly, location, onChange }) {
   const [selectedSpecialization, setSelectedSpecialization] = useState('');
   const [filteredSpecializations, setFilteredSpecializations] = useState([]);
+  const [lat, setLatitude] = useState(null);
+  const [lng, setLongitude] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+   
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLatitude(String(position.coords.latitude)); 
+        setLongitude(String(position.coords.longitude)); 
+      },
+      (error) => {
+        toast.error(error.message);
+      }
+    );
+  }, []);
 
   const handleFindDoctors = () => {
     // Redirect to the "/nearby-doc" page
-    navigate('/nearby-doc');
+ 
+    // alert(lat+' '+lng+' '+selectedSpecialization);
+    navigate('/nearby-doc', { state: { lat, lng, specialization: selectedSpecialization } });
   };
-  
-  const handleFindDoctor = () => {
-    // Perform actions when "Find My Doctor" button is clicked
-    // For example, you can trigger a search based on the selected specialization
-    console.log("Finding doctors for specialization:", selectedSpecialization);
-  };
+
 
   useEffect(() => {
     setFilteredSpecializations(
