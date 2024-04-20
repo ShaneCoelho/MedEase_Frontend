@@ -225,7 +225,7 @@ const StyleHeader = styled.section`
 
 .mobile-menu-nav {
     list-style: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #1977cc !important;
     background-color: #fff; /* Background color for mobile menu */
     padding: 20px; /* Padding for mobile menu */

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Input and Disease Prediction</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 10px;
+            display: flex;
+        }
+
+        .left-section {
+            width: 40%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .right-section {
+            width: 60%;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .symptom-input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .disease-prediction {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .disease-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <h2>Add Symptoms</h2>
+        <textarea class="symptom-input" placeholder="Enter your symptoms here..."></textarea>
+        <button type="submit">Submit</button>
+    </div>
+
+    <div class="right-section">
+        <h2 class="disease-prediction">Disease Prediction</h2>
+        <div class="disease-info">
+            <span>Disease:</span>
+            <span>-</span> </div>
+        <div class="disease-info">
+            <span>Specialization:</span>
+            <span>-</span> </div>
+    </div>
+</body>
+</html>
