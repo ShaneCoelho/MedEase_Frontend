@@ -171,7 +171,7 @@ const StylePatientAppoint = styled.section`
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #15558d;
+    background: #002750;
     outline: none;
   }
 

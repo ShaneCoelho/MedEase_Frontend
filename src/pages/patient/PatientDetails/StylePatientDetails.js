@@ -137,12 +137,12 @@ form .button input {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #1977cc;
+    background: #002750;
 }
 
 form .button input:hover {
     /* transform: scale(0.99); */
-    background: #3291e6;
+    background: #002750;
 }
 
 @media(max-width: 584px) {

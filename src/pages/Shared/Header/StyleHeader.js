@@ -33,7 +33,7 @@ const StyleHeader = styled.section`
     background: #fff;
     transition: all 0.5s;
     z-index: 997;
-    top: -7px;
+    top: -10px;
     box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1);
 }
 
@@ -87,12 +87,13 @@ const StyleHeader = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 15px;
     color: #2c4964;
     white-space: nowrap;
     transition: 0.3s;
     border-bottom: 2px solid #fff;
     padding: 5px 2px;
+    background-color: #f8f9fa; /* Background color for navbar headings */
 }
 
 .navbar a i,
@@ -106,7 +107,7 @@ const StyleHeader = styled.section`
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-    color: #1977cc;
+    color: #002750;
     border-color: #1977cc;
 }
 
@@ -221,27 +222,39 @@ const StyleHeader = styled.section`
     }
 }
 
+
 .mobile-menu-nav {
     list-style: none;
-    font-size: 1.2rem;
+    font-size: 2rem;
     color: #1977cc !important;
+    background-color: #fff; /* Background color for mobile menu */
+    padding: 20px; /* Padding for mobile menu */
+    border-radius: 10px; /* Rounded corners for mobile menu */
+    box-shadow: 0px 2px 15px rgba(25, 119, 204, 0.1); /* Box shadow for mobile menu */
 }
-.mobile-menu-nav .icon{
-    font-size: 1.3rem;
+
+.mobile-menu-nav .icon {
+    font-size: 2.5rem;
     margin-right: 15px;
-
 }
-.mobile-menu-nav li{
+
+.mobile-menu-nav li {
     margin-bottom: 10px;
-    padding: 5px;
-}
-.mobile-menu-nav li a{
-    padding: 5px;
-}
-.ant-drawer-body{
-    background-color: #d2d2ff;
+    padding: 10px 0; /* Adjusted padding for mobile menu items */
 }
 
+.mobile-menu-nav li a {
+    display: block; /* Make links block-level for full clickable area */
+    padding: 10px; /* Padding for mobile menu links */
+    color: #1977cc !important; /* Text color */
+    transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.mobile-menu-nav li a:hover {
+    color: #002750; /* Hover color */
+    background-color: #f5f5f5; /* Hover background color */
+    border-radius: 5px; /* Rounded corners on hover */
+}
 `;
 
 export default StyleHeader;

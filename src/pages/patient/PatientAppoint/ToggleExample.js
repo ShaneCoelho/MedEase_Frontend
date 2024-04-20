@@ -9,7 +9,7 @@ import user3 from '../../../images/ynez.jpg';
 const ToggleContainer = styled.div`
   display: flex;
   background-color: #f5f5f5;
-  border-radius: 5px;
+  border-radius: 7px;
   margin: 5px;
   overflow: hidden;
 `;
@@ -26,7 +26,7 @@ const ToggleButton = styled.button`
   ${(props) =>
     props.active &&
     `
-    background-color: #1977cc;
+    background-color: #002750;
     color: #fff;
   `}
 `;

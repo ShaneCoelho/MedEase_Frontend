@@ -25,7 +25,7 @@ const StyleFindDoc = styled.section`
     margin: 10px 0;
     position: relative;
     padding: 8px 16px;
-    background-color: #007bff; /* Blue color, adjust as needed */
+    background-color: #002750; /* Blue color, adjust as needed */
     color: #fff; /* White color for text */
     border: none;
     border-radius: 15px;

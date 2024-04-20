@@ -33,14 +33,13 @@ const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
                     <li><NavLink to={'/view-doctor'} className="nav-link scrollto" activeClassName="active">Doctors</NavLink></li>
                     <li><NavLink to={'/find-doc'} className="nav-link scrollto" activeClassName="active">Find Doctors</NavLink></li>
                     <li><NavLink to={'/contact'} className="nav-link scrollto" activeClassName="active">Contact</NavLink></li>
-                    
+                                      
+                    <li><button className="nav-link scrollto" onClick={handleLogout}activeClassName="active">Logout</button></li>
+                        
 
 
-                    {!isLoggedOut &&
-                        <li>
-                            <button className="nav-link scrollto" onClick={handleLogout}>Logout</button>
-                        </li>
-                    }
+
+         
                 </ul>
                 {isLoggedOut &&
                     <div>
@@ -58,19 +57,27 @@ const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
 
             <Drawer
                 placement={'left'}
-                width={500}
+                width={300} // Adjusted width for smaller screens
                 onClose={onClose}
                 open={open}
                 size={"default"}
-                extra={<Button type="primary" onClick={onClose}> Close</Button>}
+                className="custom-drawer"
+                headerStyle={{ background: '#002750', color: '#fff' }} // Custom header style
+                bodyStyle={{ background: '##002750', padding: '40px' }} // Custom body style
+                closeIcon={<Button type="primary" shape="circle" icon={<FaBars />} size="large" />} // Custom close icon
             >
                 <ul className="mobile-menu-nav">
                     <li><NavLink to={'/home'} className={({ isActive }) => isActive ? "nav-link scrollto active" : ""}><FaHome className="icon" />Home</NavLink></li>
                     <li><NavLink to={'/about'} className={({ isActive }) => isActive ? "nav-link scrollto active" : ""}><FaAddressBook className="icon" />About</NavLink></li>
-                    <li><NavLink to={'/service'} className={({ isActive }) => isActive ? "nav-link scrollto active" : ""}><FaWrench className="icon" />Service</NavLink></li>
+                    <li><NavLink to={'/reviews'} className={({ isActive }) => isActive ? "nav-link scrollto active" : ""}><FaWrench className="icon" />Reviews</NavLink></li>
                     <li><NavLink to={'/view-doctor'} className={({ isActive }) => isActive ? "nav-link scrollto active" : ""}><FaUserMd className="icon" />Doctors</NavLink></li>
+                    <li><NavLink to={'/find-doc'} className={({ isActive }) => isActive ? "nav-link scrollto active" : ""}><FaUserMd className="icon" />Find Doctor</NavLink></li>
                     <li><NavLink to={'/contact'} className={({ isActive }) => isActive ? "nav-link scrollto active" : ""}><FaPhoneAlt className="icon" />Contact</NavLink></li>
-                    {!isLoggedOut && <li><Link to={'/login'} className="nav-link scrollto"><FaSignInAlt className="icon" />LogOut</Link></li>}
+                    {!isLoggedOut &&
+                        <li>
+                            <button className="nav-link scrollto" onClick={handleLogout}>Logout</button>
+                        </li>
+                    }
                 </ul>
             </Drawer>
             </StyleHeader>
