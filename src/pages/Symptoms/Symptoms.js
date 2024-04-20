@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StyleSymptoms from './StyleSymptoms';
+import axios from 'axios';
+import hostURL from '../../data/URL';
 
 const Symptoms = () => {
     const [symptoms, setSymptoms] = useState([]); // Initialize with an empty array
-    const [disease, setDisease] = useState('');
+    const [prediction, setPrediction] = useState('');
     const [specialization, setSpecialization] = useState('');
     const [inputValue, setInputValue] = useState('');
     const [filteredOptions, setFilteredOptions] = useState([]);
@@ -30,14 +32,22 @@ const Symptoms = () => {
         setIsPlaceholderVisible(true); // Once the "Add Symptom" button is clicked, hide the placeholder
     };
 
-    const handleSubmit = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setDisease('Viral Fever');
-            setSpecialization('MBBS');
+    const handleSubmit = async () => {
+
+        try {
+            const response = await axios.post('http://127.0.0.1:5000/predict', {
+                symptoms: symptoms
+            });
+            const { prediction, specialization } = response.data;
+            setPrediction(prediction);
+            setSpecialization(specialization);
             setLoading(false);
-        }, 2000);
+        } catch (error) {
+            console.error(error);
+            setLoading(false);
+        }
     };
+
 
     const handleInputKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -50,7 +60,7 @@ const Symptoms = () => {
     const handleInputChangeList = (e) => {
         const inputValue = e.target.value;
         setInputValue(inputValue);
-        const filteredOptions = ['Fever', 'Cough', 'Headache', 'Nausea', 'Bodyache'].filter(option =>
+        const filteredOptions = ["Polyuria", "Increased Appetite", "Excessive Hunger", "Obesity", "Skin Rash", "Blurred And Distorted Vision", "Fatigue"].filter(option =>
             option.toLowerCase().includes(inputValue.toLowerCase())
         );
         setFilteredOptions(filteredOptions);
@@ -114,7 +124,7 @@ const Symptoms = () => {
                         <h2 className="disease-prediction">Disease Prediction</h2>
                         <div className="disease-info">
                             <span className="disease-label">Disease:</span>
-                            <span className="disease-value">{disease}</span>
+                            <span className="disease-value">{prediction}</span>
                         </div>
                         <div className="disease-info">
                             <span className="disease-label">Specialization:</span>
