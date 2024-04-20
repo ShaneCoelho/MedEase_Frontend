@@ -101,16 +101,17 @@ export default function Map({ readonly, location, onChange }) {
           </ul>
         )}
         {/* "Find My Doctor" button */}
-        <div className='find_doctor_alternate'>
-        <button 
-           
-          onClick={handleFindDoctors}
-        >
-          Find My Doctor
-        </button>
         </div>
+      
 
-      </div>
+<button
+  className="find-doctor-button" // Apply this class to "Find My Doctor" button
+  onClick={handleFindDoctors}
+>
+  Find My Doctor
+</button>
+
+      
       <div className='map-container'>
         <MapContainer
           center={[20, -1000]}
@@ -123,6 +124,7 @@ export default function Map({ readonly, location, onChange }) {
           keyboard={!readonly}
           attributionControl={false}
         >
+        
           <TileLayer
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
             maxZoom={14}
@@ -173,15 +175,15 @@ function FindButtonAndMarker({ readonly, location, onChange, selectedSpecializat
   return (
     <>
       {!readonly && (
-        <button 
-          type="button" 
-          className={StyleFindDoc.find_location}
-          onClick={() => {
-            map.locate(); // Trigger the map to locate user's position
-          }}
-        >
-          Find My Location
-        </button>
+        <button
+        type="button"
+        className="find-location-button" // Apply this class to "Find My Location" button
+        onClick={() => {
+          map.locate();
+        }}
+      >
+        Find My Location
+      </button>
       )}
 
       {position && (
