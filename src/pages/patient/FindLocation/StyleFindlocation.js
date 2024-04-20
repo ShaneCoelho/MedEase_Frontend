@@ -39,7 +39,7 @@ const StyleFindlocation = styled.section`
   }
 
   button:hover {
-    background-color: #0056b3;
+    background-color: #3A89C9;
   }
 
   .leaflet-popup-content-wrapper {

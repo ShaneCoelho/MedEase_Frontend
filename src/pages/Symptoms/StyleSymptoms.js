@@ -13,18 +13,18 @@ const StyleSymptoms = styled.section`
   background-size: cover;
   background-color: #ffffff;
   background-image: url(${img});
-  
 }
 
 .container {
   display: flex;
   max-width: 1300px;
   width: 100%;
-  height: 60vh; /* Increased height */
+  height: 60vh;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0.5, 0.9);
 }
+
 .button {
   background-color: #002750;
   color: #fff;
@@ -32,8 +32,8 @@ const StyleSymptoms = styled.section`
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif; /* Applying Montserrat font */
-  margin-right: 10px; /* Add space between buttons */
+  font-family: 'Montserrat', sans-serif;
+  margin-right: 10px;
   transition: background-color 0.3s ease;
 }
 
@@ -47,7 +47,6 @@ const StyleSymptoms = styled.section`
   padding: 20px;
   margin-right: 20px;
   transition: background-color 0.3s ease;
-
 }
 
 .right-section {
@@ -59,7 +58,7 @@ const StyleSymptoms = styled.section`
 }
 
 .symptom-input {
-  width: calc(100% - 20px); /* Adjusted width to accommodate padding */
+  width: calc(100% - 20px);
   height: 50px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -77,15 +76,22 @@ const StyleSymptoms = styled.section`
   margin-bottom: 20px;
 }
 
-.disease-info {
+disease-info {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Align items vertically */
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.disease-info span {
-  font-size: 16px; /* Default font size */
+.disease-label {
+  font-weight: bold;
+  margin-right: 20px;
+  justify-self: flex-end; /* Align the Disease label to the right */
+}
+
+.disease-value {
+  font-size: 18px;
+  color: #333;
 }
 
 .font-size-btn {
@@ -102,6 +108,24 @@ const StyleSymptoms = styled.section`
 .font-size-btn:hover {
   background-color: #004181;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100%;
+    margin: 0;
+  }
+
+  .right-section {
+    margin-top: 20px;
+  }
+}
+
 `;
 
 export default StyleSymptoms;

@@ -15,7 +15,7 @@ import TrackAppoint from './pages/patient/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';
 import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
 import Reviews from './pages/Reviews/Reviews';
-import FindDoc from './pages/FindDoc/FindDoc'
+import FindDoc from './pages/patient/FindDoc/FindDoc';
 import DocDash from './pages/doctor/DoctroDash/DocDash';
 import NearbyDoc from './pages/patient/NearbyDoc/NearbyDoc';
 import FindLocation from './pages/patient/FindLocation/Findlocation';

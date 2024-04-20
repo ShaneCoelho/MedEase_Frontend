@@ -76,7 +76,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #3A89C9;
 }
 
 

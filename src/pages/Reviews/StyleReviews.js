@@ -68,7 +68,7 @@ button {
   font-family: 'Montserrat', sans-serif; /* Applying Montserrat font */
 }
 button:hover {
-  background-color: #45a049;
+  background-color: #3A89C9;
 }
 /* Responsive Styles */
 @media (max-width: 600px) {

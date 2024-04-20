@@ -5,9 +5,9 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import { toast } from 'react-toastify';
 import * as L from 'leaflet';
 import { useNavigate } from 'react-router-dom';
-import Header from '../Shared/Header/Header';
-import SubHeader from '../Shared/SubHeader';
-import Footer from '../Shared/Footer/Footer';
+import Header from '../../Shared/Header/Header';
+import SubHeader from '../../Shared/SubHeader';
+import Footer from '../../Shared/Footer/Footer';
 
 
 // Dummy doctor specializations
@@ -103,7 +103,7 @@ export default function Map({ readonly, location, onChange }) {
         {/* "Find My Doctor" button */}
         <button 
           type="button" 
-          className={StyleFindDoc.find_doctor_alternate} 
+          className={`${StyleFindDoc.find_doctor_alternate}`} 
           onClick={handleFindDoctors}
         >
           Find My Doctor
