@@ -42,7 +42,7 @@ const StyleFindDoc = styled.section`
     background-color: #0056b3;
   }
 
-.button.find_doctor_alternate {
+.find_doctor_alternate {
     /* Define styles for the alternate button */
     margin: 10px 0;
     p.sition: relative;
@@ -50,7 +50,7 @@ const StyleFindDoc = styled.section`
     background-color: #28a745; /* Green color, adjust as needed */
     color: #fff;
     border: none;
-    border-radius: 20px;
+    border-radius: 15px;
     cursor: pointer;
     width: 10rem;
     top: 550px;
@@ -59,7 +59,7 @@ const StyleFindDoc = styled.section`
     min-height: 1.5rem;
   }
   
-  .button.find_doctor_alternate:hover {
+ .find_doctor_alternate:hover {
     background-color: #218838; /* Darker shade of green on hover */
   }
 

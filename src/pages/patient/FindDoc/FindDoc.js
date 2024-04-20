@@ -101,13 +101,14 @@ export default function Map({ readonly, location, onChange }) {
           </ul>
         )}
         {/* "Find My Doctor" button */}
+        <div className='find_doctor_alternate'>
         <button 
-          type="button" 
-          className={`${StyleFindDoc.find_doctor_alternate}`} 
+           
           onClick={handleFindDoctors}
         >
           Find My Doctor
         </button>
+        </div>
 
       </div>
       <div className='map-container'>
