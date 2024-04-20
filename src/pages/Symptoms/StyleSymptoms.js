@@ -1,117 +1,107 @@
 import styled from "styled-components";
+import img from '../../images/Home.jpg';
 
 const StyleSymptoms = styled.section`
-  .disease-prediction-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 100px; /* Adjusted maximum width */
-    margin: 0 auto;
-    padding: 20px;
-  }
+.body {
+  font-family: Arial, sans-serif;
+  margin: 10;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-color: #ffffff;
+  background-image: url(${img});
+  
+}
 
-  .left-section,
-  .right-section {
-    flex: 1;
-  }
+.container {
+  display: flex;
+  max-width: 1300px;
+  width: 100%;
+  height: 60vh; /* Increased height */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0.5, 0.9);
+}
+.button {
+  background-color: #002750;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif; /* Applying Montserrat font */
+  margin-right: 10px; /* Add space between buttons */
+  transition: background-color 0.3s ease;
+}
 
-  .disease-prediction-title {
-    font-size: 1.8em; /* Adjusted font size */
-    margin-bottom: 20px;
-    color: #1e90ff; /* Blue color theme */
-  }
+.button:hover {
+  background-color: #004181;
+}
 
-  .disease-prediction-symptoms,
-  .disease-prediction-find-doctor {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Adjusted alignment */
-    width: 100%;
-    margin-bottom: 20px;
-  }
+.left-section {
+  width: 40%;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-right: 20px;
+  transition: background-color 0.3s ease;
 
-  .disease-prediction-symptoms input {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease; /* Smooth border color transition */
-  }
+}
 
-  .disease-prediction-symptoms input:focus {
-    border-color: #1e90ff; /* Blue color theme on focus */
-  }
+.right-section {
+  width: 50%;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-left: 20px;
+  transition: background-color 0.3s ease;
+}
 
-  .add-symptom-button {
-    padding: 10px;
-    background-color: #1e90ff; /* Blue color theme */
-    color: white;
-    border: none;
-    border-radius: 50%; /* Circular button */
-    cursor: pointer;
-    width: 40px; /* Adjusted width */
-    height: 40px; /* Adjusted height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease; /* Smooth background color transition */
-  }
+.symptom-input {
+  width: calc(100% - 20px); /* Adjusted width to accommodate padding */
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  transition: border-color 0.3s ease;
+}
 
-  .add-symptom-button:hover {
-    background-color: #007acc; /* Darker shade of blue on hover */
-  }
+.symptom-input:focus {
+  border-color: #5c96f3;
+}
 
-  .disease-prediction-symptoms input,
-  .add-symptom-button {
-    flex: 1; /* Equal width for input and button */
-  }
+.disease-prediction {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-  .disease-prediction-symptoms input + .add-symptom-button {
-    margin-top: 10px; /* Margin between input and button */
-  }
+.disease-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 20px;
+}
 
-  .disease-prediction-symptoms button,
-  .disease-prediction-find-doctor button {
-    padding: 10px 20px;
-    background-color: #1e90ff; /* Blue color theme */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth background color transition */
-  }
+.disease-info span {
+  font-size: 16px; /* Default font size */
+}
 
-  .disease-prediction-symptoms button:hover,
-  .disease-prediction-find-doctor button:hover {
-    background-color: #007acc; /* Darker shade of blue on hover */
-  }
+.font-size-btn {
+  background-color: #002750;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s ease;
+}
 
-  @media screen and (min-width: 600px) {
-    .disease-prediction-container {
-      align-items: stretch;
-    }
-
-    .disease-prediction-symptoms,
-    .disease-prediction-find-doctor {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center; /* Center items horizontally */
-    }
-
-    .disease-prediction-symptoms input {
-      width: auto;
-      margin-bottom: 0;
-    }
-
-    .add-symptom-button {
-      width: 50px; /* Adjusted width */
-      height: 50px; /* Adjusted height */
-    }
-  }
+.font-size-btn:hover {
+  background-color: #004181;
+}
 `;
 
 export default StyleSymptoms;
