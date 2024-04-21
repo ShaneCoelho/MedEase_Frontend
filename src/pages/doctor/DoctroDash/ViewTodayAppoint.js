@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import hostURL from '../../../data/URL'; // Updated import
+import hostURL from '../../../data/URL';
 import Loading from '../../Loading/Loading';
 import { getToken } from "../../../data/Token";
 import StyleViewAppoint from "./StyleViewAppoint";
@@ -7,17 +7,24 @@ import StyleViewAppoint from "./StyleViewAppoint";
 const ViewTodayAppoint = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hasToken, setHasToken] = useState(false);
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    const retrivedToken = getToken('token');
-    setToken(retrivedToken);
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken);
+      setToken(retrivedToken);
+    };
+
+    checkTokenCookie();
     fetchData();
-  }, []);
+  }, [token, appointments]);
+
 
   const fetchData = async () => {
     try {
-      const response = await fetch(hostURL.link + '/api/doctor/appointment/viewappointments', {
+      const response = await fetch(hostURL.link + '/api/doctor/appointment/viewtodaysappointments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,15 +46,15 @@ const ViewTodayAppoint = () => {
     }
   };
 
-  const todayAppointments = appointments.filter(appointment => {
-    const appointmentDate = new Date(appointment.date);
-    const currentDate = new Date();
-    return (
-      appointmentDate.getDate() === currentDate.getDate() &&
-      appointmentDate.getMonth() === currentDate.getMonth() &&
-      appointmentDate.getFullYear() === currentDate.getFullYear()
-    );
-  });
+  // const todayAppointments = appointments.filter(appointment => {
+  //   const appointmentDate = new Date(appointment.date);
+  //   const currentDate = new Date();
+  //   return (
+  //     appointmentDate.getDate() === currentDate.getDate() &&
+  //     appointmentDate.getMonth() === currentDate.getMonth() &&
+  //     appointmentDate.getFullYear() === currentDate.getFullYear()
+  //   );
+  // });
 
   const handleViewDocument = (documentUrl) => {
     // Placeholder function to handle viewing documents
@@ -62,7 +69,7 @@ const ViewTodayAppoint = () => {
           <Loading />
         ) : (
           <div className="appointment-list">
-            {todayAppointments.map(appointment => (
+            {appointments.map(appointment => (
               <div key={appointment.appoint_id} className="appointment-item">
                 <img
                   src={appointment.Patient_Avatar}

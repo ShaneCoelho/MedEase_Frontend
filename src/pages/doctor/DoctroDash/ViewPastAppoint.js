@@ -15,28 +15,30 @@ import DocDash from './DocDash';
 
 
 const ViewPastAppoint = () => {
-  const [patientApprovedAppointments, setPatientApprovedAppointments] = useState([]);
+  const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
+  const [hasToken, setHasToken] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
-    const retrivedToken = getToken('token');
-    setToken(retrivedToken);
-    fetchData();
-  }, [token, selectedDate]);
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken);
+      setToken(retrivedToken);
+    };
 
-  useEffect(() => {
-    fetchApprovedAppointment();
-  }, [token, patientApprovedAppointments]);
+    checkTokenCookie();
+    fetchData();
+  }, [token, appointments]);
 
   const navigate = useNavigate();
 
 
   const fetchData = async () => {
     try {
-      const response = await fetch(hostURL.link + '/api/doctor/appointment/viewapprovedappointments', {
+      const response = await fetch(hostURL.link + '/api/doctor/appointment/viewpastappointments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,31 +48,7 @@ const ViewPastAppoint = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setPatientApprovedAppointments(data);
-        setLoading(false);
-      } else {
-        console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error('An error occurred while fetching data:', error);
-      setLoading(false);
-    }
-  };
-
-  const fetchApprovedAppointment = async () => {
-    try {
-      const response = await fetch(hostURL.link + '/api/doctor/appointment/viewapprovedappointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setPatientApprovedAppointments(data);
+        setAppointments(data);
         setLoading(false);
       } else {
         console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
@@ -83,11 +61,11 @@ const ViewPastAppoint = () => {
   };
 
   const filterAppointmentsByDate = () => {
-    if (!selectedDate) return patientApprovedAppointments;
+    if (!selectedDate) return appointments;
 
     const formattedSelectedDate = selectedDate.toLocaleDateString('en-GB');
 
-    return patientApprovedAppointments.filter(appointment => {
+    return appointments.filter(appointment => {
       const formattedAppointmentDate = appointment.date;
       return formattedAppointmentDate === formattedSelectedDate;
     });
