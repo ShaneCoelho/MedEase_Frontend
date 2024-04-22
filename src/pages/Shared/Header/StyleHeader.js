@@ -2,6 +2,21 @@ import styled from "styled-components";
 
 const StyleHeader = styled.section`
 
+.button {
+    background-color: #004181;
+    color: #ffffff; /* Change the text color to white */
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.button:hover {
+    background-color: #638daf; /* Change the background color on hover */
+}
+
 
 .nav-popover h5{
     font-size: 18px;

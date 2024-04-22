@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import StyleSymptoms from './StyleSymptoms';
 import axios from 'axios';
 import hostURL from '../../data/URL';
+import Header from '../Shared/Header/Header';
+import Footer from '../Shared/Footer/Footer';
+import SubHeader from '../Shared/SubHeader';
+
 
 const Symptoms = () => {
     const [symptoms, setSymptoms] = useState([]); // Initialize with an empty array
@@ -77,6 +81,9 @@ const Symptoms = () => {
     };
 
     return (
+        <div>
+        <Header />
+        <SubHeader title="Reviews" subtitle="Trusted by patients, endorsed by results – our doctors exceed expectations." />
         <StyleSymptoms>
             <div className="body">
                 <div className="container">
@@ -135,6 +142,8 @@ const Symptoms = () => {
                 </div>
             </div>
         </StyleSymptoms>
+        <Footer/>
+        </div>
     );
 };
 

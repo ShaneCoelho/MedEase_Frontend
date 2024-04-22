@@ -20,6 +20,7 @@ const PatientAppoint = () => {
   const [hasToken, setHasToken] = useState(false);
   const [token, setToken] = useState(null);
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
   const doc_id = location.state?.id;
   const doc_Avatar = location.state?.Avatar;
   const doc_name = location.state?.name;
@@ -101,6 +102,22 @@ const PatientAppoint = () => {
     setIsAppointmentBooked(false);
   };
 
+  const handleBookAppointment = () => {
+    // Set loading state to true when the button is clicked
+    setLoading(true);
+
+    // Simulate an asynchronous operation, like an API call
+    setTimeout(() => {
+      // After some time (e.g., API call completes), reset loading state
+      setLoading(false);
+      // Add your logic here for handling the booking appointment process
+    }, 2000); // Change the timeout value as needed
+
+    // You can add your logic here for handling the booking appointment process immediately
+    // Remember to reset loading state accordingly
+  };
+
+
   return (
 
     <div>
@@ -163,8 +180,9 @@ const PatientAppoint = () => {
               </div>
 
               <div className="button">
-                <input type="submit" value="Book Appointment" />
-              </div>
+        {/* Conditionally render button text or spinner based on loading state */}
+        <input type="submit" value={loading ? "Loading..." : "Book Appointment"} onClick={handleBookAppointment} />
+      </div>
             </form>
 
 

@@ -12,18 +12,23 @@ const StyleSymptoms = styled.section`
   height: 100vh;
   background-size: cover;
   background-color: #ffffff;
-  background-image: url(${img});
-}
-
+  
 .container {
   display: flex;
   max-width: 1300px;
   width: 100%;
   height: 60vh;
   border-radius: 10px;
+  
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0.5, 0.9);
+  background-size: cover;
+  background: linear-gradient(135deg, #638daf, #002750);
+  height: 80vh; /* Set a fixed height for the container */
+  
+
 }
+
 
 .button {
   background-color: #002750;
@@ -42,20 +47,34 @@ const StyleSymptoms = styled.section`
 }
 
 .left-section {
-  width: 40%;
-  border: 1px solid #ddd;
+  width: 45%;
   padding: 20px;
-  margin-right: 20px;
+  margin-right: 30px;
+  margin-left: 30px;
   transition: background-color 0.3s ease;
+  overflow-y: auto;
+  scrollbar-color: #002750 transparent;
+  border: 4px solid #ddd;
+  border-radius: 10px;
+}
+.left-section h2 {
+  color: #ffffff; /* Set the color of the header text to white */
 }
 
 .right-section {
   width: 50%;
-  border: 1px solid #ddd;
+  border: 4px solid #ddd;
   padding: 20px;
-  margin-left: 20px;
+  margin-right: 30px;
+  margin-left: 30px;
   transition: background-color 0.3s ease;
+  border-radius: 10px;
 }
+
+.right-section h2 {
+  color: #ffffff; /* Set the color of the header text to white */
+}
+
 
 .symptom-input {
   width: calc(100% - 20px);
@@ -81,12 +100,17 @@ disease-info {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  
 }
+
 
 .disease-label {
   font-weight: bold;
   margin-right: 20px;
   justify-self: flex-end; /* Align the Disease label to the right */
+  
+  color: #ffffff; /* Set the color of the header text to white */
+
 }
 
 .disease-value {
