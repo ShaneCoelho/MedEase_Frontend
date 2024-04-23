@@ -150,7 +150,19 @@ const StylePatientAppoint = styled.section`
   input[type="radio"] {
     display: none;
   }
-
+  .button.loading::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+  }
   .button {
     height: 45px;
     width: 100%;
@@ -158,6 +170,7 @@ const StylePatientAppoint = styled.section`
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    
   }
 
   .button input {
@@ -173,6 +186,7 @@ const StylePatientAppoint = styled.section`
     transition: all 0.3s ease;
     background: #002750;
     outline: none;
+    
   }
 
   .button input:hover {
@@ -205,6 +219,14 @@ const StylePatientAppoint = styled.section`
 
   .add-review {
     margin-top: 25px;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   @media (max-width: 760px) {
