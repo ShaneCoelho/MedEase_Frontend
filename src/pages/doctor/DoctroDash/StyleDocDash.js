@@ -7,7 +7,7 @@ const StyleDocDash = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px;
+    padding: 13px;
     position: relative;
   }
 
@@ -32,6 +32,9 @@ const StyleDocDash = styled.section`
 
   .navbar ul li a:hover {
     background-color: #135ca9;
+  }
+  .navbar ul li a.active {
+    border-bottom: 3px solid white;
   }
 
   .profile {
@@ -92,6 +95,9 @@ const StyleDocDash = styled.section`
 
     .navbar ul li:last-child {
       margin-bottom: 0;
+    }
+    .navbar ul li.active {
+      border-bottom: 2px solid white;
     }
 
     .navbar ul li a {

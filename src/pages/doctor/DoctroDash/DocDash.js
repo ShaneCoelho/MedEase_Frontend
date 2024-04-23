@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Drawer, Button } from 'antd';
 import StyleHeader from './StyleDocDash';
-import ViewTodayAppoint from './ViewTodayAppoint';
-import ViewPastAppoint from './ViewPastAppoint';
+import ViewTodayAppoint from './Today\'s appointment/ViewTodayAppoint';
+import ViewPastAppoint from './Past appointments/ViewPastAppoint';
+import CancelAppoint from './Cancel appoinment/CancelAppoint';
 import StyleDoc2 from './StyleDoc2';
 
 const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
@@ -45,20 +46,8 @@ const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
             </li>
           </ul>
           <nav className="navbar">
-            <ul>
-              <li
-                className={selectedOption === 'today' ? 'active' : ''}
-                onClick={() => handleOptionChange('today')}
-              >
-                <NavLink to="/viewtodayappoint">Today's Appointments</NavLink>
-              </li>
-              <li
-                className={selectedOption === 'past' ? 'active' : ''}
-                onClick={() => handleOptionChange('past')}
-              >
-                <NavLink to="/viewpastappoint">Past Appointments</NavLink>
-              </li>
-            </ul>
+            
+          
           </nav>
         </nav>
 
@@ -93,18 +82,22 @@ const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
                       <div className="icon-box mt-4 mt-xl-0">
                         <div className="icon" />
                         <h4>Past Appointments</h4>
+                        <NavLink to="/viewpastappoint">
                         <Button className="btn" onClick={() => handleButtonClick("Past Appointments")}>
                     View All
                   </Button>
+                  </NavLink>
                       </div>
                     </div>
                     <div className="col-xl-4 d-flex align-items-stretch">
                       <div className="icon-box mt-4 mt-xl-0">
                         <div className="icon" />
                         <h4>Cancel Appointments</h4>
+                        <NavLink to="/cancelappoint">
                         <Button className="btn" onClick={() => handleButtonClick("Cancel Appointments")}>
                     View All
                   </Button>
+                  </NavLink>
 
                       </div>
                     </div>
@@ -112,9 +105,11 @@ const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
                       <div className="icon-box mt-4 mt-xl-0">
                         <div className="icon" />
                         <h4>Reviews</h4>
+                        <NavLink to="/viewreview">
                         <Button className="btn2" onClick={() => handleButtonClick("Reviwes")}>
                     View All
                   </Button>
+                  </NavLink>
                       </div>
                     </div>
                   </div>

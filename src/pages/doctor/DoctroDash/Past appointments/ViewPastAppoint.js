@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import hostURL from '../../../data/URL';
-import Loading from '../../Loading/Loading';
-import { getToken } from "../../../data/Token";
+import hostURL from '../../../../data/URL';
+import Loading from '../../../Loading/Loading';
+import { getToken } from "../../../../data/Token";
 import StylePast from "./StylePast";
 import { addDays } from 'date-fns';
 import { NavLink, useNavigate } from 'react-router-dom';
-import ViewTodayAppoint from './ViewTodayAppoint';
 import { Drawer, Button } from 'antd';
-import StyleHeader from './StyleDocDash';
-import DocDash from './DocDash';
+import StyleHeader from '../StyleDocDash';
+import DocDash from '../DocDash';
 
 
 
@@ -114,13 +113,25 @@ const ViewPastAppoint = () => {
               >
                 <NavLink to="/viewpastappoint">Past Appointments</NavLink>
               </li>
+              <li
+             className={selectedOption === 'cancel' ? 'active' : ''}
+             onClick={() => handleOptionChange('cancel')}
+           >
+             <NavLink to="/cancelappoint">Cancel Appointments</NavLink>
+           </li>
+           <li
+             className={selectedOption === 'review' ? 'active' : ''}
+             onClick={() => handleOptionChange('review')}
+           >
+             <NavLink to="/viewreview">Reviews</NavLink>
+           </li>
             </ul>
           </nav>
         </nav>
       
       <StylePast>
       <div className="past-appointments-container">
-        <div className="title2">Approved Appointments</div>
+        <div className="title2">Past Appointments</div>
         <div className="date-filter">
           <DatePicker
             selected={selectedDate}
