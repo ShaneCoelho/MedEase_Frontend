@@ -22,6 +22,7 @@ import FindLocation from './pages/patient/FindLocation/Findlocation';
 import Symptoms from './pages/Symptoms/Symptoms';
 import ViewTodayAppoint from './pages/doctor/DoctroDash/ViewTodayAppoint';
 import ViewPastAppoint from './pages/doctor/DoctroDash/ViewPastAppoint';
+import Loc from './pages/patient/Dummy/loc'
 
 
 
@@ -53,6 +54,7 @@ function App() {
         <Route path="/nearby-doc" element={<NearbyDoc/>}/>
         <Route path="/find-location" element={<FindLocation/>}/>
         <Route path="/symptoms" element={<Symptoms/>}/>
+        <Route path="/loc" element={<Loc/>}/>
 
 
 
