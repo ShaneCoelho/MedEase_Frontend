@@ -8,6 +8,10 @@ import Loading from '../../Loading/Loading';
 import { useNavigate, useLocation } from 'react-router-dom';
 import StyleNearbyDoc from './StyleNearbyDoc';
 
+function openLinkInNewTab(url) {
+  window.open(url, '_blank');
+}
+
 const NearbyDoc = () => {
   const [doctorsData, setDoctorsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +55,7 @@ const NearbyDoc = () => {
 
   const handleFindDoc = (id,name,Avatar) => {
     // Redirect to the "/doctor-appoint" page
-    navigate('/find-location', { state: { id: id, name: name, Avatar: Avatar } });
+    openLinkInNewTab('https://www.google.com/maps/place/Cardinal+Gracias+Memorial+Hospital/@19.364336,72.8025571,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7aec1a0555555:0x9f68d11dfadfcc39!8m2!3d19.364336!4d72.805132!16s%2Fg%2F1tcwk0fm?authuser=0&entry=ttu');
   };
 
   return (
