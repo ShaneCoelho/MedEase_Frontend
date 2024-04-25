@@ -13,22 +13,53 @@ const ViewReview = () => {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
+  const [hasToken, setHasToken] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedOption, setSelectedOption] = useState('');
 
 
   useEffect(() => {
-    const retrivedToken = getToken('token');
-    setToken(retrivedToken);
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken);
+      setToken(retrivedToken);
+    };
+
+    checkTokenCookie();
     fetchData();
-  }, [token, selectedDate]);
+  }, [token, patients]);
+
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(hostURL.link + '/api/doctor/review/viewreviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPatients(data);
+        setLoading(false);
+      } else {
+        console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching data:', error);
+      setLoading(false);
+    }
+  };
+
+
+
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
-  const handleButtonClick = (item) => {
-    // Handle button click based on the item
-    console.log(`Button clicked for ${item}`);
-  };
+  
   const handleLogout = () => {
     console.log('Logout clicked');
     // Redirect to the logout page using React Router
@@ -56,13 +87,13 @@ const ViewReview = () => {
     }
   ];
 
-  const fetchData = async () => {
-    // Simulate loading delay
-    setTimeout(() => {
-      setPatients(dummyPatients);
-      setLoading(false);
-    }, 1000);
-  };
+  // const fetchData = async () => {
+  //   // Simulate loading delay
+  //   setTimeout(() => {
+  //     setPatients(dummyPatients);
+  //     setLoading(false);
+  //   }, 1000);
+  // };
 
   return (
     <StyleHeader>                                
@@ -117,10 +148,10 @@ const ViewReview = () => {
         ) : (
           <div className="patient-list">
             {patients.map((patient, index) => (
-              <div key={index} className="patient-item">
-                <img src={patient.avatar} alt={patient.name} className="avatar" />
+              <div key={patient.review_id} className="patient-item">
+                <img src={patient.patient_Avatar} alt={patient.name} className="avatar" />
                 <div className="patient-info">
-                  <h3>{patient.name}</h3>
+                  <h3>{patient.patient_name}</h3>
                   <div className="rating">{patient.rating}</div>
                   <div className="review">{patient.review}</div>
                 </div>

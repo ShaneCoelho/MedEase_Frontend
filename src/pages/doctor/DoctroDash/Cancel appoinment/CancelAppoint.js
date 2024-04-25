@@ -11,18 +11,26 @@ import { Button } from 'antd';
 import StyleHeader from '../StyleDocDash';
 
 const CancelAppoint = () => {
-  const [patientApprovedAppointments, setPatientApprovedAppointments] = useState([]);
+  const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hasToken, setHasToken] = useState(false);
   const [token, setToken] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedOption, setSelectedOption] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const retrivedToken = getToken('token');
-    setToken(retrivedToken);
+    const checkTokenCookie = () => {
+      const retrivedToken = getToken('token');
+      setHasToken(!!retrivedToken);
+      setToken(retrivedToken);
+    };
+
+    checkTokenCookie();
     fetchData();
-  }, [token, selectedDate]);
+  }, [token, appointments]);
 
   const fetchData = async () => {
     try {
@@ -36,7 +44,7 @@ const CancelAppoint = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setPatientApprovedAppointments(data);
+        setAppointments(data);
         setLoading(false);
       } else {
         console.error('Failed to fetch data. Server returned:', response.status, response.statusText);
@@ -58,32 +66,36 @@ const CancelAppoint = () => {
   };
 
   const handleDeleteAppointment = async (appointmentId) => {
+    console.log(appointmentId)
     try {
-      const response = await fetch(hostURL.link + `/api/doctor/appointment/delete/${appointmentId}`, {
-        method: 'DELETE',
+      const response = await fetch(hostURL.link + '/api/doctor/appointment/cancelappointment', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
+        body: JSON.stringify({ appoint_id: appointmentId })
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        setPatientApprovedAppointments(prevAppointments => prevAppointments.filter(appointment => appointment.appoint_id !== appointmentId));
-        console.log('Appointment deleted successfully');
+        setMessage(data.message);
       } else {
-        console.error('Failed to delete appointment. Server returned:', response.status, response.statusText);
+        setError(data.message);
       }
     } catch (error) {
-      console.error('An error occurred while deleting appointment:', error);
+      console.error('Error:', error);
+      setError('Server error');
     }
   };
 
   const filterAppointmentsByDate = () => {
-    if (!selectedDate) return patientApprovedAppointments;
+    if (!selectedDate) return appointments;
 
     const formattedSelectedDate = selectedDate.toLocaleDateString('en-GB');
 
-    return patientApprovedAppointments.filter(appointment => {
+    return appointments.filter(appointment => {
       const formattedAppointmentDate = appointment.date;
       return formattedAppointmentDate === formattedSelectedDate;
     });
