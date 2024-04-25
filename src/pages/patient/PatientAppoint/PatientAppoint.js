@@ -110,6 +110,17 @@ const PatientAppoint = () => {
     setTimeout(() => {
       // After some time (e.g., API call completes), reset loading state
       setLoading(false);
+      setAppointmentData({
+        id: doc_id,
+        name: doc_name,
+        preferred_time: 'Morning',
+        description: '',
+        date: new Date(),
+        Avatar: doc_Avatar
+      });
+      setSelectedFile(null); // Reset the selected file
+      setIsAppointmentBooked(false);
+      document.getElementById('avatar').value = '';  // Reset the appointment booked state
       // Add your logic here for handling the booking appointment process
     }, 2000); // Change the timeout value as needed
 
