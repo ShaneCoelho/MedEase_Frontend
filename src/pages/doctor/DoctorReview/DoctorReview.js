@@ -1,68 +1,64 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-
-import StyleDoctorReviews from './StyleDoctorReview.js';
+import StyleDoctorReview from './StyleDoctorReview';
+import styled from 'styled-components';
 
 const DoctorReview = () => {
-    const [reviews, setReviews] = useState([]);
-    const [newReview, setNewReview] = useState('');
     const [rating, setRating] = useState(0);
+    const [review, setReview] = useState('');
 
-    const handleReviewChange = (event) => {
-        setNewReview(event.target.value);
+    const handleRatingChange = (value) => {
+        setRating(value);
     };
 
-    const handleRatingChange = (event) => {
-        setRating(event.target.value);
+    const handleReviewChange = (event) => {
+        setReview(event.target.value);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const reviewObj = {
-            review: newReview,
-            rating: rating
-        };
-        setReviews([...reviews, reviewObj]);
-        setNewReview('');
+        // Handle form submission
+        console.log('Rating:', rating);
+        console.log('Review:', review);
+        // Reset form fields
         setRating(0);
+        setReview('');
     };
 
-    const sortedReviews = [...reviews].sort((a, b) => b.rating - a.rating);
-
     return (
-        <div>
-        <StyleDoctorReviews>
-
-        <div className="doctor-review-page">
-            <h1>Doctor Reviews</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Review:
-                    <textarea value={newReview} onChange={handleReviewChange} />
-                </label>
-                <label>
-                    Rating:
-                    <input type="number" min="1" max="5" value={rating} onChange={handleRatingChange} />
-                </label>
-                <button type="submit">Submit Review</button>
-            </form>
-            <h2>Reviews:</h2>
-            <ul>
-                {sortedReviews.map((review, index) => (
-                    <li key={index}>
-                        <div className="rating">
-                            {Array.from({ length: review.rating }).map((_, i) => (
-                                <FaStar key={i} className="star" />
+        <StyleDoctorReview>
+            <div className="container">
+                <div className="doctor-profile">
+                    <img src="https://via.placeholder.com/150" alt="Doctor" className="doctor-image" />
+                    <h2 className="doctor-name">Dr. John Doe</h2>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="review-input">
+                        <label htmlFor="review">Review:</label>
+                        <textarea id="review" value={review} onChange={handleReviewChange} />
+                    </div>
+                    <div className="rating-input">
+                        <label>Rating:</label>
+                        <StarRating>
+                            {[...Array(5)].map((_, index) => (
+                                <FaStar
+                                    key={index}
+                                    className={index < rating ? 'star-filled' : 'star-empty'}
+                                    onClick={() => handleRatingChange(index + 1)}
+                                />
                             ))}
-                        </div>
-                        <div>{review.review}</div>
-                    </li>
-                ))}
-            </ul>
-        </div>
-        </StyleDoctorReviews>
-        </div>
+                        </StarRating>
+                    </div>
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+        </StyleDoctorReview>
     );
 };
+
+const StarRating = styled.div`
+    display: flex;
+    gap: 5px;
+`;
 
 export default DoctorReview;

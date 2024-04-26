@@ -1,63 +1,85 @@
-import styled from "styled-components";
-const StyleDoctorReviews = styled.section`
+/* StyleDoctorReview.js */
+import styled from 'styled-components';
 
-.doctor-review-page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
+const StyleDoctorReview = styled.div`
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-h1 {
-    text-align: center;
-}
+    .doctor-profile {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-form {
-    margin-bottom: 20px;
-}
+    .doctor-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-}
+    .doctor-name {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+    }
 
-textarea, input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+    label {
+        font-size: 18px;
+        color: #333;
+    }
 
-button:hover {
-    background-color: #0056b3;
-}
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        resize: none;
+    }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-li {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-}
+    button:hover {
+        background-color: #0056b3;
+    }
 
-li div:first-child {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+    .rating-input {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .star-filled {
+        color: #ffc107; /* Yellow color for filled stars */
+        cursor: pointer;
+    }
+
+    .star-empty {
+        color: #e4e5e9; /* Gray color for empty stars */
+        cursor: pointer;
+    }
 `;
 
-export default StyleDoctorReviews;
+export default StyleDoctorReview;
