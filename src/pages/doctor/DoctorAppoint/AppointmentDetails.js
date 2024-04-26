@@ -110,7 +110,9 @@ const AppointmentDetails = ({ appointment, onApprove, onReject, onClose }) => {
         <div className="details">
           <p><strong>Appointment Time:</strong> {appointment.preferred_time}</p>
           <p><strong>Description:</strong>{appointment.description}</p>
-          <p><strong>Attached Document:</strong> <a href={appointment.document}>View Document</a></p>
+          <p><strong>Attached Document:</strong> <a href={appointment.document} target="_blank" rel="noopener noreferrer">View Document</a></p>
+          <p><strong>Appointment Date:</strong> {appointment.date}</p>
+
         </div>
         <div className="time-slot">
           <h2>Time Slot</h2>

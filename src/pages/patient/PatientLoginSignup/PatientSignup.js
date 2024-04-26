@@ -25,17 +25,7 @@ const PatientSignup = () => {
     e.preventDefault();
     setLoading(true);
     // Validate password
-    if (signup.password.length < 8 || !/\d/.test(signup.password)) {
-      alert("Password should be minimum 8 characters with at least 1 number");
-      return;
-    }
-
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(signup.email)) {
-      alert("Invalid email address");
-      return;
-    }
+    
 
     try {
       const response = await axios.post(hostURL.link + '/api/patient/auth/signup', signup);
@@ -47,12 +37,24 @@ const PatientSignup = () => {
       navigate('/patient-details')
     } catch (error) {
       console.error('Error making API call:', error);
+      if (signup.password.length < 8 || !/\d/.test(signup.password)) {
+        alert("Password should be minimum 8 characters with at least 1 number");
+        return;
+      }
+  
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(signup.email)) {
+        alert("Invalid email address");
+        return;
+      }
 
       if (error.response && error.response.status === 409) {
         alert('Username is already taken. Please choose a different username.');
       } else {
         alert('An error occurred. Please try again later.');
       }
+      
     }finally {
       setLoading(false);
     }

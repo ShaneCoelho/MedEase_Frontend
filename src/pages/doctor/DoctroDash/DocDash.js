@@ -31,7 +31,7 @@ const DocDash = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
   const handleLogout = () => {
     console.log('Logout clicked');
     // Redirect to the logout page using React Router
-    navigate('/logout');
+    navigate('/');
   };
 
   return (
