@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import StyleDoctorReview from './StyleDoctorReview';
+import StyleDoctorReview from './StylePatientReview';
 import styled from 'styled-components';
 
-const DoctorReview = () => {
+const PatientReview = () => {
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState('');
 
@@ -61,4 +61,4 @@ const StarRating = styled.div`
     gap: 5px;
 `;
 
-export default DoctorReview;
+export default PatientReview;
