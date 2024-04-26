@@ -9,7 +9,6 @@ import Header from '../../Shared/Header/Header';
 import SubHeader from '../../Shared/SubHeader';
 import Footer from '../../Shared/Footer/Footer';
 
-
 // Dummy doctor specializations
 const specializations = [
   "Cardiologist",
@@ -38,16 +37,16 @@ const specializations = [
 export default function Map({ readonly, location, onChange }) {
   const [selectedSpecialization, setSelectedSpecialization] = useState('');
   const [filteredSpecializations, setFilteredSpecializations] = useState([]);
+  const [specializationSelected, setSpecializationSelected] = useState(false);
   const [lat, setLatitude] = useState(null);
   const [lng, setLongitude] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-   
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setLatitude(String(position.coords.latitude)); 
-        setLongitude(String(position.coords.longitude)); 
+        setLatitude(String(position.coords.latitude));
+        setLongitude(String(position.coords.longitude));
       },
       (error) => {
         toast.error(error.message);
@@ -57,11 +56,8 @@ export default function Map({ readonly, location, onChange }) {
 
   const handleFindDoctors = () => {
     // Redirect to the "/nearby-doc" page
- 
-    // alert(lat+' '+lng+' '+selectedSpecialization);
     navigate('/nearby-doc', { state: { lat, lng, specialization: selectedSpecialization } });
   };
-
 
   useEffect(() => {
     setFilteredSpecializations(
@@ -73,76 +69,74 @@ export default function Map({ readonly, location, onChange }) {
 
   const handleSpecializationSelect = (specialization) => {
     setSelectedSpecialization(specialization);
-    setFilteredSpecializations([]); // Clear the filtered list after selection
+    setSpecializationSelected(true);
   };
 
   return (
     <div>
-    <Header/ >
-    <SubHeader title="Find Doctor" subtitle="Explore our team of healthcare professionals" />
-    <StyleFindDoc>
-      <div className='specialization-container'>
-        {/* Input field for typing specialization */}
-        <input
-          type="text"
-          placeholder="Enter Specialization"
-          value={selectedSpecialization}
-          onChange={(e) => setSelectedSpecialization(e.target.value)}
-          disabled={readonly}
-        />
-        {/* List of filtered specializations */}
-        {selectedSpecialization && (
-          <ul>
-            {filteredSpecializations.map((specialization, index) => (
-              <li key={index} onClick={() => handleSpecializationSelect(specialization)}>
-                {specialization}
-              </li>
-            ))}
-          </ul>
-        )}
-        {/* "Find My Doctor" button */}
+      <Header />
+      <SubHeader title="Find Doctor" subtitle="Find the right care nearby: Let MedEase match you with trusted doctors just around the corner."/>
+      <StyleFindDoc>
+        <div className='specialization-container'>
+          {/* Input field for typing specialization */}
+          <input
+            type="text"
+            placeholder="Enter Specialization"
+            value={selectedSpecialization}
+            onChange={(e) => setSelectedSpecialization(e.target.value)}
+            disabled={readonly}
+          />
+          {/* List of filtered specializations */}
+          {!specializationSelected && selectedSpecialization && (
+            <ul>
+              {filteredSpecializations.map((specialization, index) => (
+                <li key={index} onMouseDown={() => handleSpecializationSelect(specialization)}>
+                  {specialization}
+                </li>
+              ))}
+            </ul>
+          )}
+          {/* "Find My Doctor" button */}
         </div>
-      
 
-<button
-  className="find-doctor-button" // Apply this class to "Find My Doctor" button
-  onClick={handleFindDoctors}
->
-  Find My Doctor
-</button>
-
-      
-      <div className='map-container'>
-        <MapContainer
-          center={[20, -1000]}
-          zoom={5}
-          dragging={!readonly}
-          touchZoom={!readonly}
-          doubleClickZoom={!readonly}
-          scrollWheelZoom={!readonly}
-          boxZoom={!readonly}
-          keyboard={!readonly}
-          attributionControl={false}
+        <button
+          className="find-doctor-button"
+          onClick={handleFindDoctors}
         >
-        
-          <TileLayer
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            maxZoom={14}
-            attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          />
-          <FindButtonAndMarker
-            readonly={readonly}
-            location={location}
-            onChange={onChange}
-            selectedSpecialization={selectedSpecialization}
-          />
-        </MapContainer>
-      </div>
-      
-    </StyleFindDoc>
-    
-<Footer/>
-</div>
+          Find My Doctor
+        </button>
+
+
+        <div className='map-container'>
+          <MapContainer
+            center={[20, -1000]}
+            zoom={5}
+            dragging={!readonly}
+            touchZoom={!readonly}
+            doubleClickZoom={!readonly}
+            scrollWheelZoom={!readonly}
+            boxZoom={!readonly}
+            keyboard={!readonly}
+            attributionControl={false}
+          >
+            <TileLayer
+              url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+              maxZoom={14}
+              attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            />
+            <FindButtonAndMarker
+              readonly={readonly}
+              location={location}
+              onChange={onChange}
+              selectedSpecialization={selectedSpecialization}
+            />
+          </MapContainer>
+        </div>
+
+      </StyleFindDoc>
+
+      <Footer />
+    </div>
   );
 }
 
@@ -176,14 +170,14 @@ function FindButtonAndMarker({ readonly, location, onChange, selectedSpecializat
     <>
       {!readonly && (
         <button
-        type="button"
-        className="find-location-button" // Apply this class to "Find My Location" button
-        onClick={() => {
-          map.locate();
-        }}
-      >
-        Find My Location
-      </button>
+          type="button"
+          className="find-location-button"
+          onClick={() => {
+            map.locate();
+          }}
+        >
+          Find My Location
+        </button>
       )}
 
       {position && (

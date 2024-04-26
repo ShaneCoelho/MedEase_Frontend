@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img from '../../images/Home.jpg';
+
 
 const StyleSymptoms = styled.section`
 .body {
@@ -23,8 +23,8 @@ const StyleSymptoms = styled.section`
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0.5, 0.9);
   background-size: cover;
-  background: linear-gradient(135deg, #638daf, #002750);
-  height: 80vh; /* Set a fixed height for the container */
+  background: linear-gradient(135deg, #89a9cc, #002750);
+  height: 80vh; /* Set a fixed height for the container #89b9ff #89a9cc*/
   
 
 }

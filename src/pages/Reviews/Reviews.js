@@ -55,7 +55,7 @@ const Reviews = () => {
   return (
     <div>
     <Header />
-    <SubHeader title="Reviews" subtitle="Trusted by patients, endorsed by results – our doctors exceed expectations." />
+    <SubHeader title="Reviews" subtitle="Discover what patients are saying: Honest reviews to help you find the right doctor for your needs." />
     <StyleReviews>
         <div className='vd-body'>
     <div className="doctor-search-container">

@@ -19,7 +19,7 @@ import FindDoc from './pages/patient/FindDoc/FindDoc';
 import DocDash from './pages/doctor/DoctroDash/DocDash';
 import NearbyDoc from './pages/patient/NearbyDoc/NearbyDoc';
 import FindLocation from './pages/patient/FindLocation/Findlocation';
-import Symptoms from './pages/Symptoms/Symptoms';
+import Symptoms from './pages/patient/Symptoms/Symptoms';
 import ViewTodayAppoint from './pages/doctor/DoctroDash/Today\'s appointment/ViewTodayAppoint';
 import ViewPastAppoint from './pages/doctor/DoctroDash/Past appointments/ViewPastAppoint';
 import CancelAppoint from './pages/doctor/DoctroDash/Cancel appoinment/CancelAppoint';
