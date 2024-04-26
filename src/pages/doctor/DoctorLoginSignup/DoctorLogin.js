@@ -29,6 +29,8 @@ const DoctorLogin = () => {
             setToken(value);
 
             console.log("Successfully Logged INnn")
+            navigate('/docdash');
+
         } catch (error) {
             console.error('Error making API call:', error);
 
