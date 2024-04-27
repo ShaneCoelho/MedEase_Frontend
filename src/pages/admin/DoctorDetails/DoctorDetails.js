@@ -30,6 +30,18 @@ const DoctorDetails = () => {
         setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
     };
 
+    const handleLatLngChange = (e) => {
+        const { name, value } = e.target;
+        setFormDetails(prevState => ({
+          ...prevState,
+          location: {
+            ...prevState.location,
+            [name]: parseFloat(value) // Convert input value to float
+          }
+        }));
+      };
+    
+
 
     var loadFile = function (event) {
         var image = document.getElementById('output');
@@ -149,6 +161,22 @@ const DoctorDetails = () => {
                                             <span className="details">Practicing At</span>
                                             <input type="text" placeholder="Enter your identification no." name="practicing_at" onChange={handleInputChange} required />
                                         </div>
+
+                                        <div className="input-box">
+                                            <span className="details">Google Location</span>
+                                            <input type="text" placeholder="Enter your google location" name="google_location" onChange={handleInputChange} required />
+                                        </div>
+
+                                        <div className="input-box">
+                                            <span className="details">Latitude</span>
+                                            <input type="text" placeholder="Enter your latitude" name="latitude" onChange={handleLatLngChange} required />
+                                        </div>
+
+                                        <div className="input-box">
+                                            <span className="details">Longitude</span>
+                                            <input type="text" placeholder="Enter your longitude" name="longitude" onChange={handleLatLngChange} required />
+                                        </div>
+
                                         <div className="input-box">
                                             <span className="details">Username</span>
                                             <input type="text" placeholder="Enter your username" name="username" onChange={handleInputChange} required />

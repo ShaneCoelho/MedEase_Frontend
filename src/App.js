@@ -13,7 +13,7 @@ import DoctorAppoint from './pages/doctor/DoctorAppoint/DoctorAppoint';
 import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
 import TrackAppoint from './pages/patient/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';
-import DoctorReview from './pages/doctor/DoctorReview/DoctorReview';
+import PatientReview from './pages/patient/PatientReviews/PatientReview';
 import Reviews from './pages/Reviews/Reviews';
 import FindDoc from './pages/patient/FindDoc/FindDoc';
 import DocDash from './pages/doctor/DoctroDash/DocDash';
@@ -50,7 +50,7 @@ function App() {
         <Route path="/patient-appoint" element={<PatientAppoint/>}/>
         <Route path="/doctor-appoint" element={<DoctorAppoint/>}/>
         <Route path="/track-appoint" element={<TrackAppoint/>}/>
-        <Route path="/doctor-review" element={<DoctorReview/>}/>
+        <Route path="/patient-review" element={<PatientReview/>}/>
         <Route path="/reviews" element={<Reviews/>}/>
         <Route path="/find-doc" element={<FindDoc/>}/>
         <Route path="/nearby-doc" element={<NearbyDoc/>}/>
