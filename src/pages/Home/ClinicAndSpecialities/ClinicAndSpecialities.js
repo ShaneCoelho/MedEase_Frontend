@@ -14,7 +14,7 @@ const ClinicAndSpecialities = () => {
 			<div className="container-fluid">
 				<div className='mb-5 section-title text-center'>
 					<h2>Clinic and Specialities</h2>
-					<p className='m-0'>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+					<p className='m-0'>"Explore specialized care: Discover clinics and specialties tailored to your unique healthcare needs."</p>
 				</div>
 
 				<div className="row justify-content-center">

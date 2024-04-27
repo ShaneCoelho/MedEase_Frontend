@@ -11,28 +11,23 @@ import Footer from '../../Shared/Footer/Footer';
 
 // Dummy doctor specializations
 const specializations = [
-  "Cardiologist",
-  "Dermatology",
-  "Neurology",
-  "Orthopedic",
-  "Oncologist",
-  "Ophthalmologist",
-  "Orthopedist",
-  "Otolaryngologist",
-  "Osteopath",
-  "Pathologist",
-  "Pediatrician",
-  "Physician executive",
-  "Plastic surgeon",
-  "Podiatrist",
-  "Psychiatrist",
+  "Dermatologist",
+  "Allergist",
+  "Gastroenterologist",
+  "Hepatologist",
+  "Physician",
+  "Diabetologist",
   "Pulmonologist",
-  "Radiologist",
+  "Cardiologist",
+  "Neurologist",
+  "Neurosurgeon",
+  "Proctologist",
+  "Vascular Surgeon",
+  "Endocrinologist",
   "Rheumatologist",
-  "Sleep medicine specialist",
-  "Surgeon",
   "Urologist",
 ];
+
 
 export default function Map({ readonly, location, onChange }) {
   const [selectedSpecialization, setSelectedSpecialization] = useState('');
