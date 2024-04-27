@@ -46,7 +46,7 @@ const Reviews = () => {
   return (
     <div>
       <Header />
-      <SubHeader title="Doctor Review" subtitle="Make your reviews so that our doctors can improve" />
+      <SubHeader title="Reviews" subtitle="Trusted by patients, endorsed by results – our doctors exceed expectations." />
       {loading ? (
         <Loading />
       ) : (

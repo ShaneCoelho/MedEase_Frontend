@@ -5,6 +5,10 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { getToken } from "../../../data/Token";
 import hostURL from '../../../data/URL';
+import Header from '../../Shared/Header/Header';
+import Footer from '../../Shared/Footer/Footer';
+import SubHeader from '../../Shared/SubHeader';
+import axios from 'axios';
 
 const PatientReview = () => {
     const [rating, setRating] = useState(0);
@@ -67,6 +71,10 @@ const PatientReview = () => {
     };
 
     return (
+    <>
+    <Header/>
+    <SubHeader title="Reviews" subtitle="Trusted by patients, endorsed by results – our doctors exceed expectations." />
+        
         <StyleDoctorReview>
             <div className="container">
                 <div className="doctor-profile">
@@ -94,6 +102,9 @@ const PatientReview = () => {
                 </form>
             </div>
         </StyleDoctorReview>
+        <Footer/>
+        </>
+        
     );
 };
 

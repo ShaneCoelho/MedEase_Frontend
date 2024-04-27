@@ -7,8 +7,8 @@ const StyleDoctorReview = styled.div`
         margin: 0 auto;
         padding: 20px;
         background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     }
 
     .doctor-profile {
@@ -53,16 +53,16 @@ const StyleDoctorReview = styled.div`
     button {
         padding: 10px 20px;
         font-size: 18px;
-        background-color: #007bff;
+        background-color: #002750;
         color: #fff;
         border: none;
-        border-radius: 5px;
+        border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s;
     }
 
     button:hover {
-        background-color: #0056b3;
+        background-color: #3A89C9;
     }
 
     .rating-input {
