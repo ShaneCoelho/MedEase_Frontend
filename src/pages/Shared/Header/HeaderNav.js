@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Drawer , Button } from 'antd';
 import { FaHome,FaBars, FaPhoneAlt, FaWrench, FaUserMd, FaAddressBook, FaBloggerB, FaSignInAlt } from "react-icons/fa";
 import StyleHeader from "./StyleHeader";
+import { deleteToken } from "../../../data/Token";
 
 const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const HeaderNav = ({ open, setOpen, isLoggedOut, data, avatar, content }) => {
         // Implement logout functionality here
         // For example, clear local storage, remove tokens, etc.
         // Redirect to the home page
+        deleteToken('token');
         navigate('/');
     };
 

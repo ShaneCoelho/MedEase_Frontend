@@ -18,4 +18,8 @@ const setToken = (value) => {
     document.cookie = cookieString;
 };
 
-export {getToken,setToken};
+const deleteToken = (name) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+};
+
+export { getToken, setToken, deleteToken };
