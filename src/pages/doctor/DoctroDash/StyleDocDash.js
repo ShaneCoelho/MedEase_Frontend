@@ -11,6 +11,10 @@ const StyleDocDash = styled.section`
     position: relative;
   }
 
+  .navbtn{
+    border-radius:15px;
+    margin-right:350px;
+  }
   .navbar ul {
     list-style: none;
     display: flex;
@@ -71,6 +75,11 @@ const StyleDocDash = styled.section`
 
   @media screen and (max-width: 768px) {
     .navbar ul {
+      display: none;
+    }
+
+    .navbar ul.open {
+      display: flex;
       flex-direction: column;
       position: absolute;
       top: 70px;
@@ -81,27 +90,34 @@ const StyleDocDash = styled.section`
       text-align: center;
       border-radius: 0 0 10px 10px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      display: none;
+      z-index: 1000; /* Added higher z-index here */
+
     }
 
-    .navbar ul.open {
-      display: flex;
-    }
-
-    .navbar ul li {
+    .navbar ul.open li {
       margin-right: 0;
       margin-bottom: 1rem;
     }
 
-    .navbar ul li:last-child {
+    .navbar ul.open li:last-child {
       margin-bottom: 0;
     }
-    .navbar ul li.active {
+
+    .navbar ul.open li.active {
       border-bottom: 2px solid white;
     }
 
-    .navbar ul li a {
+    .navbar ul.open li a {
       display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar ul.open li a:hover {
+      background-color: #135ca9;
     }
   }
 `;

@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import hostURL from '../../../data/URL';
-import Loading from '../../Loading/Loading';
-import { getToken } from "../../../data/Token";
+import hostURL from '../../../../data/URL';
+import Loading from '../../../Loading/Loading';
+import { getToken } from "../../../../data/Token";
+import { NavLink, useNavigate } from 'react-router-dom';
 import StyleDoctorAppoint from "./StyleDoctorAppoint";
 import AppointmentDetails from "./AppointmentDetails";
 import PatientInfoPopup from "./PatientInfoPopup";
 import { addDays } from 'date-fns';
+import Navbar from '../Navbar';
+import StyleHeader from '../StyleDocDash';
+
 
 const DoctorAppoint = () => {
   const [patientAppointments, setPatientAppointments] = useState([]);
@@ -21,6 +25,8 @@ const DoctorAppoint = () => {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [patientApprovedAppointments, setPatientApprovedAppointments] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('');
+
 
   useEffect(() => {
     const checkTokenCookie = () => {
@@ -115,9 +121,30 @@ const DoctorAppoint = () => {
       return formattedAppointmentDate === formattedSelectedDate;
     });
   };
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+  const handleButtonClick = (item) => {
+    // Handle button click based on the item
+    console.log(`Button clicked for ${item}`);
+  };
+  const handleLogout = () => {
+    console.log('Logout clicked');
+    // Redirect to the logout page using React Router
+    navigate('/');
+  };
+const navigate = useNavigate();
+
+
 
 
   return (
+    <StyleHeader>                                
+   <Navbar
+        handleLogout={handleLogout}
+        selectedOption={selectedOption}
+        handleOptionChange={handleOptionChange}
+      />
     <StyleDoctorAppoint>
 
       <div>
@@ -207,6 +234,7 @@ const DoctorAppoint = () => {
         )}
       </div>
     </StyleDoctorAppoint>
+    </StyleHeader>
   );
 };
 

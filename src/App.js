@@ -9,7 +9,7 @@ import DoctorDetails from './pages/admin/DoctorDetails/DoctorDetails';
 import ViewDoctor from './pages/patient/ViewDoctors/ViewDoctors';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
-import DoctorAppoint from './pages/doctor/DoctorAppoint/DoctorAppoint';
+import DoctorAppoint from './pages/doctor/DoctroDash/DoctorAppoint/DoctorAppoint';
 import PatientAppoint from './pages/patient/PatientAppoint/PatientAppoint';
 import TrackAppoint from './pages/patient/TrackAppointment/TrackAppoint';
 import Home from './pages/Home/Home/Home';

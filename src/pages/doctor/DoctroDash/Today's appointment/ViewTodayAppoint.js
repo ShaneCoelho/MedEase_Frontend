@@ -6,7 +6,7 @@ import StyleViewAppoint from './StyleViewAppoint';
 import { NavLink, useNavigate } from 'react-router-dom';
 import StyleHeader from '../StyleDocDash';
 import { Drawer, Button } from 'antd';
-
+import Navbar from '../Navbar';
 
 const ViewTodayAppoint = () => {
   const [appointments, setAppointments] = useState([]);
@@ -37,7 +37,7 @@ const ViewTodayAppoint = () => {
   const handleLogout = () => {
     console.log('Logout clicked');
     // Redirect to the logout page using React Router
-    navigate('/logout');
+    navigate('/');
   };
 const navigate = useNavigate();
 
@@ -82,49 +82,11 @@ const navigate = useNavigate();
   };
   return (
     <StyleHeader>                                
-    <nav id="navbar" className="navbar order-last order-lg-0">
-       <ul>
-         <li>
-           <Button className="navbtn" onClick={handleLogout}>
-             Logout
-           </Button>
-         </li>
-       </ul>
-       <nav className="navbar">
-         <ul>
-         <li
-             className={selectedOption === 'home' ? 'active' : ''}
-             onClick={() => handleOptionChange('home')}
-           >
-             <NavLink to="/docdash">Home</NavLink>
-           </li>
-           <li
-             className={selectedOption === 'today' ? 'active' : ''}
-             onClick={() => handleOptionChange('today')}
-           >
-             <NavLink to="/viewtodayappoint">Today's Appointments</NavLink>
-           </li>
-           <li
-             className={selectedOption === 'past' ? 'active' : ''}
-             onClick={() => handleOptionChange('past')}
-           >
-             <NavLink to="/viewpastappoint">Past Appointments</NavLink>
-           </li>
-           <li
-             className={selectedOption === 'cancel' ? 'active' : ''}
-             onClick={() => handleOptionChange('cancel')}
-           >
-             <NavLink to="/cancelappoint">Cancel Appointments</NavLink>
-           </li>
-            <li
-             className={selectedOption === 'review' ? 'active' : ''}
-             onClick={() => handleOptionChange('review')}
-           >
-             <NavLink to="/viewreview">Reviews</NavLink>
-           </li>
-         </ul>
-       </nav>
-     </nav>
+   <Navbar
+        handleLogout={handleLogout}
+        selectedOption={selectedOption}
+        handleOptionChange={handleOptionChange}
+      />
     <StyleViewAppoint>
       <div className="container">
         <div className="title">Today's Appointments</div>

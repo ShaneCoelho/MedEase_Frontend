@@ -6,6 +6,7 @@ import StyleViewReview from './StyleViewReview';
 import { NavLink, useNavigate } from 'react-router-dom';
 import StyleHeader from '../StyleDocDash';
 import { Drawer, Button } from 'antd';
+import Navbar from '../Navbar';
 
 
 
@@ -97,49 +98,11 @@ const ViewReview = () => {
 
   return (
     <StyleHeader>                                
-    <nav id="navbar" className="navbar order-last order-lg-0">
-       <ul>
-         <li>
-           <Button className="navbtn" onClick={handleLogout}>
-             Logout
-           </Button>
-         </li>
-       </ul>
-       <nav className="navbar">
-         <ul>
-         <li
-             className={selectedOption === 'home' ? 'active' : ''}
-             onClick={() => handleOptionChange('home')}
-           >
-             <NavLink to="/docdash">Home</NavLink>
-           </li>
-           <li
-             className={selectedOption === 'today' ? 'active' : ''}
-             onClick={() => handleOptionChange('today')}
-           >
-             <NavLink to="/viewtodayappoint">Today's Appointments</NavLink>
-           </li>
-           <li
-             className={selectedOption === 'past' ? 'active' : ''}
-             onClick={() => handleOptionChange('past')}
-           >
-             <NavLink to="/viewpastappoint">Past Appointments</NavLink>
-           </li>
-           <li
-          className={selectedOption === 'cancel' ? 'active' : ''}
-          onClick={() => handleOptionChange('cancel')}
-        >
-          <NavLink to="/cancelappoint">Cancel Appointments</NavLink>
-        </li>
-        <li
-             className={selectedOption === 'review' ? 'active' : ''}
-             onClick={() => handleOptionChange('review')}
-           >
-             <NavLink to="/viewreview">Reviews</NavLink>
-           </li>
-         </ul>
-       </nav>
-     </nav>
+    <Navbar
+        handleLogout={handleLogout}
+        selectedOption={selectedOption}
+        handleOptionChange={handleOptionChange}
+      />
     <StyleViewReview>
       <div className="patient-page-container">
         <div className="title">Reviews</div>

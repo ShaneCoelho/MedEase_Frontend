@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import hostURL from '../../../data/URL';
-import { getToken } from "../../../data/Token";
+import hostURL from '../../../../data/URL';
+import { getToken } from "../../../../data/Token";
 import styled from "styled-components";
 import StylePatientPopup from './StylePatientPopup';
 

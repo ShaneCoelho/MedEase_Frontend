@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import hostURL from '../../../data/URL';
-import { getToken } from "../../../data/Token";
+import hostURL from '../../../../data/URL';
+import { getToken } from "../../../../data/Token";
 import StyleAppointmentDetails from "./StyleAppointmentDetails";
 
 const AppointmentDetails = ({ appointment, onApprove, onReject, onClose }) => {
