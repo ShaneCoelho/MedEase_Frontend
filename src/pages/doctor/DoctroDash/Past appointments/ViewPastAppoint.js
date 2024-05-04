@@ -81,7 +81,7 @@ const ViewPastAppoint = () => {
   const handleLogout = () => {
     console.log('Logout clicked');
     // Redirect to the logout page using React Router
-    navigate('/logout');
+    navigate('/');
   };
 
   return (
