@@ -39,7 +39,7 @@ const Symptoms = () => {
     const handleSubmit = async () => {
 
         try {
-            const response = await axios.post('http://127.0.0.1:5000/predict', {
+            const response = await axios.post('https://medeasediseaseprediction.onrender.com/predict', {
                 symptoms: symptoms
             });
             const { prediction, specialization } = response.data;
