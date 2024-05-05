@@ -1,23 +1,17 @@
 import styled from "styled-components";
 import img from '../../images/Home.jpg';
 
-
 const StyleHomepage = styled.section`
-.hm-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-size: cover;
-  background-color: #ffffff;
-  background-image: url(${img});
-  justify-content: center;
-  display: flex;
-  height: 100vh;
-}
-
-
-  .App {
-    text-align: center;
+  .hm-body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-color: #ffffff;
+    background-image: url(${img});
+    justify-content: center;
+    display: flex;
+    height: 100vh;
   }
 
   .home-container {
@@ -35,7 +29,6 @@ const StyleHomepage = styled.section`
     flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 20px;
-    
   }
 
   .module {
@@ -58,11 +51,6 @@ const StyleHomepage = styled.section`
     color: #333;
   }
 
-  .module p {
-    color: #666;
-    margin-bottom: 20px;
-  }
-
   .module a {
     display: inline-block;
     padding: 10px 15px;
@@ -81,12 +69,11 @@ const StyleHomepage = styled.section`
   @media only screen and (max-width: 400px) {
     .home-container {
       padding: 20px;
-    }
 
-    .module {
-      flex: 1 0 100%;
-      margin: 10px 0; /* Adjusted margin for smaller screens */
-    }
+      .module {
+        flex: 1 0 100%;
+        margin: 10px 0; /* Adjusted margin for smaller screens */
+      }
   }
 `;
 
