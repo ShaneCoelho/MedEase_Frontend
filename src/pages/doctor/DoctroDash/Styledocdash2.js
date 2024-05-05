@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyleDocDash = styled.section`
+const StyleDocDash2 = styled.section`
   .navbar {
     background-color: #1977cc;
     color: #fff;
@@ -73,6 +73,7 @@ const StyleDocDash = styled.section`
     display: block;
   }
 
+  /* Responsive styles */
   @media screen and (min-width: 769px) {
     .hamburger {
       display: none;
@@ -84,7 +85,8 @@ const StyleDocDash = styled.section`
   }
   @media screen and (max-width: 768px) {
     .navbar ul {
-      display: none;
+      display: block;
+      padding:-1px;
     }
 
     .navbar ul.open {
@@ -128,7 +130,12 @@ const StyleDocDash = styled.section`
     .navbar ul.open li a:hover {
       background-color: #135ca9;
     }
+
+    /* Responsive style for the logout button */
+    .navbar ul li .navbtn {
+      margin-right: 1rem; /* Adjust margin for smaller screens */
+    }
   }
 `;
 
-export default StyleDocDash;
+export default StyleDocDash2;

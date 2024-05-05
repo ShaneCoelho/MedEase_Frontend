@@ -109,6 +109,9 @@ const CancelAppoint = () => {
         selectedOption={selectedOption}
         handleOptionChange={handleOptionChange}
       />
+      {loading ? (
+        <Loading />
+      ) : (
         <StyleCancel>
           <div className="past-appointments-container">
             <div className="title2">Appointments</div>
@@ -138,6 +141,7 @@ const CancelAppoint = () => {
             </div>
           </div>
         </StyleCancel>
+      )}
     </StyleHeader>
   );
 };

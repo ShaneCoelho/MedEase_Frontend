@@ -12,8 +12,6 @@ import StyleHeader from '../StyleDocDash';
 import DocDash from '../DocDash';
 import Navbar from '../Navbar';
 
-
-
 const ViewPastAppoint = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +32,6 @@ const ViewPastAppoint = () => {
   }, [token, appointments]);
 
   const navigate = useNavigate();
-
 
   const fetchData = async () => {
     try {
@@ -74,10 +71,12 @@ const ViewPastAppoint = () => {
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
+
   const handleButtonClick = (item) => {
     // Handle button click based on the item
     console.log(`Button clicked for ${item}`);
   };
+
   const handleLogout = () => {
     console.log('Logout clicked');
     // Redirect to the logout page using React Router
@@ -86,39 +85,43 @@ const ViewPastAppoint = () => {
 
   return (
     <StyleHeader>                                
-       <Navbar
+      <Navbar
         handleLogout={handleLogout}
         selectedOption={selectedOption}
         handleOptionChange={handleOptionChange}
       />
       
-      <StylePast>
-      <div className="past-appointments-container">
-        <div className="title2">Past Appointments</div>
-        <div className="date-filter">
-          <DatePicker
-            selected={selectedDate}
-            onChange={date => setSelectedDate(date)}
-            dateFormat="dd/MM/yyyy"
-            placeholderText=" Select a past date"
-            maxDate={new Date()} // Set maximum date to current date
-          />
-        </div>
-        <div className="card-container">
-          {filterAppointmentsByDate().map((appointment, index) => (
-            <div key={index} className="card">
-              <div className="card-header">
-                <h3>{appointment.patient_name}</h3>
-                <span>Time Slot: {appointment.time_slot}</span>
-              </div>
-              <div className="card-body">
-                <p><strong>Date:</strong> {appointment.date}</p>
-              </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <StylePast>
+          <div className="past-appointments-container">
+            <div className="title2">Past Appointments</div>
+            <div className="date-filter">
+              <DatePicker
+                selected={selectedDate}
+                onChange={date => setSelectedDate(date)}
+                dateFormat="dd/MM/yyyy"
+                placeholderText=" Select a past date"
+                maxDate={new Date()} // Set maximum date to current date
+              />
             </div>
-          ))}
-        </div>
-      </div>
-    </StylePast>
+            <div className="card-container">
+              {filterAppointmentsByDate().map((appointment, index) => (
+                <div key={index} className="card">
+                  <div className="card-header">
+                    <h3>{appointment.patient_name}</h3>
+                    <span>Time Slot: {appointment.time_slot}</span>
+                  </div>
+                  <div className="card-body">
+                    <p><strong>Date:</strong> {appointment.date}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </StylePast>
+      )}
     </StyleHeader>
   );
 };
