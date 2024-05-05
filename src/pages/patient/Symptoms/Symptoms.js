@@ -37,7 +37,8 @@ const Symptoms = () => {
     };
 
     const handleSubmit = async () => {
-
+        setLoading(true); // Set loading state to true when submission starts
+    
         try {
             const response = await axios.post('https://medeasediseaseprediction.onrender.com/predict', {
                 symptoms: symptoms
@@ -45,12 +46,13 @@ const Symptoms = () => {
             const { prediction, specialization } = response.data;
             setPrediction(prediction);
             setSpecialization(specialization);
-            setLoading(false);
         } catch (error) {
             console.error(error);
-            setLoading(false);
+        } finally {
+            setLoading(false); // Set loading state to false when submission completes
         }
     };
+    
 
 
     const handleInputKeyDown = (e) => {
