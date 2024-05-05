@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import StyleAdminLogin from './StyleAdminLogin';  // Assuming StyleAdminLogin is a styled-component
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import axios from 'axios';
 import hostURL from '../../../data/URL'
 import { setToken } from "../../../data/Token";
@@ -27,7 +27,11 @@ const AdminLogin = () => {
             const value = response.data.token;
             setToken(value);
 
-            console.log("Successfully Logged INnn")
+            console.log("Successfully Logged INnn");
+            
+            // Redirect to doctor-details page
+            navigate('/doctor-details');
+
         } catch (error) {
             console.error('Error making API call:', error);
 
@@ -36,7 +40,7 @@ const AdminLogin = () => {
             } else {
                 alert('An error occurred. Please try again later.');
             }
-        }  finally {
+        } finally {
             setLoading(false); // Stop loading animation regardless of success or failure
         }
     };
