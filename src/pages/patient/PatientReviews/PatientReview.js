@@ -15,6 +15,7 @@ const PatientReview = () => {
     const [review, setReview] = useState('');
     const [hasToken, setHasToken] = useState(false);
     const [token, setToken] = useState(null);
+    const [showPopup, setShowPopup] = useState(false); // State for managing popup visibility
     const location = useLocation();
     const doc_id = location.state?.id;
     const doc_Avatar = location.state?.Avatar;
@@ -62,55 +63,99 @@ const PatientReview = () => {
             // Reset form fields
             setRating(0);
             setReview('');
+            // Show the popup
+            setShowPopup(true);
 
         } catch (error) {
             console.error('Error:', error);
             // Handle error response
         }
+    };
 
+    const handlePopupClose = () => {
+        setShowPopup(false);
     };
 
     return (
-    <>
-    <Header/>
-    <SubHeader title="Reviews" subtitle="Trusted by patients, endorsed by results – our doctors exceed expectations." />
-        
-        <StyleDoctorReview>
-            <div className="container">
-                <div className="doctor-profile">
-                    <img src={doc_Avatar} alt="Doctor" className="doctor-image" />
-                    <h2 className="doctor-name">{doc_name}</h2>
+        <>
+            <Header/>
+            <SubHeader title="Reviews" subtitle="Trusted by patients, endorsed by results – our doctors exceed expectations." />
+
+            <StyleDoctorReview>
+                <div className="container">
+                    <div className="doctor-profile">
+                        <img src={doc_Avatar} alt="Doctor" className="doctor-image" />
+                        <h2 className="doctor-name">{doc_name}</h2>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="review-input">
+                            <label htmlFor="review">Review:</label>
+                            <textarea id="review" value={review} onChange={handleReviewChange} />
+                        </div>
+                        <div className="rating-input">
+                            <label>Rating:</label>
+                            <StarRating>
+                                {[...Array(5)].map((_, index) => (
+                                    <FaStar
+                                        key={index}
+                                        className={index < rating ? 'star-filled' : 'star-empty'}
+                                        onClick={() => handleRatingChange(index + 1)}
+                                    />
+                                ))}
+                            </StarRating>
+                        </div>
+                        <button type="submit">Submit Review</button>
+                    </form>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="review-input">
-                        <label htmlFor="review">Review:</label>
-                        <textarea id="review" value={review} onChange={handleReviewChange} />
+            </StyleDoctorReview>
+
+            {showPopup && (
+                <Popup>
+                    <div className="popup-content">
+                        <span className="close" onClick={handlePopupClose}>
+                            &times;
+                        </span>
+                        <p>Review submitted!</p>
                     </div>
-                    <div className="rating-input">
-                        <label>Rating:</label>
-                        <StarRating>
-                            {[...Array(5)].map((_, index) => (
-                                <FaStar
-                                    key={index}
-                                    className={index < rating ? 'star-filled' : 'star-empty'}
-                                    onClick={() => handleRatingChange(index + 1)}
-                                />
-                            ))}
-                        </StarRating>
-                    </div>
-                    <button type="submit">Submit Review</button>
-                </form>
-            </div>
-        </StyleDoctorReview>
-        <Footer/>
+                </Popup>
+            )}
+
+            <Footer/>
         </>
-        
     );
 };
 
 const StarRating = styled.div`
     display: flex;
     gap: 5px;
+`;
+
+const Popup = styled.div`
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #223a66;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    max-width: 80%;
+    opacity: 0.9;
+
+    .popup-content {
+        color: white;
+    }
+
+    .close {
+        position: absolute;
+        top: -5px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: white; /* Close button color set to white */
+    }
 `;
 
 export default PatientReview;
