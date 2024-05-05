@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Drawer, Button } from 'antd';
-import StyleHeader from './StyleDocDash';
+import StyleHeader from './Styledocdash2';
 import ViewTodayAppoint from './Today\'s appointment/ViewTodayAppoint';
 import ViewPastAppoint from './Past appointments/ViewPastAppoint';
 import CancelAppoint from './Cancel appoinment/CancelAppoint';

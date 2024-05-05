@@ -5,7 +5,7 @@ import img from '../../../images/pattern.jpg';
 const StyleDoc2 = styled.section`
  background-image:url(${img});
   background-position: center;
-  height:1000px;
+  height:1000px;  
 
 
 .why-us .content {
@@ -84,6 +84,8 @@ const StyleDoc2 = styled.section`
   font-weight:700;
 }
 @media screen and (max-width: 768px) {
+  margin-top:-50px;
+  height:2000px;
   .why-us .content {
     margin-top: 100px;
     margin-right: 0;
