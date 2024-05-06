@@ -6,6 +6,8 @@ import styled from "styled-components";
 import WentWrong from '../../WentWrong/WentWrong'
 import { getToken } from "../../../data/Token";
 import hostURL from '../../../data/URL'
+import { useNavigate } from 'react-router-dom';
+
 
 const PatientDetails = () => {
     const [birthDate, setBirthDate] = useState(null);
@@ -13,6 +15,8 @@ const PatientDetails = () => {
     const [profilePicture, setProfilePicture] = useState(null);
     const [hasToken, setHasToken] = useState(false);
     const [token, setToken] = useState(null);
+    const [loading, setLoading] = useState(false); // Add loading state
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Function to check if the "token" cookie is present
@@ -41,18 +45,16 @@ const PatientDetails = () => {
 
     const handleFormDetailsSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true); // Set loading to true when form is submitted
 
         // Convert birthdate to "dd-mm-yyyy" format
         const formattedBirthdate = birthDate.toLocaleDateString('en-GB');
 
         const updatedFormDetails = { ...formDetails, birthdate: formattedBirthdate };
 
-        // console.log(updatedFormDetails);
-
         const formData = new FormData();
         
         formData.append('profile', profilePicture);
-
         formData.append('data', JSON.stringify(updatedFormDetails));
 
         try {
@@ -60,20 +62,22 @@ const PatientDetails = () => {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    // 'Content-Type': 'multipart/form-data',
                 },
                 body: formData,
             });
 
             // Check if the response is successful (status code 2xx)
             if (response.ok) {
-                alert("Successfull")
+                alert("Successfully submitted");
+                navigate('/home'); // Redirect to home page
             } else {
                 console.error('Failed to submit form. Server returned:', response.status, response.statusText);
-                alert("something went wrong"+response.status)
+                alert("Something went wrong" + response.status);
             }
         } catch (error) {
             console.error('An error occurred while submitting the form:', error);
+        } finally {
+            setLoading(false); // Set loading to false after form submission
         }
     };
 
@@ -151,7 +155,7 @@ const PatientDetails = () => {
                                         </div>
                                     </div>
                                     <div className="button">
-                                        <input type="submit" value="Save Details" />
+                                        <input type="submit" value={loading ? "Saving..." : "Save Details"} disabled={loading} />
                                     </div>
                                 </form>
                             </div>

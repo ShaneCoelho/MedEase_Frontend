@@ -15,6 +15,7 @@ const PatientReview = () => {
     const [review, setReview] = useState('');
     const [hasToken, setHasToken] = useState(false);
     const [token, setToken] = useState(null);
+    const [loading, setLoading] = useState(false); // Add loading state
     const [showPopup, setShowPopup] = useState(false); // State for managing popup visibility
     const location = useLocation();
     const doc_id = location.state?.id;
@@ -43,6 +44,7 @@ const PatientReview = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true); // Set loading to true when form is submitted
         // Handle form submission
         try {
             const response = await fetch(hostURL.link + '/api/patient/review/makereview', {
@@ -69,6 +71,8 @@ const PatientReview = () => {
         } catch (error) {
             console.error('Error:', error);
             // Handle error response
+        } finally {
+            setLoading(false); // Set loading to false after form submission
         }
     };
 
@@ -104,7 +108,7 @@ const PatientReview = () => {
                                 ))}
                             </StarRating>
                         </div>
-                        <button type="submit">Submit Review</button>
+                        <button type="submit">{loading ? 'Submitting...' : 'Submit Review'}</button>
                     </form>
                 </div>
             </StyleDoctorReview>
