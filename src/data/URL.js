@@ -1,5 +1,5 @@
 const hostURL={
-    link:"http://localhost:5000",
+    link:"https://medease-dzyz.onrender.com",
 }
 
 export default hostURL;
