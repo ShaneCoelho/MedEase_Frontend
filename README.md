@@ -1,70 +1,46 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MedEase
 
-## Available Scripts
+MedEase is a web application designed to revolutionize collaboration by connecting patients, doctors, and administrators.
 
-In the project directory, you can run:
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Appointment Booking
+- Disease prediction
+- Document Uploading
+- Searching Doctors based on your location
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Client:** React
 
-### `npm run build`
+**Server:** Node, Express, Flask
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Database:** MongoDb
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Disease Prediction:** Scikit Learn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/medeaseimages.appspot.com/o/Homepage.jpg?alt=media&token=c12133fa-10ad-4519-8efa-44e0b6ef18f5)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/medeaseimages.appspot.com/o/PatientHome.png?alt=media&token=09a327d8-8bfd-4e27-9633-f421042af698)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/medeaseimages.appspot.com/o/View_Doctors.png?alt=media&token=4b6a13ae-2794-4598-b578-4beb8992dcbd)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/medeaseimages.appspot.com/o/PatientAppointment.png?alt=media&token=8b40e6b0-e6f9-4551-b0d6-8fc566bd8f59)
 
-## Learn More
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/medeaseimages.appspot.com/o/Reviews.png?alt=media&token=8e621b92-e65b-429e-987f-f230e918a043)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/medeaseimages.appspot.com/o/Find_Doctor.png?alt=media&token=fc254688-2975-419b-aa6d-94da3adc1600)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/medeaseimages.appspot.com/o/Prediction.png?alt=media&token=bb83c636-3488-4ceb-9af3-5c9156c3a297)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Documentation
 
-### Analyzing the Bundle Size
+[Research Paper MedEase](https://firebasestorage.googleapis.com/v0/b/internship-faea3.appspot.com/o/Research_Paper.pdf?alt=media&token=a11f34e1-997a-4f52-96d4-7bc596db3ed3)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
